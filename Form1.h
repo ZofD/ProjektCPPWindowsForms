@@ -79,7 +79,6 @@ namespace CppCLRWinformsProjekt {
 			this->login->Name = L"login";
 			this->login->Size = System::Drawing::Size(213, 26);
 			this->login->TabIndex = 1;
-			this->login->TextChanged += gcnew System::EventHandler(this, &Form1::textBox1_TextChanged);
 			// 
 			// haslo
 			// 
@@ -87,7 +86,6 @@ namespace CppCLRWinformsProjekt {
 			this->haslo->Name = L"haslo";
 			this->haslo->Size = System::Drawing::Size(213, 26);
 			this->haslo->TabIndex = 2;
-			this->haslo->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
 			// 
 			// label1
 			// 
@@ -97,7 +95,6 @@ namespace CppCLRWinformsProjekt {
 			this->label1->Size = System::Drawing::Size(48, 20);
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"Login";
-			this->label1->Click += gcnew System::EventHandler(this, &Form1::label1_Click);
 			// 
 			// label2
 			// 
@@ -107,7 +104,6 @@ namespace CppCLRWinformsProjekt {
 			this->label2->Size = System::Drawing::Size(51, 20);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Has³o";
-			this->label2->Click += gcnew System::EventHandler(this, &Form1::label2_Click);
 			// 
 			// Form1
 			// 
@@ -129,19 +125,13 @@ namespace CppCLRWinformsProjekt {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (this->login->Text->Length > 0 && this->haslo->Text->Length > 0)
 		{
+			this->login->Clear();
+			this->haslo->Clear();
 			this->Hide();
 			ProjektCPPWindowsForms::MyForm uzytkownik;
 			uzytkownik.ShowDialog();
 			this->Show();
 		}
-	}
-private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 };
 }

@@ -14,3 +14,4 @@
 
 #include "MyForm.h"
 #include "Form1.h"
+#include "PanelSprzedawcy.h"
