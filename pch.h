@@ -10,3 +10,7 @@
 // Fügen Sie hier Header hinzu, die vorkompiliert werden sollen.
 
 #endif //PCH_H
+
+
+#include "MyForm.h"
+#include "Form1.h"
