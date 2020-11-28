@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\dataBase">
+      <UniqueIdentifier>{70155126-00b5-475b-9255-0d41eee899ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\dataBase\structure">
+      <UniqueIdentifier>{8fe4bd2f-1fde-4539-9aea-ed668467a999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\dataBase\connection">
+      <UniqueIdentifier>{caa8fb82-b0bf-4209-b10c-60da2abc206c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\dataBase">
+      <UniqueIdentifier>{5ce2fc74-5abe-464e-a17b-f74c86158cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\dataBase\structure">
+      <UniqueIdentifier>{8a825a19-b2d5-4ea9-9d6b-6cf8465cede3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\dataBase\connection">
+      <UniqueIdentifier>{e1da6409-66b8-4884-9923-b5fe4a091b03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -35,6 +53,15 @@
     <ClInclude Include="PanelSprzedawcy.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Headerdateien\dataBase\structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Query.h">
+      <Filter>Headerdateien\dataBase\connection</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryUser.h">
+      <Filter>Headerdateien\dataBase\connection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -54,6 +81,15 @@
     </ClCompile>
     <ClCompile Include="PanelSprzedawcy.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Query.cpp">
+      <Filter>Quelldateien\dataBase\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryUser.cpp">
+      <Filter>Quelldateien\dataBase\connection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
