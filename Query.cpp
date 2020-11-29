@@ -23,7 +23,7 @@ MYSQL_RES* Query::select(MYSQL* conn, std::string query) {
 	int qstate;
 	MYSQL_RES* res;
 	if (conn) {
-		qstate = mysql_query(conn, this->stringToConstChar(query));
+		qstate = mysql_query(conn, Query::stringToConstChar(query));
 		if (!qstate) {
 			res = mysql_store_result(conn);
 		}

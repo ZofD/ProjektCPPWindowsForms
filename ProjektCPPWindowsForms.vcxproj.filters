@@ -31,6 +31,12 @@
     <Filter Include="Quelldateien\dataBase\connection">
       <UniqueIdentifier>{e1da6409-66b8-4884-9923-b5fe4a091b03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\dataBase\getDataFromDatabase">
+      <UniqueIdentifier>{ae5510d0-328b-430b-8ba0-2536eb95966d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\dataBase\getDataFromDatabase">
+      <UniqueIdentifier>{b019ae6c-322e-43d2-a387-0daefb7c5f71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -77,6 +83,9 @@
     <ClInclude Include="Transaction.h">
       <Filter>Headerdateien\dataBase\structure</Filter>
     </ClInclude>
+    <ClInclude Include="UnVerify.h">
+      <Filter>Headerdateien\dataBase\getDataFromDatabase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -120,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="Transaction.cpp">
       <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="UnVerify.cpp">
+      <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

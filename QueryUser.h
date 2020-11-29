@@ -9,7 +9,7 @@
 class QueryUser : public Query {
 public:
 	QueryUser();
-	User selectUserByLoginAndPassword (std::string login, std::string password);
+	static User selectUserByLoginAndPassword (std::string login, std::string password);
 };
 
 #endif

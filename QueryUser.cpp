@@ -7,10 +7,10 @@ User QueryUser::selectUserByLoginAndPassword (std::string login, std::string pas
 	User user;
 	MYSQL_RES* res;
 	MYSQL_ROW row;
-	MYSQL* conn = this->conn();
+	MYSQL* conn = QueryUser::conn();
 	std::ostringstream oss;
 	oss << "SELECT ID, login, password, permission FROM user WHERE login='" << login << "' AND password='" << password << "'";
-	res = this->select(conn, oss.str());
+	res = QueryUser::select(conn, oss.str());
 	if (res != NULL) {
 		while (row = mysql_fetch_row(res))
 		{
@@ -24,6 +24,6 @@ User QueryUser::selectUserByLoginAndPassword (std::string login, std::string pas
 		user.setId(-1);
 		user.setPermission(-1);
 	}
-	this->close(conn);
+	QueryUser::close(conn);
 	return user;
 }

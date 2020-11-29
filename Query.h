@@ -7,10 +7,10 @@
 
 class Query{
 protected:
-	MYSQL* conn();
-	void close(MYSQL* conn);
-	const char* stringToConstChar(std::string text);
-	MYSQL_RES* select(MYSQL* conn, std::string query);
+	static MYSQL* conn();
+	static void close(MYSQL* conn);
+	static const char* stringToConstChar(std::string text);
+	static MYSQL_RES* select(MYSQL* conn, std::string query);
 };
 
 #endif
