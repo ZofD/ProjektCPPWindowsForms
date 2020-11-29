@@ -92,6 +92,9 @@
     <ClInclude Include="QueryCategory.h">
       <Filter>Headerdateien\dataBase\connection</Filter>
     </ClInclude>
+    <ClInclude Include="QueryCompany.h">
+      <Filter>Headerdateien\dataBase\connection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -143,6 +146,9 @@
       <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
     </ClCompile>
     <ClCompile Include="QueryCategory.cpp">
+      <Filter>Quelldateien\dataBase\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryCompany.cpp">
       <Filter>Quelldateien\dataBase\connection</Filter>
     </ClCompile>
   </ItemGroup>

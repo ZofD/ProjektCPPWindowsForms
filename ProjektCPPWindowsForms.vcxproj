@@ -162,6 +162,7 @@
     <ClInclude Include="Product.h" />
     <ClInclude Include="Query.h" />
     <ClInclude Include="QueryCategory.h" />
+    <ClInclude Include="QueryCompany.h" />
     <ClInclude Include="QueryUser.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Transaction.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryCategory.cpp" />
+    <ClCompile Include="QueryCompany.cpp" />
     <ClCompile Include="QueryUser.cpp" />
     <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="UnVerify.cpp" />
