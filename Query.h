@@ -5,7 +5,7 @@
 #include <mysql.h>
 #include <string>
 
-ref class Query{
+class Query{
 protected:
 	MYSQL* conn();
 	void close(MYSQL* conn);

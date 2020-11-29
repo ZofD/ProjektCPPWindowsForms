@@ -6,7 +6,7 @@
 #include "Query.h"
 #include "User.h"
 
-ref class QueryUser : public Query {
+class QueryUser : public Query {
 public:
 	QueryUser();
 	User selectUserByLoginAndPassword (std::string login, std::string password);

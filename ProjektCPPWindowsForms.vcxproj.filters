@@ -62,6 +62,21 @@
     <ClInclude Include="QueryUser.h">
       <Filter>Headerdateien\dataBase\connection</Filter>
     </ClInclude>
+    <ClInclude Include="Category.h">
+      <Filter>Headerdateien\dataBase\structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Company.h">
+      <Filter>Headerdateien\dataBase\structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Product.h">
+      <Filter>Headerdateien\dataBase\structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Offer.h">
+      <Filter>Headerdateien\dataBase\structure</Filter>
+    </ClInclude>
+    <ClInclude Include="Transaction.h">
+      <Filter>Headerdateien\dataBase\structure</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -90,6 +105,21 @@
     </ClCompile>
     <ClCompile Include="QueryUser.cpp">
       <Filter>Quelldateien\dataBase\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Category.cpp">
+      <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Company.cpp">
+      <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Product.cpp">
+      <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Offer.cpp">
+      <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Transaction.cpp">
+      <Filter>Quelldateien\dataBase\structure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
