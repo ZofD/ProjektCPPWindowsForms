@@ -107,6 +107,28 @@ namespace ProjektCPPWindowsForms {
 			this->listView1->Size = System::Drawing::Size(1176, 719);
 			this->listView1->TabIndex = 4;
 			this->listView1->UseCompatibleStateImageBehavior = false;
+
+			this->listView1->Columns->Add("Title", -2, HorizontalAlignment::Center);
+			this->listView1->Columns->Add("Title", -2, HorizontalAlignment::Left);
+			this->listView1->Columns->Add("Price", -2, HorizontalAlignment::Left);
+
+			// Add items
+			ListViewItem item1("Steve Martin");
+			item1.SubItems->Add("Programming .NET");
+			item1.SubItems->Add("39.95");
+
+			ListViewItem item2("Irene Suzuki");
+			item2.SubItems->Add("VB.NET Core Studies");
+			item2.SubItems->Add("69.95");
+
+			ListViewItem item3("Ricky Ericsson");
+			item3.SubItems->Add("Passing Your .NET Exams");
+			item3.SubItems->Add("19.95");
+
+			// Add the items to the ListView.
+			//listView1.Items.AddRange(new ListViewItem[]{ item1,item2,item3 });
+			//this->listView1->Items->Add("bls", "df");
+			//this->listView1->Items->AddRange();
 			// 
 			// button2
 			// 
