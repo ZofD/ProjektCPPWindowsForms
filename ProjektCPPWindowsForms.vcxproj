@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Category.h" />
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Company.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
@@ -160,6 +161,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Query.h" />
+    <ClInclude Include="QueryCategory.h" />
     <ClInclude Include="QueryUser.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Transaction.h" />
@@ -169,6 +171,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Category.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="CppCLR_WinformsProjekt.cpp" />
     <ClCompile Include="Form1.cpp" />
@@ -183,6 +186,7 @@
     </ClCompile>
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Query.cpp" />
+    <ClCompile Include="QueryCategory.cpp" />
     <ClCompile Include="QueryUser.cpp" />
     <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="UnVerify.cpp" />

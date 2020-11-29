@@ -86,6 +86,12 @@
     <ClInclude Include="UnVerify.h">
       <Filter>Headerdateien\dataBase\getDataFromDatabase</Filter>
     </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Headerdateien\dataBase\getDataFromDatabase</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryCategory.h">
+      <Filter>Headerdateien\dataBase\connection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -132,6 +138,12 @@
     </ClCompile>
     <ClCompile Include="UnVerify.cpp">
       <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryCategory.cpp">
+      <Filter>Quelldateien\dataBase\connection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
