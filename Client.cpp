@@ -2,7 +2,9 @@
 #include "Client.h"
 
 Client::Client(User user) : User(user) {
-
+	this->myTransaction = QueryTransaction::selectUserTransaction(user);
+	if(this->myTransaction.empty())
+		this->myTransaction = QueryTransaction::selectUserTransaction(user);
 }
 
 std::vector<Category> Client::getAllCategory() {
@@ -11,10 +13,13 @@ std::vector<Category> Client::getAllCategory() {
 std::vector<Company> Client::getAllCompany() {
 	return QueryCompany::selectAll();
 }
-
-void Client::setTransactionUser(Transaction trasaction) {
-	this->transactionUser = trasaction;
+std::vector<Offer> Client::getAllActiveOffer() {
+	return QueryOffer::selectAllActive();
 }
-Transaction Client::getTransactionUser() {
-	return this->transactionUser;
+
+void Client::setMyTransaction(std::vector<Transaction> trasaction) {
+	this->myTransaction = trasaction;
+}
+std::vector<Transaction> Client::getMyTransaction() {
+	return this->myTransaction;
 }

@@ -6,6 +6,8 @@ static const int ADMIN = 0;
 static const int EMPLOYEE = 1;
 static const int CLIENT = 2;
 
+static const int WRONG_REQUEST = -1;
+
 User::User() {}
 User::User(int id, std::string login, std::string password) {
 	this->id = id;
@@ -35,12 +37,19 @@ bool User::isEmployee() {
 bool User::isAdmin() {
 	return this->permission == ADMIN;
 }
+bool User::isWrongRequest() {
+	return (this->id == WRONG_REQUEST && this->permission == UNDEFINED_PERMISSION);
+}
 std::string User::print() {
 	std::ostringstream oss;
 	oss << "Id: " << this->id << " Login: " << this->login << " Password: " << this->password << " Permission: " << this->permission;
 	return oss.str();
 }
 
+void User::setWrongRequest() {
+	this->setId(WRONG_REQUEST);
+	this->setPermission(UNDEFINED_PERMISSION);
+}
 void User::setId(int id) {
 	this->id = id;
 }

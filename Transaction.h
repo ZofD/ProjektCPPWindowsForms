@@ -14,8 +14,14 @@ private:
 public:
 	Transaction();
 	Transaction(int id);
+	Transaction(int id, time_t date);
 	Transaction(int id, time_t date, User user);
+	Transaction(Transaction& transaction);
+	Transaction(const Transaction &transaction);
 
+	bool isWrongRequest();
+
+	void setWrongRequest();
 	void setId(int id);
 	int getId();
 	void setDate(time_t date);

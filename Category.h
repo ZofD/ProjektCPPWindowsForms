@@ -11,6 +11,9 @@ public:
 	Category();
 	Category(int id, std::string name);
 
+	bool isWrongRequest();
+
+	void setWrongRequest();
 	void setId(int id);
 	int getId();
 	void setName(std::string name);

@@ -1,10 +1,25 @@
 #include "pch.h"
 #include "Offer.h"
 
+static const int WRONG_REQUEST = -1;
+
 Offer::Offer() {}
 Offer::Offer(int id, double price) {
 	this->id = id;
 	this->price = price;
+}
+Offer::Offer(int id, double price, time_t startDate, time_t stopDate) {
+	this->id = id;
+	this->price = price;
+	this->startDate = startDate;
+	this->stopDate = stopDate;
+}
+Offer::Offer(int id, double price, time_t startDate, Product product) {
+	this->id = id;
+	this->price = price;
+	this->startDate = startDate;
+	this->stopDate = (time_t)(-1);
+	this->product = product;
 }
 Offer::Offer(int id, double price, time_t startDate, time_t stopDate, Product product) {
 	this->id = id;
@@ -14,6 +29,13 @@ Offer::Offer(int id, double price, time_t startDate, time_t stopDate, Product pr
 	this->product = product;
 }
 
+bool Offer::isWrongRequest() {
+	return this->id == WRONG_REQUEST;
+}
+
+void Offer::setWrongRequest() {
+	this->id = WRONG_REQUEST;
+}
 void Offer::setId(int id) {
 	this->id = id;
 }

@@ -151,6 +151,7 @@
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -163,6 +164,8 @@
     <ClInclude Include="Query.h" />
     <ClInclude Include="QueryCategory.h" />
     <ClInclude Include="QueryCompany.h" />
+    <ClInclude Include="QueryOffer.h" />
+    <ClInclude Include="QueryTransaction.h" />
     <ClInclude Include="QueryUser.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Transaction.h" />
@@ -176,6 +179,7 @@
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="CppCLR_WinformsProjekt.cpp" />
     <ClCompile Include="Form1.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Offer.cpp" />
     <ClCompile Include="PanelSprzedawcy.cpp" />
@@ -189,6 +193,8 @@
     <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryCategory.cpp" />
     <ClCompile Include="QueryCompany.cpp" />
+    <ClCompile Include="QueryOffer.cpp" />
+    <ClCompile Include="QueryTransaction.cpp" />
     <ClCompile Include="QueryUser.cpp" />
     <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="UnVerify.cpp" />

@@ -1,11 +1,19 @@
 #include "pch.h"
 #include "Transaction.h"
 
+static const int WRONG_REQUEST = -1;
+
 Transaction::Transaction() {
 	this->offerList = {};
 }
 Transaction::Transaction(int id) {
 	this->id = id;
+	this->offerList = {};
+}
+Transaction::Transaction(int id, time_t date) {
+	this->id = id;
+	this->date = date;
+	this->user = User();
 	this->offerList = {};
 }
 Transaction::Transaction(int id, time_t date, User user) {
@@ -14,7 +22,26 @@ Transaction::Transaction(int id, time_t date, User user) {
 	this->user = user;
 	this->offerList = {};
 }
+Transaction::Transaction(Transaction& transaction) {
+	this->id = transaction.getId();
+	this->date = transaction.getDate();
+	this->user = transaction.getUser();
+	this->offerList = transaction.getOfferList();
+}
+Transaction::Transaction(const Transaction& transaction) {
+	this->id = transaction.id;
+	this->date = transaction.date;
+	this->user = transaction.user;
+	this->offerList = transaction.offerList;
+}
 
+bool Transaction::isWrongRequest() {
+	return this->id == WRONG_REQUEST;
+}
+
+void Transaction::setWrongRequest() {
+	this->id = WRONG_REQUEST;
+}
 void Transaction::setId(int id) {
 	this->id = id;
 }

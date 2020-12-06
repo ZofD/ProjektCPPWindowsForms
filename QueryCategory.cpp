@@ -1,21 +1,56 @@
 #include "pch.h"
 #include "QueryCategory.h"
 
-std::vector<Category> QueryCategory::selectAll() {
-	std::vector<Category> categoryList;
+const std::string SELECT_CATEGORY = "SELECT id, name FROM category ";
+
+Category QueryCategory::seletOnce(std::string query) {
+	Category result;
 	MYSQL_RES* res;
 	MYSQL_ROW row;
-	MYSQL* conn = QueryCategory::conn();
-	std::ostringstream oss;
-	oss << "SELECT id, name FROM category";
-	res = QueryCategory::select(conn, oss.str());
-	if (res != NULL) {
-		while (row = mysql_fetch_row(res))
-		{
-			int id = atoi(row[0]);
-			categoryList.push_back(Category(id, row[1]));
+	MYSQL* conn;
+	try {
+		conn = QueryCategory::conn();
+		res = QueryCategory::select(conn, query);
+		if (res != NULL) {
+			while (row = mysql_fetch_row(res))
+			{
+				result = QueryCategory::mySQLRowToCategory(row);
+			}
+		}
+		else {
+			result.setWrongRequest();
 		}
 	}
-	QueryCategory::close(conn);
-	return categoryList;
+	catch (std::exception) {
+		result.setWrongRequest();
+	}
+	finally {
+		QueryCategory::close(conn);
+	}
+	return result;
+}
+std::vector<Category> QueryCategory::seletMany(std::string query) {
+	std::vector<Category> result;
+	MYSQL_RES* res;
+	MYSQL_ROW row;
+	MYSQL* conn;
+	try {
+		conn = QueryCategory::conn();
+		res = QueryCategory::select(conn, query);
+		if (res != NULL) {
+			while (row = mysql_fetch_row(res))
+			{
+				result.push_back(QueryCategory::mySQLRowToCategory(row));
+			}
+		}
+	}
+	catch (std::exception) {}
+	finally {
+		QueryCategory::close(conn);
+	}
+	return result;
+}
+
+std::vector<Category> QueryCategory::selectAll() {
+	return QueryCategory::seletMany(SELECT_CATEGORY);
 }

@@ -1,29 +1,58 @@
 #include "pch.h"
 #include "QueryUser.h"
 
+const std::string SELECT_USER = "SELECT ID, login, password, permission FROM user ";
+
 QueryUser::QueryUser(){}
 
-User QueryUser::selectUserByLoginAndPassword (std::string login, std::string password){
-	User user;
+User QueryUser::seletOnce(std::string query) {
+	User result;
 	MYSQL_RES* res;
 	MYSQL_ROW row;
-	MYSQL* conn = QueryUser::conn();
-	std::ostringstream oss;
-	oss << "SELECT ID, login, password, permission FROM user WHERE login='" << login << "' AND password='" << password << "'";
-	res = QueryUser::select(conn, oss.str());
-	if (res != NULL) {
-		while (row = mysql_fetch_row(res))
-		{
-			int id = atoi(row[0]);
-			int permission = atoi(row[3]);
-			User tmp(id, row[1], row[2], permission);
-			user = tmp;
+	MYSQL* conn;
+	try {
+		conn = QueryUser::conn();
+		res = QueryUser::select(conn, query);
+		if (res != NULL) {
+			while (row = mysql_fetch_row(res))
+			{
+				result = QueryUser::mySQLRowToUser(row);
+			}
+		}
+		else {
+			result.setWrongRequest();
+		}
+	} catch (std::exception) {
+		result.setWrongRequest();
+	} finally {
+		QueryUser::close(conn);
+	}
+	return result;
+}
+std::vector<User> QueryUser::seletMany(std::string query) {
+	std::vector<User> result;
+	MYSQL_RES* res;
+	MYSQL_ROW row;
+	MYSQL* conn;
+	try {
+		conn = QueryUser::conn();
+		res = QueryUser::select(conn, query);
+		if (res != NULL) {
+			while (row = mysql_fetch_row(res))
+			{
+			result.push_back(QueryUser::mySQLRowToUser(row));
+			}
 		}
 	}
-	else {
-		user.setId(-1);
-		user.setPermission(-1);
+	catch (std::exception) {}
+	finally {
+		QueryUser::close(conn);
 	}
-	QueryUser::close(conn);
-	return user;
+	return result;
+}
+
+User QueryUser::selectUserByLoginAndPassword (std::string login, std::string password){
+	std::ostringstream oss;
+	oss << SELECT_USER <<" WHERE login='" << login << "' AND password='" << password << "'";
+	return QueryUser::seletOnce(oss.str());
 }

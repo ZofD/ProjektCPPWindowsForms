@@ -14,8 +14,13 @@ private:
 public:
 	Offer();
 	Offer(int id, double price);
+	Offer(int id, double price, time_t startDate, time_t stopDate);
+	Offer(int id, double price, time_t startDate, Product product);
 	Offer(int id, double price, time_t startDate, time_t stopDate, Product product);
 
+	bool isWrongRequest();
+
+	void setWrongRequest();
 	void setId(int id);
 	int getId();
 	void setPrice(double price);

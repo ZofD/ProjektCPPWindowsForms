@@ -4,9 +4,10 @@
 #pragma once
 #include <string>
 #include <sstream>
+#include <mysql.h>
 
 class User{
-private:
+protected:
 	int id;
 	std::string login;
 	std::string password;
@@ -20,8 +21,10 @@ public:
 	bool isClient();
 	bool isEmployee();
 	bool isAdmin();
+	bool isWrongRequest();
 	std::string print();
 
+	void setWrongRequest();
 	void setId(int id);
 	int getId();
 	void setLogin(std::string login);

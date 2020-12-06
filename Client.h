@@ -8,18 +8,21 @@
 #include "Category.h"
 #include "QueryCategory.h"
 #include "QueryCompany.h"
+#include "QueryOffer.h"
+#include "QueryTransaction.h"
 
 class Client : public User{
 private:
-	Transaction transactionUser;
+	std::vector<Transaction> myTransaction;
 public:
 	Client(User user);
 
 	std::vector<Category> getAllCategory();
 	std::vector<Company> getAllCompany();
+	std::vector<Offer> getAllActiveOffer();
 
-	void setTransactionUser(Transaction trasaction);
-	Transaction getTransactionUser();
+	void setMyTransaction(std::vector<Transaction> trasaction);
+	std::vector<Transaction> getMyTransaction();
 };
 
 #endif // !CLIENT_H
