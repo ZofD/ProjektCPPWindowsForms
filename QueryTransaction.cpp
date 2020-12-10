@@ -43,7 +43,7 @@ std::vector<Transaction> QueryTransaction::seletMany(std::string query) {
 			{
 				Transaction tmp;
 				tmp = QueryTransaction::mySQLRowToTransaction(row);
-				tmp.setOfferList(QueryOffer::selectAllInTransaction(tmp));
+				tmp.setOfferList(QueryOffer::selectAllInTransaction(conn, tmp));
 				result.push_back(tmp);
 				
 			}
