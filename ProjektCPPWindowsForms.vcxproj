@@ -132,34 +132,56 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>mysqlcppconn.lib;libmysql.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib;$(ProjectDir)opt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Category.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="Company.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Offer.h" />
     <ClInclude Include="PanelSprzedawcy.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="Query.h" />
+    <ClInclude Include="QueryCategory.h" />
+    <ClInclude Include="QueryCompany.h" />
+    <ClInclude Include="QueryOffer.h" />
+    <ClInclude Include="QueryTransaction.h" />
+    <ClInclude Include="QueryUser.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Transaction.h" />
+    <ClInclude Include="UnVerify.h" />
+    <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Category.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Company.cpp" />
     <ClCompile Include="CppCLR_WinformsProjekt.cpp" />
     <ClCompile Include="Form1.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Offer.cpp" />
     <ClCompile Include="PanelSprzedawcy.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -167,6 +189,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Query.cpp" />
+    <ClCompile Include="QueryCategory.cpp" />
+    <ClCompile Include="QueryCompany.cpp" />
+    <ClCompile Include="QueryOffer.cpp" />
+    <ClCompile Include="QueryTransaction.cpp" />
+    <ClCompile Include="QueryUser.cpp" />
+    <ClCompile Include="Transaction.cpp" />
+    <ClCompile Include="UnVerify.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
