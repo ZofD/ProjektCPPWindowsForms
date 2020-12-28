@@ -39,6 +39,16 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::TextBox^ szukaj;
 	private: System::Windows::Forms::ListView^ listView1;
+	private: System::Windows::Forms::ColumnHeader^ Nazwa;
+	private: System::Windows::Forms::ColumnHeader^ Ilosc;
+	private: System::Windows::Forms::ColumnHeader^ Cena;
+	private: System::Windows::Forms::ColumnHeader^ Kategoria;
+	private: System::Windows::Forms::Button^ dodaj;
+	private: System::Windows::Forms::Button^ Edytuj;
+	private: System::Windows::Forms::Button^ Usun;
+
+
+
 	protected:
 
 	private:
@@ -54,11 +64,30 @@ namespace ProjektCPPWindowsForms {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::ListViewItem^ listViewItem4 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(4) {
+				L"Zupa",
+					L"5", L"50", L"Jedzenie"
+			}, -1));
+			System::Windows::Forms::ListViewItem^ listViewItem5 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(4) {
+				L"Lipa",
+					L"1", L"150", L"Drzewo"
+			}, -1));
+			System::Windows::Forms::ListViewItem^ listViewItem6 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(4) {
+				L"Lol",
+					L"oo", L"free", L"Gra"
+			}, -1));
 			this->user = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->szukaj = (gcnew System::Windows::Forms::TextBox());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->Nazwa = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Ilosc = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Cena = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Kategoria = (gcnew System::Windows::Forms::ColumnHeader());
+			this->dodaj = (gcnew System::Windows::Forms::Button());
+			this->Edytuj = (gcnew System::Windows::Forms::Button());
+			this->Usun = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// user
@@ -97,18 +126,57 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listView1
 			// 
+			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
+				this->Nazwa, this->Ilosc,
+					this->Cena, this->Kategoria
+			});
 			this->listView1->HideSelection = false;
+			this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(3) {
+				listViewItem4, listViewItem5,
+					listViewItem6
+			});
 			this->listView1->Location = System::Drawing::Point(12, 69);
+			this->listView1->MultiSelect = false;
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(1176, 719);
+			this->listView1->Size = System::Drawing::Size(1176, 675);
 			this->listView1->TabIndex = 9;
 			this->listView1->UseCompatibleStateImageBehavior = false;
+			// 
+			// dodaj
+			// 
+			this->dodaj->Location = System::Drawing::Point(12, 750);
+			this->dodaj->Name = L"dodaj";
+			this->dodaj->Size = System::Drawing::Size(147, 38);
+			this->dodaj->TabIndex = 10;
+			this->dodaj->Text = L"Dodaj";
+			this->dodaj->UseVisualStyleBackColor = true;
+			// 
+			// Edytuj
+			// 
+			this->Edytuj->Location = System::Drawing::Point(165, 750);
+			this->Edytuj->Name = L"Edytuj";
+			this->Edytuj->Size = System::Drawing::Size(147, 38);
+			this->Edytuj->TabIndex = 11;
+			this->Edytuj->Text = L"Edytuj";
+			this->Edytuj->UseVisualStyleBackColor = true;
+			// 
+			// Usun
+			// 
+			this->Usun->Location = System::Drawing::Point(318, 750);
+			this->Usun->Name = L"Usun";
+			this->Usun->Size = System::Drawing::Size(147, 38);
+			this->Usun->TabIndex = 12;
+			this->Usun->Text = L"Usuñ";
+			this->Usun->UseVisualStyleBackColor = true;
 			// 
 			// PanelSprzedawcy
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1200, 800);
+			this->Controls->Add(this->Usun);
+			this->Controls->Add(this->Edytuj);
+			this->Controls->Add(this->dodaj);
 			this->Controls->Add(this->listView1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);

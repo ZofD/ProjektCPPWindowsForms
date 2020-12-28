@@ -3,7 +3,7 @@
 
 #pragma once
 #include <mysql.h>
-#include <string>
+#include "Helper.h"
 
 class Query{
 private:

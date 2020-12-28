@@ -42,6 +42,7 @@ namespace CppCLRWinformsProjekt {
 
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::LinkLabel^ linkLabel1;
 
 	private:
 		/// <summary>
@@ -61,11 +62,12 @@ namespace CppCLRWinformsProjekt {
 			this->haslo = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(209, 279);
+			this->button1->Location = System::Drawing::Point(209, 263);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(213, 55);
 			this->button1->TabIndex = 0;
@@ -105,11 +107,22 @@ namespace CppCLRWinformsProjekt {
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Has³o";
 			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->Location = System::Drawing::Point(205, 332);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(127, 20);
+			this->linkLabel1->TabIndex = 5;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"Nie masz konta\?";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(622, 454);
+			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->haslo);

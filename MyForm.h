@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 namespace ProjektCPPWindowsForms {
 
@@ -41,6 +42,12 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ListView^ listView1;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::ColumnHeader^ Nazwa;
+	private: System::Windows::Forms::ColumnHeader^ Ilosc;
+	private: System::Windows::Forms::ColumnHeader^ Cena;
+	private: System::Windows::Forms::ColumnHeader^ Kategoria;
+	private: System::Windows::Forms::Button^ Kup;
+
 	protected:
 
 	protected:
@@ -56,14 +63,40 @@ namespace ProjektCPPWindowsForms {
 		/// Metoda wymagana do obs³ugi projektanta — nie nale¿y modyfikowaæ
 		/// jej zawartoœci w edytorze kodu.
 		/// </summary>
+		
+		//void setItems(lista) {
+		//	for (int x : arr)
+		//		System::Windows::Forms::ListViewItem^ listViewItem1 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(4) {
+		//	L x-> tytul,
+		//		L x->ilosc, L x->cena, L x->kategoria"
+		//	}, -1));
+		//	}
+		//
+		//}
+
 		void InitializeComponent(void)
 		{
+			//setItems(listarekordow);
+			
+			System::Windows::Forms::ListViewItem^ listViewItem2 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(4) {
+				L"Lipa",
+					L"1", L"150", L"Drzewo"
+			}, -1));
+			System::Windows::Forms::ListViewItem^ listViewItem3 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  >(4) {
+				L"Lol",
+					L"oo", L"free", L"Gra"
+			}, -1));
 			this->user = (gcnew System::Windows::Forms::Label());
 			this->szukaj = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->Nazwa = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Ilosc = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Cena = (gcnew System::Windows::Forms::ColumnHeader());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->Kategoria = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Kup = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// user
@@ -101,34 +134,47 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listView1
 			// 
+			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
+				this->Nazwa, this->Ilosc,
+					this->Cena, this->Kategoria
+			});
 			this->listView1->HideSelection = false;
+			//listViewItem1->Tag = L"0";
+			listViewItem2->IndentCount = 5;
+			listViewItem2->Tag = L"1";
+			listViewItem2->ToolTipText = L"text";
+			listViewItem2->UseItemStyleForSubItems = false;
+			listViewItem3->IndentCount = 3;
+			listViewItem3->Tag = L"2";
+			listViewItem3->ToolTipText = L"fs";
+			//this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(3) {
+			//	listViewItem1, listViewItem2,
+			//		listViewItem3
+			//});
 			this->listView1->Location = System::Drawing::Point(12, 69);
+			this->listView1->MultiSelect = false;
 			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(1176, 719);
+			this->listView1->Size = System::Drawing::Size(1176, 675);
 			this->listView1->TabIndex = 4;
 			this->listView1->UseCompatibleStateImageBehavior = false;
-
-			this->listView1->Columns->Add("Title", -2, HorizontalAlignment::Center);
-			this->listView1->Columns->Add("Title", -2, HorizontalAlignment::Left);
-			this->listView1->Columns->Add("Price", -2, HorizontalAlignment::Left);
-
-			// Add items
-			ListViewItem item1("Steve Martin");
-			item1.SubItems->Add("Programming .NET");
-			item1.SubItems->Add("39.95");
-
-			ListViewItem item2("Irene Suzuki");
-			item2.SubItems->Add("VB.NET Core Studies");
-			item2.SubItems->Add("69.95");
-
-			ListViewItem item3("Ricky Ericsson");
-			item3.SubItems->Add("Passing Your .NET Exams");
-			item3.SubItems->Add("19.95");
-
-			// Add the items to the ListView.
-			//listView1.Items.AddRange(new ListViewItem[]{ item1,item2,item3 });
-			//this->listView1->Items->Add("bls", "df");
-			//this->listView1->Items->AddRange();
+			this->listView1->View = System::Windows::Forms::View::Details;
+			// 
+			// Nazwa
+			// 
+			this->Nazwa->Tag = L"0";
+			this->Nazwa->Text = L"Nazwa";
+			this->Nazwa->Width = 200;
+			// 
+			// Ilosc
+			// 
+			this->Ilosc->Tag = L"1";
+			this->Ilosc->Text = L"Iloœæ";
+			// 
+			// Cena
+			// 
+			this->Cena->Tag = L"2";
+			this->Cena->Text = L"Cena";
+			this->Cena->Width = 100;
 			// 
 			// button2
 			// 
@@ -140,11 +186,26 @@ namespace ProjektCPPWindowsForms {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
+			// Kategoria
+			// 
+			this->Kategoria->Text = L"Kategoria";
+			this->Kategoria->Width = 150;
+			// 
+			// Kup
+			// 
+			this->Kup->Location = System::Drawing::Point(12, 750);
+			this->Kup->Name = L"Kup";
+			this->Kup->Size = System::Drawing::Size(147, 38);
+			this->Kup->TabIndex = 11;
+			this->Kup->Text = L"Kup";
+			this->Kup->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1200, 800);
+			this->Controls->Add(this->Kup);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->listView1);
 			this->Controls->Add(this->button1);

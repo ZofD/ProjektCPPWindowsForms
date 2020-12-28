@@ -11,7 +11,19 @@
 
 #endif //PCH_H
 
-
 #include "MyForm.h"
 #include "Form1.h"
 #include "PanelSprzedawcy.h"
+
+#include "Client.h"
+#include "UnVerify.h"
+
+#include "Category.h"
+#include "Company.h"
+#include "Offer.h"
+#include "Product.h"
+#include "Transaction.h"
+#include "User.h"
+
+#include <string>
+#include <time.h>

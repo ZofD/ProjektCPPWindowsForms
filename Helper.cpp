@@ -36,14 +36,14 @@ time_t Helper::stringToTime_t(std::string date) {
     return (time_t)(-1);
 }
 std::string Helper::time_tToString(time_t time) {
-    std::tm* ptm = std::localtime(&time);
+    std::tm* ptm = localtime(&time);
     char buffer[32];
-    std::strftime(buffer, 32, "%Y-%m-%d", ptm);
+    strftime(buffer, 32, "%Y-%m-%d", ptm);
     return buffer;
 }
 std::string Helper::time_tToString(time_t time, std::string format) {
-    std::tm* ptm = std::localtime(&time);
+    std::tm* ptm = localtime(&time);
     char buffer[32];
-    std::strftime(buffer, 32, format.c_str(), ptm);
+    strftime(buffer, 32, format.c_str(), ptm);
     return buffer;
 }

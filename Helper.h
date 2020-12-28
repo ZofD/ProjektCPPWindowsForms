@@ -2,6 +2,7 @@
 #define HELPER_H
 
 #pragma once
+
 class Helper{
 public:
 	static std::vector<std::string> split(std::string string, char delim = ' ');
