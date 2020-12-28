@@ -1,4 +1,7 @@
 #pragma once
+#include <msclr\marshal_cppstd.h>
+#include "User.h"
+#include "UnVerify.h"
 
 namespace CppCLRWinformsProjekt {
 
@@ -42,6 +45,10 @@ namespace CppCLRWinformsProjekt {
 
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::LinkLabel^ NewAcountButton;
+	private: System::Windows::Forms::Label^ info;
+
+
 
 	private:
 		/// <summary>
@@ -61,11 +68,13 @@ namespace CppCLRWinformsProjekt {
 			this->haslo = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->NewAcountButton = (gcnew System::Windows::Forms::LinkLabel());
+			this->info = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(209, 279);
+			this->button1->Location = System::Drawing::Point(209, 256);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(213, 55);
 			this->button1->TabIndex = 0;
@@ -105,11 +114,33 @@ namespace CppCLRWinformsProjekt {
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Has³o";
 			// 
+			// NewAcountButton
+			// 
+			this->NewAcountButton->AutoSize = true;
+			this->NewAcountButton->Location = System::Drawing::Point(215, 324);
+			this->NewAcountButton->Name = L"NewAcountButton";
+			this->NewAcountButton->Size = System::Drawing::Size(127, 20);
+			this->NewAcountButton->TabIndex = 5;
+			this->NewAcountButton->TabStop = true;
+			this->NewAcountButton->Text = L"Nie masz konta\?\r\n";
+			this->NewAcountButton->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabel1_LinkClicked);
+			// 
+			// info
+			// 
+			this->info->AutoSize = true;
+			this->info->ForeColor = System::Drawing::Color::DarkRed;
+			this->info->Location = System::Drawing::Point(205, 364);
+			this->info->Name = L"info";
+			this->info->Size = System::Drawing::Size(0, 20);
+			this->info->TabIndex = 6;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(622, 454);
+			this->Controls->Add(this->info);
+			this->Controls->Add(this->NewAcountButton);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->haslo);
@@ -123,15 +154,30 @@ namespace CppCLRWinformsProjekt {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (this->login->Text->Length > 0 && this->haslo->Text->Length > 0)
+		std::string login = msclr::interop::marshal_as<std::string>(this->login->Text);
+		std::string haslo = msclr::interop::marshal_as<std::string>(this->haslo->Text);
+		User user = UnVerify::logIn(login, haslo);
+		if (user.getLogin() == login && user.getPassword() == haslo)
 		{
 			this->login->Clear();
 			this->haslo->Clear();
+			this->info->Text = "";
 			this->Hide();
 			ProjektCPPWindowsForms::MyForm uzytkownik;
 			uzytkownik.ShowDialog();
 			this->Show();
 		}
+		else {
+			this->info->Text = "Konto o podanych danych nie istnieje";
+		}
+	}
+
+	private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+		this->info->Text = "";
+		this->Hide();
+		ProjektCPPWindowsForms::MyForm uzytkownik;
+		uzytkownik.ShowDialog();
+		this->Show();
 	}
 };
 }

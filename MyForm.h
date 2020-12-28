@@ -113,7 +113,7 @@ namespace ProjektCPPWindowsForms {
 			this->listView1->Columns->Add("Price", -2, HorizontalAlignment::Left);
 
 			// Add items
-			ListViewItem item1("Steve Martin");
+			/*ListViewItem item1("Steve Martin");
 			item1.SubItems->Add("Programming .NET");
 			item1.SubItems->Add("39.95");
 
@@ -123,7 +123,7 @@ namespace ProjektCPPWindowsForms {
 
 			ListViewItem item3("Ricky Ericsson");
 			item3.SubItems->Add("Passing Your .NET Exams");
-			item3.SubItems->Add("19.95");
+			item3.SubItems->Add("19.95");*/
 
 			// Add the items to the ListView.
 			//listView1.Items.AddRange(new ListViewItem[]{ item1,item2,item3 });
