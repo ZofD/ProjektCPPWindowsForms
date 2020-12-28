@@ -1,8 +1,14 @@
 #include "pch.h"
 #include "QueryOffer.h"
 
-const static std::string SELECT_OFFER = "SELECT p.id_category, cat.name, p.id_company, com.name, o.id_product, p.name, o.id, o.price, o.start_date, o.stop_date FROM offer AS o, product AS p, company AS com, category AS cat WHERE o.id_product = p.id AND p.id_company = com.id AND p.id_category = cat.id ";
-const static std::string SELECT_OFFER_FROM_TRANSACTION_OFFER = "SELECT p.id_category, cat.name, p.id_company, com.name, o.id_product, p.name, t_o.id_offer, o.price, o.start_date, o.stop_date FROM transaction_offer AS t_o, offer AS o, product AS p, company AS com, category AS cat WHERE o.id_product = p.id AND p.id_company = com.id AND p.id_category = cat.id AND t_o.id_offer = o.id ";
+const static std::string SELECT_OFFER = "SELECT p.id_category, cat.name, p.id_company, com.name, o.id_product, p.name,"
+										"o.id, o.price, o.start_date, o.stop_date "
+										"FROM offer AS o, product AS p, company AS com, category AS cat "
+										"WHERE o.id_product = p.id AND p.id_company = com.id AND p.id_category = cat.id ";
+const static std::string SELECT_OFFER_FROM_TRANSACTION_OFFER = "SELECT p.id_category, cat.name, p.id_company, com.name, o.id_product, "
+										"p.name, t_o.id_offer, o.price, o.start_date, o.stop_date "
+										"FROM transaction_offer AS t_o, offer AS o, product AS p, company AS com, category AS cat "
+										"WHERE o.id_product = p.id AND p.id_company = com.id AND p.id_category = cat.id AND t_o.id_offer = o.id ";
 
 Offer QueryOffer::seletOnce(std::string query) {
 	Offer result;
@@ -118,6 +124,27 @@ std::vector<Offer> QueryOffer::selectAllActive() {
 	time_t now = time(0);
 	std::string nowDate = Helper::time_tToString(now);
 	std::string query = (SELECT_OFFER + " AND o.start_date<=\'" + nowDate + "\' AND (o.stop_date>=\'" + nowDate + "\' OR o.stop_date IS NULL) ");
+	return QueryOffer::seletManyOffer(query);
+}
+std::vector<Offer> QueryOffer::selectAllActiveByCategory(Category category) {
+	time_t now = time(0);
+	std::string nowDate = Helper::time_tToString(now);
+	std::string query = (SELECT_OFFER + " AND o.start_date<=\'" + nowDate + "\' AND (o.stop_date>=\'" + nowDate + "\' OR o.stop_date IS NULL) "
+						"AND p.id_category=" + std::to_string(category.getId()));
+	return QueryOffer::seletManyOffer(query);
+}
+std::vector<Offer> QueryOffer::selectAllActiveByCompany(Company company) {
+	time_t now = time(0);
+	std::string nowDate = Helper::time_tToString(now);
+	std::string query = (SELECT_OFFER + " AND o.start_date<=\'" + nowDate + "\' AND (o.stop_date>=\'" + nowDate + "\' OR o.stop_date IS NULL) "
+						"AND p.id_company=" + std::to_string(company.getId()));
+	return QueryOffer::seletManyOffer(query);
+}
+std::vector<Offer> QueryOffer::selectAllActiveByCategoryAndCompany(Category category, Company company) {
+	time_t now = time(0);
+	std::string nowDate = Helper::time_tToString(now);
+	std::string query = (SELECT_OFFER + " AND o.start_date<=\'" + nowDate + "\' AND (o.stop_date>=\'" + nowDate + "\' OR o.stop_date IS NULL) "
+						"AND p.id_category=" + std::to_string(category.getId()) + " AND p.id_company=" + std::to_string(company.getId()));
 	return QueryOffer::seletManyOffer(query);
 }
 

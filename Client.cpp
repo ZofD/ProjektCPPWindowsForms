@@ -16,6 +16,15 @@ std::vector<Company> Client::getAllCompany() {
 std::vector<Offer> Client::getAllActiveOffer() {
 	return QueryOffer::selectAllActive();
 }
+std::vector<Offer> Client::getAllActiveOfferByCategory(Category category) {
+	return QueryOffer::selectAllActiveByCategory(category);
+}
+std::vector<Offer> Client::getAllActiveOfferByCompany(Company company) {
+	return QueryOffer::selectAllActiveByCompany(company);
+}
+std::vector<Offer> Client::getAllActiveOfferByCategoryAndCompany(Category category, Company company) {
+	return QueryOffer::selectAllActiveByCategoryAndCompany(category, company);
+}
 
 void Client::setMyTransaction(std::vector<Transaction> trasaction) {
 	this->myTransaction = trasaction;

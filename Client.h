@@ -20,6 +20,9 @@ public:
 	std::vector<Category> getAllCategory();
 	std::vector<Company> getAllCompany();
 	std::vector<Offer> getAllActiveOffer();
+	std::vector<Offer> getAllActiveOfferByCategory(Category category);
+	std::vector<Offer> getAllActiveOfferByCompany(Company company);
+	std::vector<Offer> getAllActiveOfferByCategoryAndCompany(Category category, Company company);
 
 	void setMyTransaction(std::vector<Transaction> trasaction);
 	std::vector<Transaction> getMyTransaction();

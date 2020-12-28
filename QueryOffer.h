@@ -18,6 +18,9 @@ private:
 	static std::vector<Offer> seletManyOffer(MYSQL* conn, std::string query);
 public:
 	static std::vector<Offer> selectAllActive();
+	static std::vector<Offer> selectAllActiveByCategory(Category category);
+	static std::vector<Offer> selectAllActiveByCompany(Company company);
+	static std::vector<Offer> selectAllActiveByCategoryAndCompany(Category category, Company company);
 	static std::vector<Offer> selectAllInTransaction(Transaction transaction);
 	static std::vector<Offer> selectAllInTransaction(MYSQL* conn, Transaction transaction);
 };
