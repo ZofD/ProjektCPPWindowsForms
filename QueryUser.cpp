@@ -2,11 +2,12 @@
 #include "QueryUser.h"
 
 const std::string SELECT_USER = "SELECT ID, login, password, permission FROM user ";
+const std::string INSERT_USER = "INSERT INTO `user`(`ID`, `login`, `password`, `permission`) VALUES ";
 
 QueryUser::QueryUser(){}
 
 User QueryUser::seletOnce(std::string query) {
-	User result;
+	User result = User();
 	MYSQL_RES* res;
 	MYSQL_ROW row;
 	MYSQL* conn;
@@ -51,8 +52,20 @@ std::vector<User> QueryUser::seletMany(std::string query) {
 	return result;
 }
 
+User QueryUser::selectUserByLogin(std::string login) {
+	std::ostringstream oss;
+	oss << SELECT_USER << " WHERE login='" << login << "';";
+	return QueryUser::seletOnce(oss.str());
+}
 User QueryUser::selectUserByLoginAndPassword (std::string login, std::string password){
 	std::ostringstream oss;
 	oss << SELECT_USER <<" WHERE login='" << login << "' AND password='" << password << "'";
 	return QueryUser::seletOnce(oss.str());
+}
+bool QueryUser::addUser(User user) {
+	bool result = false;
+	if (QueryUser::selectUserByLogin(user.getLogin()).isNull()) {
+		result = QueryUser::insert( (INSERT_USER + " (NULL, '" + user.getLogin() +"', '" + user.getPassword() + "', '" + QueryUser::intToString(user.getPermission()) + "') ") );
+	}
+	return result;
 }

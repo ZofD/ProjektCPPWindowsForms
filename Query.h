@@ -18,7 +18,10 @@ public:
 	static MYSQL* conn();
 	static void close(MYSQL* conn);
 	static const char* stringToConstChar(std::string text);
+	static std::string intToString(int number);
 	static MYSQL_RES* select(MYSQL* conn, std::string query);
+	static bool insert(MYSQL* conn, std::string query);
+	static bool insert(std::string query);
 
 	static User mySQLRowToUser(MYSQL_ROW row);
 	static Category mySQLRowToCategory(MYSQL_ROW row);

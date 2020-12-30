@@ -18,6 +18,9 @@ void Query::close(MYSQL* conn) {
 const char* Query::stringToConstChar(std::string text) {
 	return text.c_str();
 }
+std::string Query::intToString(int number) {
+	return std::to_string(number);
+}
 
 MYSQL_RES* Query::select(MYSQL* conn, std::string query) {
 	int qstate;
@@ -35,6 +38,21 @@ MYSQL_RES* Query::select(MYSQL* conn, std::string query) {
 		res = NULL;
 	}
 	return res;
+}
+bool Query::insert(MYSQL* conn, std::string query) {
+	return mysql_query(conn, Query::stringToConstChar(query))==0;
+}
+bool Query::insert(std::string query) {
+	MYSQL* conn;
+	bool result = false;
+	try {
+		conn = Query::conn();
+		result = Query::insert(conn, query);
+	} catch(std::exception){}
+	finally {
+		Query::close(conn);
+	}
+	return result;
 }
 
 User Query::mySQLRowToUser(char* id, char* login, char* password, char* permission) {

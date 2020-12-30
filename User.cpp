@@ -7,8 +7,18 @@ static const int EMPLOYEE = 1;
 static const int CLIENT = 2;
 
 static const int WRONG_REQUEST = -1;
+static const std::string NULL_REQUEST = "";
 
 User::User() {}
+User::User(std::string login, std::string password) {
+	this->login = login;
+	this->password = password;
+}
+User::User(std::string login, std::string password, int permission) {
+	this->login = login;
+	this->password = password;
+	this->permission = permission;
+}
 User::User(int id, std::string login, std::string password) {
 	this->id = id;
 	this->login = login;
@@ -40,6 +50,9 @@ bool User::isAdmin() {
 bool User::isWrongRequest() {
 	return (this->id == WRONG_REQUEST && this->permission == UNDEFINED_PERMISSION);
 }
+bool User::isNull() {
+	return this->login == NULL_REQUEST;
+}
 std::string User::print() {
 	std::ostringstream oss;
 	oss << "Id: " << this->id << " Login: " << this->login << " Password: " << this->password << " Permission: " << this->permission;
@@ -49,6 +62,9 @@ std::string User::print() {
 void User::setWrongRequest() {
 	this->setId(WRONG_REQUEST);
 	this->setPermission(UNDEFINED_PERMISSION);
+}
+void User::setNull() {
+	this->login = NULL_REQUEST;
 }
 void User::setId(int id) {
 	this->id = id;
@@ -70,6 +86,15 @@ std::string User::getPassword() {
 }
 void User::setPermission(int permission) {
 	this->permission = permission;
+}
+void User::setPermissionClient() {
+	this->permission = CLIENT;
+}
+void User::setPermissionEmployee() {
+	this->permission = EMPLOYEE;
+}
+void User::setPermissionAdmin() {
+	this->permission = ADMIN;
 }
 int User::getPermission() {
 	return this->permission;

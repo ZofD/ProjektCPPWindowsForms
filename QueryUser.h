@@ -13,7 +13,9 @@ private:
 public:
 	QueryUser();
 
+	static User selectUserByLogin (std::string login);
 	static User selectUserByLoginAndPassword (std::string login, std::string password);
+	static bool addUser(User user);
 };
 
 #endif
