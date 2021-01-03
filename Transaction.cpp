@@ -10,6 +10,10 @@ Transaction::Transaction(int id) {
 	this->id = id;
 	this->offerList = {};
 }
+Transaction::Transaction(User user) {
+	this->user = user;
+	this->offerList = {};
+}
 Transaction::Transaction(int id, time_t date) {
 	this->id = id;
 	this->date = date;

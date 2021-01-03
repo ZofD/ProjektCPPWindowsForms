@@ -2,7 +2,7 @@
 #include "QueryUser.h"
 
 const std::string SELECT_USER = "SELECT ID, login, password, permission FROM user ";
-const std::string INSERT_USER = "INSERT INTO `user`(`ID`, `login`, `password`, `permission`) VALUES ";
+const std::string INSERT_USER = "INSERT INTO `user`(`ID`, `login`, `password`, `permission`) ";
 
 QueryUser::QueryUser(){}
 
@@ -65,7 +65,7 @@ User QueryUser::selectUserByLoginAndPassword (std::string login, std::string pas
 bool QueryUser::addUser(User user) {
 	bool result = false;
 	if (QueryUser::selectUserByLogin(user.getLogin()).isNull()) {
-		result = QueryUser::insert( (INSERT_USER + " (NULL, '" + user.getLogin() +"', '" + user.getPassword() + "', '" + QueryUser::intToString(user.getPermission()) + "') ") );
+		result = QueryUser::insert( (INSERT_USER + " VALUES  (NULL, '" + user.getLogin() +"', '" + user.getPassword() + "', '" + QueryUser::intToString(user.getPermission()) + "') ") );
 	}
 	return result;
 }

@@ -21,6 +21,9 @@ std::vector<std::string> Helper::split(std::string string, char delim) {
     }
     return split;
 }
+time_t Helper::getNowTime() {
+    return time(0);
+}
 time_t Helper::stringToTime_t(std::string date) {
     try {
         std::vector<std::string> cont = Helper::split(date, '-');
@@ -34,6 +37,12 @@ time_t Helper::stringToTime_t(std::string date) {
         return mktime(&tm_);
     } catch (std::exception){}
     return (time_t)(-1);
+}
+std::string Helper::getNowTimeString() {
+    return Helper::time_tToString(Helper::getNowTime());
+}
+std::string Helper::getNowTimeString(std::string format) {
+    return Helper::time_tToString(Helper::getNowTime(), format);
 }
 std::string Helper::time_tToString(time_t time) {
     std::tm* ptm = std::localtime(&time);

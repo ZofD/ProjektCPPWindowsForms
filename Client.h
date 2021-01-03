@@ -24,6 +24,8 @@ public:
 	std::vector<Offer> getAllActiveOfferByCompany(Company company);
 	std::vector<Offer> getAllActiveOfferByCategoryAndCompany(Category category, Company company);
 
+	bool addNewTransaction(Transaction newTransaction);
+
 	void setMyTransaction(std::vector<Transaction> trasaction);
 	std::vector<Transaction> getMyTransaction();
 };
