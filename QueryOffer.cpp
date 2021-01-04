@@ -120,6 +120,9 @@ std::vector<Offer> QueryOffer::seletManyOffer(MYSQL* conn, std::string query) {
 	return result;
 }
 
+std::vector<Offer> QueryOffer::selectAll() {
+	return QueryOffer::seletManyOffer(SELECT_OFFER);
+}
 std::vector<Offer> QueryOffer::selectAllActive() {
 	time_t now = time(0);
 	std::string nowDate = Helper::time_tToString(now);
