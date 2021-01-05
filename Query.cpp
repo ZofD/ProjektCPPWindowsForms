@@ -57,6 +57,38 @@ bool Query::insert(std::string query) {
 	}
 	return result;
 }
+bool Query::update(MYSQL* conn, std::string query) {
+	return mysql_query(conn, Query::stringToConstChar(query)) == 0;
+}
+bool Query::update(std::string query) {
+	MYSQL* conn;
+	bool result = false;
+	try {
+		conn = Query::conn();
+		result = Query::update(conn, query);
+	}
+	catch (std::exception) {}
+	finally {
+		Query::close(conn);
+	}
+	return result;
+}
+bool Query::del(MYSQL* conn, std::string query) {
+	return mysql_query(conn, Query::stringToConstChar(query)) == 0;
+}
+bool Query::del(std::string query) {
+	MYSQL* conn;
+	bool result = false;
+	try {
+		conn = Query::conn();
+		result = Query::del(conn, query);
+	}
+	catch (std::exception) {}
+	finally {
+		Query::close(conn);
+	}
+	return result;
+}
 
 User Query::mySQLRowToUser(char* id, char* login, char* password, char* permission) {
 	return User(atoi(id), std::string(login), std::string(password), atoi(permission));
