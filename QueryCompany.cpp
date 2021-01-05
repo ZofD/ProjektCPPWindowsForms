@@ -2,6 +2,7 @@
 #include "QueryCompany.h"
 
 const std::string SELECT_COMPANY = "SELECT id, name FROM company ";
+const std::string INSERT_COMPANY = "INSERT INTO company (id, name) ";
 
 Company QueryCompany::seletOnce(std::string query) {
 	Company result;
@@ -53,4 +54,8 @@ std::vector<Company> QueryCompany::seletMany(std::string query) {
 
 std::vector<Company> QueryCompany::selectAll() {
 	return QueryCompany::seletMany(SELECT_COMPANY);
+}
+
+bool QueryCompany::addCompany(Company company) {
+	return QueryCompany::insert( (INSERT_COMPANY + " VALUES (NULL, '" + company.getName() + "')") );
 }

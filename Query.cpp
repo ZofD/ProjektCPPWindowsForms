@@ -21,6 +21,9 @@ const char* Query::stringToConstChar(std::string text) {
 std::string Query::intToString(int number) {
 	return std::to_string(number);
 }
+std::string Query::doubleToString(double number) {
+	return std::to_string(number);
+}
 
 MYSQL_RES* Query::select(MYSQL* conn, std::string query) {
 	int qstate;

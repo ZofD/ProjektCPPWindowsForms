@@ -8,6 +8,9 @@ Company::Company(int id, std::string name) {
 	this->id = id;
 	this->name = name;
 }
+Company::Company(std::string name) {
+	this->name = name;
+}
 
 bool Company::isWrongRequest() {
 	return this->id == WRONG_REQUEST;

@@ -23,6 +23,11 @@ public:
 	std::vector<Offer> getAllActiveOfferByCategory(Category category);
 	std::vector<Offer> getAllActiveOfferByCompany(Company company);
 	std::vector<Offer> getAllActiveOfferByCategoryAndCompany(Category category, Company company);
+
+	bool addCategory(Category category);
+	bool addCompany(Company company);
+	bool addProduct(Product product);
+	bool addOffer(Offer offer);
 };
 
 #endif // EMPLOYEE_H

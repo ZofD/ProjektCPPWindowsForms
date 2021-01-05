@@ -2,6 +2,7 @@
 #include "QueryCategory.h"
 
 const std::string SELECT_CATEGORY = "SELECT id, name FROM category ";
+const std::string INSERT_CATEGORY = "INSERT INTO category (id, name) ";
 
 Category QueryCategory::seletOnce(std::string query) {
 	Category result;
@@ -53,4 +54,8 @@ std::vector<Category> QueryCategory::seletMany(std::string query) {
 
 std::vector<Category> QueryCategory::selectAll() {
 	return QueryCategory::seletMany(SELECT_CATEGORY);
+}
+
+bool QueryCategory::addCategory(Category category) {
+	return QueryCategory::insert( (INSERT_CATEGORY + " VALUES (NULL, '" + category.getName() + "')") );
 }

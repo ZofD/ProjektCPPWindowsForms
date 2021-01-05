@@ -24,6 +24,9 @@ std::vector<std::string> Helper::split(std::string string, char delim) {
 time_t Helper::getNowTime() {
     return time(0);
 }
+time_t Helper::getNullTime() {
+    return (time_t)(-1);
+}
 time_t Helper::stringToTime_t(std::string date) {
     try {
         std::vector<std::string> cont = Helper::split(date, '-');

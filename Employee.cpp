@@ -27,3 +27,16 @@ std::vector<Offer> Employee::getAllActiveOfferByCompany(Company company) {
 std::vector<Offer> Employee::getAllActiveOfferByCategoryAndCompany(Category category, Company company) {
 	return QueryOffer::selectAllActiveByCategoryAndCompany(category, company);
 }
+
+bool Employee::addCategory(Category category) {
+	return QueryCategory::addCategory(category);
+}
+bool Employee::addCompany(Company company) {
+	return QueryCompany::addCompany(company);
+}
+bool Employee::addProduct(Product product) {
+	return QueryProduct::addProduct(product);
+}
+bool Employee::addOffer(Offer offer) {
+	return QueryOffer::addOffer(offer);
+}

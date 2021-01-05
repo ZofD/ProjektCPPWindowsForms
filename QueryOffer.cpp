@@ -9,6 +9,7 @@ const static std::string SELECT_OFFER_FROM_TRANSACTION_OFFER = "SELECT p.id_cate
 										"p.name, t_o.id_offer, o.price, o.start_date, o.stop_date "
 										"FROM transaction_offer AS t_o, offer AS o, product AS p, company AS com, category AS cat "
 										"WHERE o.id_product = p.id AND p.id_company = com.id AND p.id_category = cat.id AND t_o.id_offer = o.id ";
+const static std::string INSERT_OFFER = "INSERT INTO offer (id, price, start_date, stop_date, id_product) ";
 
 Offer QueryOffer::seletOnce(std::string query) {
 	Offer result;
@@ -158,4 +159,16 @@ std::vector<Offer> QueryOffer::selectAllInTransaction(Transaction transaction) {
 std::vector<Offer> QueryOffer::selectAllInTransaction(MYSQL* conn, Transaction transaction) {
 	std::string query = (SELECT_OFFER_FROM_TRANSACTION_OFFER + " AND t_o.id_transaction=" + std::to_string(transaction.getId()));
 	return QueryOffer::seletManyOffer(conn, query);
+}
+
+bool QueryOffer::addOffer(Offer offer) {
+	if (offer.getStopDate()==Helper::getNullTime()) {
+		return QueryOffer::addOfferStopDateNull(offer);
+	}
+	return QueryOffer::insert( (INSERT_OFFER + " VALUES (NULL, " + QueryOffer::doubleToString(offer.getPrice()) + ", '" + Helper::time_tToString(offer.getStartDate()) + "', '"
+		+ Helper::time_tToString(offer.getStopDate()) + "', " + QueryOffer::intToString(offer.getProduct().getId()) + ")") );
+}
+bool QueryOffer::addOfferStopDateNull(Offer offer) {
+	return QueryOffer::insert( (INSERT_OFFER + " VALUES (NULL, " + QueryOffer::doubleToString(offer.getPrice()) + ", '" + Helper::time_tToString(offer.getStartDate()) + "', NULL"
+		+ ", " + QueryOffer::intToString(offer.getProduct().getId()) + ")") );
 }

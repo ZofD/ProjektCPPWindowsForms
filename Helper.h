@@ -6,6 +6,7 @@ class Helper{
 public:
 	static std::vector<std::string> split(std::string string, char delim = ' ');
 	static time_t getNowTime();
+	static time_t getNullTime();
 	static time_t stringToTime_t(std::string date);
 	static std::string getNowTimeString();
 	static std::string getNowTimeString(std::string format);

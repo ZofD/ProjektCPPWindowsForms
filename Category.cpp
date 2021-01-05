@@ -8,6 +8,9 @@ Category::Category(int id, std::string name) {
 	this->id = id;
 	this->name = name;
 }
+Category::Category(std::string name) {
+	this->name = name;
+}
 
 bool Category::isWrongRequest() {
 	return this->id == WRONG_REQUEST;

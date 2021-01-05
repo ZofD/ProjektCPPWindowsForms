@@ -5,6 +5,7 @@
 #include <chrono>
 #include <iomanip>
 #include "Query.h"
+#include "Offer.h"
 #include "Transaction.h"
 
 class QueryOffer : public Query {
@@ -24,6 +25,9 @@ public:
 	static std::vector<Offer> selectAllActiveByCategoryAndCompany(Category category, Company company);
 	static std::vector<Offer> selectAllInTransaction(Transaction transaction);
 	static std::vector<Offer> selectAllInTransaction(MYSQL* conn, Transaction transaction);
+
+	static bool addOffer(Offer offer);
+	static bool addOfferStopDateNull(Offer offer);
 };
 
 #endif // !QUERYOFFER_H
