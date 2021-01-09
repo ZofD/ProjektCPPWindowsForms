@@ -20,6 +20,7 @@ public:
 	std::vector<Product> getAllProduct();
 	std::vector<Offer> getAllOffer();
 	std::vector<Offer> getAllActiveOffer();
+	std::vector<Offer> getAllActiveOfferByProductName(std::string name);
 	std::vector<Offer> getAllActiveOfferByCategory(Category category);
 	std::vector<Offer> getAllActiveOfferByCompany(Company company);
 	std::vector<Offer> getAllActiveOfferByCategoryAndCompany(Category category, Company company);

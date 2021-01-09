@@ -18,6 +18,9 @@ std::vector<Offer> Employee::getAllOffer() {
 std::vector<Offer> Employee::getAllActiveOffer() {
 	return QueryOffer::selectAllActive();
 }
+std::vector<Offer> Employee::getAllActiveOfferByProductName(std::string name) {
+	return QueryOffer::selectAllActiveByProductName(name);
+}
 std::vector<Offer> Employee::getAllActiveOfferByCategory(Category category) {
 	return QueryOffer::selectAllActiveByCategory(category);
 }

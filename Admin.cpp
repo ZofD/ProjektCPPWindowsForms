@@ -24,6 +24,9 @@ std::vector<Offer> Admin::getAllOffer() {
 std::vector<Offer> Admin::getAllActiveOffer() {
 	return QueryOffer::selectAllActive();
 }
+std::vector<Offer> Admin::getAllActiveOfferByProductName(std::string name) {
+	return QueryOffer::selectAllActiveByProductName(name);
+}
 std::vector<Offer> Admin::getAllActiveOfferByCategory(Category category) {
 	return QueryOffer::selectAllActiveByCategory(category);
 }

@@ -131,6 +131,11 @@ std::vector<Offer> QueryOffer::selectAllActive() {
 	std::string query = (SELECT_OFFER + " AND o.start_date<=\'" + nowDate + "\' AND (o.stop_date>=\'" + nowDate + "\' OR o.stop_date IS NULL) ");
 	return QueryOffer::seletManyOffer(query);
 }
+std::vector<Offer> QueryOffer::selectAllActiveByProductName(std::string name) {
+	time_t now = time(0);
+	std::string nowDate = Helper::time_tToString(now);
+	return QueryOffer::seletManyOffer( (SELECT_OFFER + " AND o.start_date<=\'" + nowDate + "\' AND (o.stop_date>=\'" + nowDate + "\' OR o.stop_date IS NULL) AND p.name LIKE \'\%" + name + "\%\'") );
+}
 std::vector<Offer> QueryOffer::selectAllActiveByCategory(Category category) {
 	time_t now = time(0);
 	std::string nowDate = Helper::time_tToString(now);

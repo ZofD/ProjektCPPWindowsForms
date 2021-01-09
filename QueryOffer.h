@@ -21,6 +21,7 @@ private:
 public:
 	static std::vector<Offer> selectAll();
 	static std::vector<Offer> selectAllActive();
+	static std::vector<Offer> selectAllActiveByProductName(std::string name);
 	static std::vector<Offer> selectAllActiveByCategory(Category category);
 	static std::vector<Offer> selectAllActiveByCompany(Company company);
 	static std::vector<Offer> selectAllActiveByCategoryAndCompany(Category category, Company company);
