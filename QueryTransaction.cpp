@@ -4,6 +4,7 @@
 const std::string SELECT_TRANSACTION = "SELECT t.id, t.date, t.id_user, u.login, u.password, u.permission  FROM transaction AS t, user AS u WHERE t.id_user=u.id ";
 const std::string INSERT_TRANSACTION = "INSERT INTO transaction(id, date, id_user) ";
 const std::string INSERT_TRANSACTION_OFFER = "INSERT INTO transaction_offer (id_transaction, id_offer) ";
+const std::string DELETE_TRANSACTION = "DELETE FROM transaction WHERE id=";
 
 Transaction QueryTransaction::seletOnce(std::string query) {
 	Transaction result;
@@ -82,6 +83,9 @@ bool QueryTransaction::insertTransactionOffer(MYSQL* conn, Transaction transacti
 	return QueryTransaction::insert(conn, (INSERT_TRANSACTION_OFFER + " VALUES (" + QueryTransaction::intToString(transaction.getId()) + ", " + QueryTransaction::intToString(offer.getId()) + ")"));
 }
 
+std::vector<Transaction> QueryTransaction::selectAll() {
+	return QueryTransaction::seletMany(SELECT_TRANSACTION);
+}
 std::vector<Transaction> QueryTransaction::selectUserTransaction(User user) {
 	std::ostringstream oss;
 	oss << SELECT_TRANSACTION << " AND t.id_user = " << user.getId();
@@ -105,4 +109,10 @@ bool QueryTransaction::insertTransaction(Transaction transaction) {
 		QueryTransaction::close(conn);
 	}
 	return result;
+}
+bool QueryTransaction::updateTransaction(Transaction transaction) {
+	return QueryTransaction::update("UPDATE transaction SET date='" + Helper::time_tToString(transaction.getDate()) + "', id_user=" + QueryTransaction::intToString(transaction.getUser().getId()) + " WHERE id=" + QueryTransaction::intToString(transaction.getId()));
+}
+bool QueryTransaction::deleteTransaction(Transaction transaction) {
+	return QueryTransaction::del( (DELETE_TRANSACTION + QueryTransaction::intToString(transaction.getId())) );
 }

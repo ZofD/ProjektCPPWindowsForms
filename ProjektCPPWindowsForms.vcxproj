@@ -146,6 +146,7 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Company.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Category.cpp" />
     <ClCompile Include="Client.cpp" />

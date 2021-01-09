@@ -10,6 +10,7 @@ const static std::string SELECT_OFFER_FROM_TRANSACTION_OFFER = "SELECT p.id_cate
 										"FROM transaction_offer AS t_o, offer AS o, product AS p, company AS com, category AS cat "
 										"WHERE o.id_product = p.id AND p.id_company = com.id AND p.id_category = cat.id AND t_o.id_offer = o.id ";
 const static std::string INSERT_OFFER = "INSERT INTO offer (id, price, start_date, stop_date, id_product) ";
+const static std::string DELETE_OFFER = "DELETE FROM offer WHERE id=";
 
 Offer QueryOffer::seletOnce(std::string query) {
 	Offer result;
@@ -171,4 +172,13 @@ bool QueryOffer::addOffer(Offer offer) {
 bool QueryOffer::addOfferStopDateNull(Offer offer) {
 	return QueryOffer::insert( (INSERT_OFFER + " VALUES (NULL, " + QueryOffer::doubleToString(offer.getPrice()) + ", '" + Helper::time_tToString(offer.getStartDate()) + "', NULL"
 		+ ", " + QueryOffer::intToString(offer.getProduct().getId()) + ")") );
+}
+bool QueryOffer::updateOffer(Offer offer) {
+	if (offer.getStopDate() == Helper::getNullTime()) {
+		return QueryOffer::update(("UPDATE offer SET price=" + QueryOffer::doubleToString(offer.getPrice()) + ", start_date='" + Helper::time_tToString(offer.getStartDate()) + "', stop_date=NULL, id_product=" + QueryOffer::intToString(offer.getProduct().getId()) + " WHERE id=" + QueryOffer::intToString(offer.getId())));
+	}
+	return QueryOffer::update( ("UPDATE offer SET price=" + QueryOffer::doubleToString(offer.getPrice()) + ", start_date='" + Helper::time_tToString(offer.getStartDate()) + "', stop_date='" + Helper::time_tToString(offer.getStopDate()) + "', id_product=" + QueryOffer::intToString(offer.getProduct().getId()) + " WHERE id=" + QueryOffer::intToString(offer.getId())) );
+}
+bool QueryOffer::deleteOffer(Offer offer) {
+	return QueryOffer::del( (DELETE_OFFER + QueryOffer::intToString(offer.getId())) );
 }

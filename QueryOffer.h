@@ -2,6 +2,7 @@
 #define QUERYOFFER_H
 
 #pragma once
+#include <vector>
 #include <chrono>
 #include <iomanip>
 #include "Query.h"
@@ -28,6 +29,8 @@ public:
 
 	static bool addOffer(Offer offer);
 	static bool addOfferStopDateNull(Offer offer);
+	static bool updateOffer(Offer offer);
+	static bool deleteOffer(Offer offer);
 };
 
 #endif // !QUERYOFFER_H

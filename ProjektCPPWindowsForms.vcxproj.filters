@@ -110,6 +110,9 @@
     <ClInclude Include="QueryProduct.h">
       <Filter>Headerdateien\dataBase\connection</Filter>
     </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Headerdateien\dataBase\getDataFromDatabase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -180,6 +183,9 @@
     </ClCompile>
     <ClCompile Include="QueryProduct.cpp">
       <Filter>Quelldateien\dataBase\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

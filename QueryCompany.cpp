@@ -3,6 +3,7 @@
 
 const std::string SELECT_COMPANY = "SELECT id, name FROM company ";
 const std::string INSERT_COMPANY = "INSERT INTO company (id, name) ";
+const std::string DELETE_COMAPNY = "DELETE FROM company WHERE id=";
 
 Company QueryCompany::seletOnce(std::string query) {
 	Company result;
@@ -58,4 +59,10 @@ std::vector<Company> QueryCompany::selectAll() {
 
 bool QueryCompany::addCompany(Company company) {
 	return QueryCompany::insert( (INSERT_COMPANY + " VALUES (NULL, '" + company.getName() + "')") );
+}
+bool QueryCompany::updateCompany(Company company) {
+	return QueryCompany::update("UPDATE company SET name='" + company.getName() + "' WHERE id=" + QueryCompany::intToString(company.getId()));
+}
+bool QueryCompany::deleteCompany(Company company) {
+	return QueryCompany::del( (DELETE_COMAPNY + QueryCompany::intToString(company.getId())) );
 }
