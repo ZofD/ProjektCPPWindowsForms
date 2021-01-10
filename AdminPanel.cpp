@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "PanelSprzedawcy.h"
+#include "AdminPanel.h"
 
-void ProjektCPPWindowsForms::PanelSprzedawcy::setClient(User user) {
+void ProjektCPPWindowsForms::AdminPanel::setClient(User user) {
 	this->client = new Client(user);
 	this->user->Text = gcnew String(this->client->getLogin().c_str());
 }

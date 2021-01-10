@@ -10,12 +10,12 @@ namespace ProjektCPPWindowsForms {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Podsumowanie informacji o PanelSprzedawcy
+	/// Podsumowanie informacji o AdminPanel
 	/// </summary>
-	public ref class PanelSprzedawcy : public System::Windows::Forms::Form
+	public ref class AdminPanel : public System::Windows::Forms::Form
 	{
 	public:
-		PanelSprzedawcy(void)
+		AdminPanel(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +27,7 @@ namespace ProjektCPPWindowsForms {
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
 		/// </summary>
-		~PanelSprzedawcy()
+		~AdminPanel()
 		{
 			if (components)
 			{
@@ -42,8 +42,6 @@ namespace ProjektCPPWindowsForms {
 
 		   Client* client;
 
-	protected:
-
 	private:
 		/// <summary>
 		/// Wymagana zmienna projektanta.
@@ -55,6 +53,27 @@ namespace ProjektCPPWindowsForms {
 		/// Metoda wymagana do obs³ugi projektanta — nie nale¿y modyfikowaæ
 		/// jej zawartoœci w edytorze kodu.
 		/// </summary>
+		 
+		void setItems(std::vector<Offer> lista) {
+			this->listView1->BeginUpdate();
+			for (Offer item : lista) {
+				//MessageBox::Show(gcnew String(std::to_string(item.getPrice()).c_str()));
+				String^ productName = gcnew String(item.getProduct().getName().c_str());
+				String^ productCompany = gcnew String(item.getProduct().getCompany().getName().c_str());
+				String^ productCategory = gcnew String(item.getProduct().getCategory().getName().c_str());
+				String^ price = gcnew String(std::to_string(item.getPrice()).c_str());
+				System::Windows::Forms::ListViewItem^ listviewitem1 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+					productName,
+						price, productCompany, productCategory
+				}, -1));
+				this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+					listviewitem1
+				});
+			}
+			this->listView1->EndUpdate();
+			this->Controls->Add(this->listView1);
+		}
+		 
 		void InitializeComponent(void)
 		{
 			this->user = (gcnew System::Windows::Forms::Label());
@@ -117,8 +136,8 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->szukaj);
 			this->Controls->Add(this->user);
-			this->Name = L"Panel Sprzedawcy";
-			this->Text = L"Panel Sprzedawcy";
+			this->Name = L"Panel adminstratora";
+			this->Text = L"Panel adminstratora";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

@@ -1,7 +1,8 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
-#include "User.h"
 #include "UnVerify.h"
+#include "AdminPanel.h"
+#include "PanelSprzedawcy.h"
 
 namespace CppCLRWinformsProjekt {
 
@@ -157,15 +158,49 @@ namespace CppCLRWinformsProjekt {
 		std::string login = msclr::interop::marshal_as<std::string>(this->login->Text);
 		std::string haslo = msclr::interop::marshal_as<std::string>(this->haslo->Text);
 		User user = UnVerify::logIn(login, haslo);
-		if (user.getLogin() == login && user.getPassword() == haslo)
+		if (user.getId() >= 0)
 		{
-			this->login->Clear();
-			this->haslo->Clear();
-			this->info->Text = "";
-			this->Hide();
-			ProjektCPPWindowsForms::MyForm uzytkownik;
-			uzytkownik.ShowDialog();
-			this->Show();
+			switch (user.getPermission())
+			{
+			case 0: 
+				this->login->Clear();
+				this->haslo->Clear();
+				this->info->Text = "";
+				this->Hide();
+				{
+					ProjektCPPWindowsForms::AdminPanel uzytkownikw;
+					uzytkownikw.setClient(user);
+					uzytkownikw.ShowDialog();
+				}
+				this->Show();
+				break;
+			case 1:
+				this->login->Clear();
+				this->haslo->Clear();
+				this->info->Text = "";
+				this->Hide();
+				{
+					ProjektCPPWindowsForms::PanelSprzedawcy uzytkownika;
+					uzytkownika.setClient(user);
+					uzytkownika.ShowDialog();
+				}
+				this->Show();
+				break;
+			case 2:
+				this->login->Clear();
+				this->haslo->Clear();
+				this->info->Text = "";
+				this->Hide();
+				{
+					ProjektCPPWindowsForms::MyForm uzytkownik;
+					uzytkownik.setClient(user);
+					uzytkownik.ShowDialog();
+				}
+				this->Show();
+				break;
+			default:
+				break;
+			}
 		}
 		else {
 			this->info->Text = "Konto o podanych danych nie istnieje";
@@ -174,10 +209,10 @@ namespace CppCLRWinformsProjekt {
 
 	private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
 		this->info->Text = "";
-		this->Hide();
-		ProjektCPPWindowsForms::MyForm uzytkownik;
+		/*this->Hide();
+		ProjektCPPWindowsForms::MyForm uzytkownik();
 		uzytkownik.ShowDialog();
-		this->Show();
+		this->Show();*/
 	}
 };
 }

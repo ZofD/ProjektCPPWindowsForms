@@ -15,6 +15,8 @@
 #include "MyForm.h"
 #include "Form1.h"
 #include "PanelSprzedawcy.h"
+#include "AdminPanel.h"
+#include "Koszyk.h"
 
 #include "Client.h"
 #include "UnVerify.h"

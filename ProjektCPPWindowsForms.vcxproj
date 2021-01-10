@@ -145,6 +145,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminPanel.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Category.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Company.h" />
@@ -152,6 +155,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="Koszyk.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -173,6 +179,7 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdminPanel.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Category.cpp" />
     <ClCompile Include="Client.cpp" />
@@ -180,6 +187,7 @@
     <ClCompile Include="CppCLR_WinformsProjekt.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Koszyk.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Offer.cpp" />
     <ClCompile Include="PanelSprzedawcy.cpp" />
@@ -213,6 +221,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Koszyk.resx">
+      <DependentUpon>Koszyk.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>

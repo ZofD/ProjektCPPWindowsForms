@@ -104,6 +104,12 @@
     <ClInclude Include="QueryTransaction.h">
       <Filter>Headerdateien\dataBase\connection</Filter>
     </ClInclude>
+    <ClInclude Include="AdminPanel.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Koszyk.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -168,6 +174,12 @@
     </ClCompile>
     <ClCompile Include="QueryTransaction.cpp">
       <Filter>Quelldateien\dataBase\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminPanel.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Koszyk.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
