@@ -1,36 +1,34 @@
-#ifndef CLIENT_H
-#define CLIENT_H
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
 
 #pragma once
-#include <vector>
 #include "User.h"
-#include "Transaction.h"
 #include "Company.h"
 #include "Category.h"
 #include "Offer.h"
+#include "Product.h"
+#include "QueryProduct.h"
 #include "QueryCategory.h"
 #include "QueryCompany.h"
 #include "QueryOffer.h"
-#include "QueryTransaction.h"
-
-class Client : public User{
-private:
-	std::vector<Transaction> myTransaction;
+class Employee : public User {
 public:
-	Client(User user);
+	Employee(User user);
 
 	std::vector<Category> getAllCategory();
 	std::vector<Company> getAllCompany();
+	std::vector<Product> getAllProduct();
+	std::vector<Offer> getAllOffer();
 	std::vector<Offer> getAllActiveOffer();
 	std::vector<Offer> getAllActiveOfferByProductName(std::string name);
 	std::vector<Offer> getAllActiveOfferByCategory(Category category);
 	std::vector<Offer> getAllActiveOfferByCompany(Company company);
 	std::vector<Offer> getAllActiveOfferByCategoryAndCompany(Category category, Company company);
 
-	bool addNewTransaction(Transaction newTransaction);
-
-	void setMyTransaction(std::vector<Transaction> trasaction);
-	std::vector<Transaction> getMyTransaction();
+	bool addCategory(Category category);
+	bool addCompany(Company company);
+	bool addProduct(Product product);
+	bool addOffer(Offer offer);
 };
 
-#endif // !CLIENT_H
+#endif // EMPLOYEE_H

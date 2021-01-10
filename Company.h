@@ -10,6 +10,7 @@ private:
 public:
 	Company();
 	Company(int id, std::string name);
+	Company(std::string name);
 
 	bool isWrongRequest();
 

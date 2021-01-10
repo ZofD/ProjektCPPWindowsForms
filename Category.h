@@ -10,6 +10,7 @@ private:
 public:
 	Category();
 	Category(int id, std::string name);
+	Category(std::string name);
 
 	bool isWrongRequest();
 

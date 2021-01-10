@@ -14,6 +14,7 @@ private:
 public:
 	Transaction();
 	Transaction(int id);
+	Transaction(User user);
 	Transaction(int id, time_t date);
 	Transaction(int id, time_t date, User user);
 	Transaction(Transaction& transaction);
