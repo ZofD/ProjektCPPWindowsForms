@@ -149,6 +149,7 @@
     <ClInclude Include="AdminPanel.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Company.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="CppCLR_WinformsProjekt.cpp" />
     <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Koszyk.cpp" />

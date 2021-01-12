@@ -62,6 +62,12 @@
     <ClInclude Include="User.h">
       <Filter>Headerdateien\dataBase\structure</Filter>
     </ClInclude>
+    <ClInclude Include="Employee.h">
+      <Filter>Headerdateien\dataBase\getDataFromDatabase</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Headerdateien\dataBase\getDataFromDatabase</Filter>
+    </ClInclude>
     <ClInclude Include="Query.h">
       <Filter>Headerdateien\dataBase\connection</Filter>
     </ClInclude>
@@ -132,6 +138,12 @@
     </ClCompile>
     <ClCompile Include="User.cpp">
       <Filter>Quelldateien\dataBase\structure</Filter>
+    </ClCompile>
+    <ClCompile Include="Employee.cpp">
+      <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Quelldateien\dataBase\getDataFromDatabase</Filter>
     </ClCompile>
     <ClCompile Include="Query.cpp">
       <Filter>Quelldateien\dataBase\connection</Filter>

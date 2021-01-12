@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Admin.h"
+#include "QueryUser.h"
 
 Admin::Admin(User user) : User(user) {}
 
