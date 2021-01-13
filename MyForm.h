@@ -1,9 +1,8 @@
+#ifndef PanelClient
+#define PanelClient
+
 #pragma once
-#include <msclr\marshal_cppstd.h>
-#include <vector>
-#include "Client.h"
 #include "Koszyk.h"
-#include <list>
 
 namespace ProjektCPPWindowsForms {
 
@@ -272,3 +271,4 @@ namespace ProjektCPPWindowsForms {
 	}
 };
 }
+#endif PanelClient

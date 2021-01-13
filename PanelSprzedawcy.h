@@ -1,3 +1,6 @@
+#ifndef PanelEmployee
+#define PanelEmployee
+
 #pragma once
 
 namespace ProjektCPPWindowsForms {
@@ -128,3 +131,4 @@ namespace ProjektCPPWindowsForms {
 #pragma endregion
 	};
 }
+#endif PanelEmployee

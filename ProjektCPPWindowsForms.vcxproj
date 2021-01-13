@@ -146,10 +146,10 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminPanel.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Admin.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Company.h" />
@@ -226,6 +226,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdminPanel.resx">
+      <DependentUpon>AdminPanel.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
     </EmbeddedResource>

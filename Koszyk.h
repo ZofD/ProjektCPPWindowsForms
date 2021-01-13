@@ -1,3 +1,6 @@
+#ifndef PanelKoszyk
+#define PanelKoszyk
+
 #pragma once
 
 namespace ProjektCPPWindowsForms {
@@ -191,3 +194,4 @@ namespace ProjektCPPWindowsForms {
 	}
 };
 }
+#endif PanelKoszyk

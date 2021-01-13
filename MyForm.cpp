@@ -1,5 +1,5 @@
 #include "pch.h"
-#include <iostream>
+#include "MyForm.h"
 
 void ProjektCPPWindowsForms::MyForm::setClient(User user) {
 	this->client = new Client(user);

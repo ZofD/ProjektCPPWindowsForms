@@ -110,10 +110,13 @@
     <ClInclude Include="QueryTransaction.h">
       <Filter>Headerdateien\dataBase\connection</Filter>
     </ClInclude>
-    <ClInclude Include="AdminPanel.h">
+    <ClInclude Include="Koszyk.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Koszyk.h">
+    <ClInclude Include="QueryProduct.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminPanel.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -187,10 +190,13 @@
     <ClCompile Include="QueryTransaction.cpp">
       <Filter>Quelldateien\dataBase\connection</Filter>
     </ClCompile>
-    <ClCompile Include="AdminPanel.cpp">
+    <ClCompile Include="Koszyk.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Koszyk.cpp">
+    <ClCompile Include="QueryProduct.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminPanel.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

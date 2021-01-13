@@ -1,6 +1,8 @@
+#ifndef PanelLogin
+#define PanelLogin
+
 #pragma once
-#include <msclr\marshal_cppstd.h>
-#include "UnVerify.h"
+#include "MyForm.h"
 #include "AdminPanel.h"
 #include "PanelSprzedawcy.h"
 
@@ -169,7 +171,7 @@ namespace CppCLRWinformsProjekt {
 				this->Hide();
 				{
 					ProjektCPPWindowsForms::AdminPanel uzytkownikw;
-					uzytkownikw.setClient(user);
+					uzytkownikw.setAdmin(user);
 					uzytkownikw.ShowDialog();
 				}
 				this->Show();
@@ -181,7 +183,7 @@ namespace CppCLRWinformsProjekt {
 				this->Hide();
 				{
 					ProjektCPPWindowsForms::PanelSprzedawcy uzytkownika;
-					uzytkownika.setClient(user);
+					uzytkownika.setEmployee(user);
 					uzytkownika.ShowDialog();
 				}
 				this->Show();
@@ -216,3 +218,4 @@ namespace CppCLRWinformsProjekt {
 	}
 };
 }
+#endif PanelLogin

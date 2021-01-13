@@ -8,7 +8,6 @@ using namespace System;
 //}
 
 #include "Form1.h"
-#include "MyForm.h"
 
 using namespace System::Windows::Forms;
 

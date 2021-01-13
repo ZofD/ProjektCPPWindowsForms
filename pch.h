@@ -20,14 +20,10 @@
 // Fügen Sie hier Header hinzu, die vorkompiliert werden sollen.
 // Dodaj tutaj nagłówki do prekompilacji.
 
-	#include "MyForm.h"
-	#include "Form1.h"
-	#include "PanelSprzedawcy.h"
-	#include "AdminPanel.h"
-	#include "Koszyk.h"
-
 	#include "Client.h"
 	#include "UnVerify.h"
+	#include "Admin.h"
+	#include "Employee.h"
 
 	#include "Category.h"
 	#include "Company.h"
@@ -35,9 +31,8 @@
 	#include "Product.h"
 	#include "Transaction.h"
 	#include "User.h"
-	#include "Admin.h"
-	#include "Employee.h"
 
+	#include <msclr/marshal_cppstd.h>
 	#include <string>
 	#include <time.h>
 
