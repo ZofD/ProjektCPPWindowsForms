@@ -183,7 +183,7 @@ namespace CppCLRWinformsProjekt {
 				this->Hide();
 				{
 					ProjektCPPWindowsForms::PanelSprzedawcy uzytkownika;
-					uzytkownika.setEmployee(user);
+					//uzytkownika.setEmployee(user);
 					uzytkownika.ShowDialog();
 				}
 				this->Show();

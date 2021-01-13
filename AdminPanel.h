@@ -35,7 +35,6 @@ namespace ProjektCPPWindowsForms {
 			}
 		}
 	private: System::Windows::Forms::Button^ button2;
-	protected:
 	private: System::Windows::Forms::Label^ user;
 	private: System::Windows::Forms::TabControl^ tabControl1;
 
@@ -46,6 +45,9 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listOfUsers;
 	private: System::Windows::Forms::Button^ findUserBtn;
 	private: System::Windows::Forms::TextBox^ findUserTxt;
+	private: System::Windows::Forms::ColumnHeader^ userIdCol;
+	private: System::Windows::Forms::ColumnHeader^ userLoginCol;
+	private: System::Windows::Forms::ColumnHeader^ userPermisionCol;
 
 	private: System::Windows::Forms::TabPage^ companyTab;
 	private: System::Windows::Forms::Button^ editCompanyBtn;
@@ -54,6 +56,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listOfCompanies;
 	private: System::Windows::Forms::Button^ findCompanyBtn;
 	private: System::Windows::Forms::TextBox^ findCompanyTxt;
+	private: System::Windows::Forms::ColumnHeader^ companyIdCol;
+	private: System::Windows::Forms::ColumnHeader^ companyNameCol;
 
 	private: System::Windows::Forms::TabPage^ categoryTab;
 	private: System::Windows::Forms::Button^ editCategoryBtn;
@@ -62,6 +66,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listOfCategories;
 	private: System::Windows::Forms::Button^ findCatregoryBtn;
 	private: System::Windows::Forms::TextBox^ findCategoryTxt;
+	private: System::Windows::Forms::ColumnHeader^ categoryIdCol;
+	private: System::Windows::Forms::ColumnHeader^ categoryNameCol;
 
 	private: System::Windows::Forms::TabPage^ productTab;
 	private: System::Windows::Forms::Button^ editProductBtn;
@@ -70,6 +76,10 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listOfProducts;
 	private: System::Windows::Forms::Button^ findProductBtn;
 	private: System::Windows::Forms::TextBox^ findProductTxt;
+	private: System::Windows::Forms::ColumnHeader^ productIdCol;
+	private: System::Windows::Forms::ColumnHeader^ productNameCol;
+	private: System::Windows::Forms::ColumnHeader^ productCategoryCol;
+	private: System::Windows::Forms::ColumnHeader^ productCompanyCol;
 
 	private: System::Windows::Forms::TabPage^ offerTab;
 	private: System::Windows::Forms::Button^ editOfferBtn;
@@ -78,6 +88,11 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listOfOffers;
 	private: System::Windows::Forms::Button^ findOfferBtn;
 	private: System::Windows::Forms::TextBox^ findOfferTxt;
+	private: System::Windows::Forms::ColumnHeader^ offerIdCol;
+	private: System::Windows::Forms::ColumnHeader^ offerPriceCol;
+	private: System::Windows::Forms::ColumnHeader^ offerProductCol;
+	private: System::Windows::Forms::ColumnHeader^ offerDateStart;
+	private: System::Windows::Forms::ColumnHeader^ offerDateEnd;
 
 	private: System::Windows::Forms::TabPage^ transactionTab;
 	private: System::Windows::Forms::Button^ editTransactionBtn;
@@ -86,6 +101,10 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listOfTransactions;
 	private: System::Windows::Forms::Button^ findTransactionBtn;
 	private: System::Windows::Forms::TextBox^ findTransactionTxt;
+	private: System::Windows::Forms::ColumnHeader^ transactionIdCol;
+	private: System::Windows::Forms::ColumnHeader^ transactionDateCol;
+	private: System::Windows::Forms::ColumnHeader^ transactionUserCol;
+	private: System::Windows::Forms::ColumnHeader^ transactionOffersListCol;
 
 	private:
 		Admin* admin;
@@ -102,13 +121,13 @@ namespace ProjektCPPWindowsForms {
 		/// jej zawartoœci w edytorze kodu.
 		/// </summary>
 		
-		void setUsers(std::vector<User> lista) {
+		void setUsers(std::vector<User> users) {
 			this->listOfUsers->BeginUpdate();
-			for (User item : lista) {
-				String^ userID = gcnew String(item.getId().ToString());
-				String^ userLogin = gcnew String(item.getLogin().c_str());
+			for (User user : users) {
+				String^ userID = gcnew String(user.getId().ToString());
+				String^ userLogin = gcnew String(user.getLogin().c_str());
 				String^ role;
-				switch (item.getPermission())
+				switch (user.getPermission())
 				{
 					case 0:
 						role = "Administrator";
@@ -120,7 +139,7 @@ namespace ProjektCPPWindowsForms {
 						role = "Klient";
 						break;
 				}
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > (3){
 					userID,
 						userLogin, role
 				}, -1));
@@ -129,11 +148,108 @@ namespace ProjektCPPWindowsForms {
 				});
 			}
 			this->listOfUsers->EndUpdate();
-			this->Controls->Add(this->listOfUsers);
+			//this->Controls->Add(this->listOfUsers);
+		}
+		void setCompanies(std::vector<Company> companies) {
+			this->listOfCompanies->BeginUpdate();
+			for (Company company : companies) {
+				String^ companyID = gcnew String(company.getId().ToString());
+				String^ companyName = gcnew String(company.getName().c_str());
+				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+					companyID,
+						companyName
+				}, -1));
+				this->listOfCompanies->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+					listviewitem
+				});
+			}
+			this->listOfCompanies->EndUpdate();
+			//this->Controls->Add(this->listOfCompanies);
+		}
+		void setCategories(std::vector<Category> categories) {
+			this->listOfCategories->BeginUpdate();
+			for (Category category : categories) {
+				String^ categoryID = gcnew String(category.getId().ToString());
+				String^ categoryName = gcnew String(category.getName().c_str());
+				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+					categoryID,
+						categoryName
+				}, -1));
+				this->listOfCategories->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+					listviewitem
+				});
+			}
+			this->listOfCategories->EndUpdate();
+			//this->Controls->Add(this->listOfCategories);
+		}
+		void setProducts(std::vector<Product> products) {
+			this->listOfProducts->BeginUpdate();
+			for (Product product : products) {
+				String^ productID = gcnew String(product.getId().ToString());
+				String^ productName = gcnew String(product.getName().c_str());
+				String^ productCategory = gcnew String(product.getCategory().getId().ToString());
+				String^ productCompany = gcnew String(product.getCompany().getId().ToString());
+				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+					productID,
+						productName, productCategory, productCompany
+				}, -1));
+				this->listOfProducts->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+					listviewitem
+				});
+			}
+			this->listOfProducts->EndUpdate();
+			//this->Controls->Add(this->listOfProducts);
+		}
+		void setOffers(std::vector<Offer> offers) {
+			this->listOfOffers->BeginUpdate();
+			for (Offer offer : offers) {
+				String^ offerID = gcnew String(offer.getId().ToString());
+				String^ offerPrice = gcnew String(offer.getPrice().ToString());
+				String^ offerProduct = gcnew String(offer.getProduct().getId().ToString());
+				String^ offerStartDate = gcnew String(Helper::time_tToString(offer.getStartDate()).c_str());
+				String^ offerEndDate = gcnew String(Helper::time_tToString(offer.getStopDate()).c_str());
+				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+					offerID,
+						offerPrice, offerProduct, offerStartDate, offerEndDate
+				}, -1));
+				this->listOfOffers->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+					listviewitem
+				});
+			}
+			this->listOfOffers->EndUpdate();
+			//this->Controls->Add(this->listOfOffers);
+		}
+		void setTransactions(std::vector<Transaction> transactions) {
+			this->listOfTransactions->BeginUpdate();
+			for (Transaction transaction : transactions) {
+				String^ transactionID = gcnew String(transaction.getId().ToString());
+				String^ transactionDate = gcnew String(Helper::time_tToString(transaction.getDate()).c_str());
+				String^ transactionUser = gcnew String(transaction.getUser().getId().ToString());
+				String^ transactionOffers;
+				std::string tmp;
+				for (Offer offer : transaction.getOfferList()) {
+					tmp += (std::to_string(offer.getId()) + ";");
+				}
+				transactionOffers = gcnew String(tmp.c_str());
+				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
+					transactionID,
+						transactionDate, transactionUser, transactionOffers
+				}, -1));
+				this->listOfTransactions->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+					listviewitem
+				});
+			}
+			this->listOfTransactions->EndUpdate();
+			//this->Controls->Add(this->listOfTransactions);
 		}
 		
-		void setItems() {
-			
+		void setItems(std::vector<User> users, std::vector<Company> companies, std::vector<Category> categories, std::vector<Product> products, std::vector<Offer> offers, std::vector<Transaction> transactions) {
+			setUsers(users);
+			setCompanies(companies);
+			setCategories(categories);
+			setProducts(products);
+			setOffers(offers);
+			setTransactions(transactions);
 		}
 
 		void InitializeComponent(void)
@@ -142,17 +258,22 @@ namespace ProjektCPPWindowsForms {
 			this->user = (gcnew System::Windows::Forms::Label());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->userTab = (gcnew System::Windows::Forms::TabPage());
+			this->editUserBtn = (gcnew System::Windows::Forms::Button());
+			this->deleteUserBtn = (gcnew System::Windows::Forms::Button());
+			this->addUserBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfUsers = (gcnew System::Windows::Forms::ListView());
+			this->userIdCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->userLoginCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->userPermisionCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findUserBtn = (gcnew System::Windows::Forms::Button());
 			this->findUserTxt = (gcnew System::Windows::Forms::TextBox());
-			this->addUserBtn = (gcnew System::Windows::Forms::Button());
-			this->deleteUserBtn = (gcnew System::Windows::Forms::Button());
-			this->editUserBtn = (gcnew System::Windows::Forms::Button());
 			this->companyTab = (gcnew System::Windows::Forms::TabPage());
 			this->editCompanyBtn = (gcnew System::Windows::Forms::Button());
 			this->deleteCompanyBtn = (gcnew System::Windows::Forms::Button());
 			this->addCompanyBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfCompanies = (gcnew System::Windows::Forms::ListView());
+			this->companyIdCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->companyNameCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findCompanyBtn = (gcnew System::Windows::Forms::Button());
 			this->findCompanyTxt = (gcnew System::Windows::Forms::TextBox());
 			this->categoryTab = (gcnew System::Windows::Forms::TabPage());
@@ -160,6 +281,8 @@ namespace ProjektCPPWindowsForms {
 			this->deleteCategoryBtn = (gcnew System::Windows::Forms::Button());
 			this->addCategoryBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfCategories = (gcnew System::Windows::Forms::ListView());
+			this->categoryIdCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->categoryNameCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findCatregoryBtn = (gcnew System::Windows::Forms::Button());
 			this->findCategoryTxt = (gcnew System::Windows::Forms::TextBox());
 			this->productTab = (gcnew System::Windows::Forms::TabPage());
@@ -167,6 +290,10 @@ namespace ProjektCPPWindowsForms {
 			this->deleteProductBtn = (gcnew System::Windows::Forms::Button());
 			this->addProductBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfProducts = (gcnew System::Windows::Forms::ListView());
+			this->productIdCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->productNameCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->productCategoryCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->productCompanyCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findProductBtn = (gcnew System::Windows::Forms::Button());
 			this->findProductTxt = (gcnew System::Windows::Forms::TextBox());
 			this->offerTab = (gcnew System::Windows::Forms::TabPage());
@@ -174,6 +301,11 @@ namespace ProjektCPPWindowsForms {
 			this->deleteOfferBtn = (gcnew System::Windows::Forms::Button());
 			this->addOfferBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfOffers = (gcnew System::Windows::Forms::ListView());
+			this->offerIdCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->offerPriceCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->offerProductCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->offerDateStart = (gcnew System::Windows::Forms::ColumnHeader());
+			this->offerDateEnd = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findOfferBtn = (gcnew System::Windows::Forms::Button());
 			this->findOfferTxt = (gcnew System::Windows::Forms::TextBox());
 			this->transactionTab = (gcnew System::Windows::Forms::TabPage());
@@ -181,6 +313,10 @@ namespace ProjektCPPWindowsForms {
 			this->deleteTransactionBtn = (gcnew System::Windows::Forms::Button());
 			this->addTransactionBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfTransactions = (gcnew System::Windows::Forms::ListView());
+			this->transactionIdCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->transactionDateCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->transactionUserCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->transactionOffersListCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findTransactionBtn = (gcnew System::Windows::Forms::Button());
 			this->findTransactionTxt = (gcnew System::Windows::Forms::TextBox());
 			this->tabControl1->SuspendLayout();
@@ -240,14 +376,68 @@ namespace ProjektCPPWindowsForms {
 			this->userTab->Text = L"U¿ytkownicy";
 			this->userTab->UseVisualStyleBackColor = true;
 			// 
+			// editUserBtn
+			// 
+			this->editUserBtn->Location = System::Drawing::Point(222, 649);
+			this->editUserBtn->Name = L"editUserBtn";
+			this->editUserBtn->Size = System::Drawing::Size(101, 42);
+			this->editUserBtn->TabIndex = 15;
+			this->editUserBtn->Text = L"Edit";
+			this->editUserBtn->UseVisualStyleBackColor = true;
+			// 
+			// deleteUserBtn
+			// 
+			this->deleteUserBtn->Location = System::Drawing::Point(115, 649);
+			this->deleteUserBtn->Name = L"deleteUserBtn";
+			this->deleteUserBtn->Size = System::Drawing::Size(101, 42);
+			this->deleteUserBtn->TabIndex = 14;
+			this->deleteUserBtn->Text = L"Usuñ";
+			this->deleteUserBtn->UseVisualStyleBackColor = true;
+			// 
+			// addUserBtn
+			// 
+			this->addUserBtn->Location = System::Drawing::Point(8, 649);
+			this->addUserBtn->Name = L"addUserBtn";
+			this->addUserBtn->Size = System::Drawing::Size(101, 42);
+			this->addUserBtn->TabIndex = 13;
+			this->addUserBtn->Text = L"Dodaj";
+			this->addUserBtn->UseVisualStyleBackColor = true;
+			// 
 			// listOfUsers
 			// 
+			this->listOfUsers->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfUsers->CheckBoxes = true;
+			this->listOfUsers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(3) {
+				this->userIdCol, this->userLoginCol,
+					this->userPermisionCol
+			});
+			this->listOfUsers->FullRowSelect = true;
 			this->listOfUsers->HideSelection = false;
+			this->listOfUsers->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfUsers->Location = System::Drawing::Point(8, 50);
 			this->listOfUsers->Name = L"listOfUsers";
 			this->listOfUsers->Size = System::Drawing::Size(1176, 593);
 			this->listOfUsers->TabIndex = 12;
 			this->listOfUsers->UseCompatibleStateImageBehavior = false;
+			this->listOfUsers->View = System::Windows::Forms::View::Details;
+			// 
+			// userIdCol
+			// 
+			this->userIdCol->Tag = L"0";
+			this->userIdCol->Text = L"Id";
+			this->userIdCol->Width = 100;
+			// 
+			// userLoginCol
+			// 
+			this->userLoginCol->Tag = L"1";
+			this->userLoginCol->Text = L"Login";
+			this->userLoginCol->Width = 300;
+			// 
+			// userPermisionCol
+			// 
+			this->userPermisionCol->Tag = L"2";
+			this->userPermisionCol->Text = L"Rola";
+			this->userPermisionCol->Width = 200;
 			// 
 			// findUserBtn
 			// 
@@ -264,33 +454,6 @@ namespace ProjektCPPWindowsForms {
 			this->findUserTxt->Name = L"findUserTxt";
 			this->findUserTxt->Size = System::Drawing::Size(452, 26);
 			this->findUserTxt->TabIndex = 10;
-			// 
-			// addUserBtn
-			// 
-			this->addUserBtn->Location = System::Drawing::Point(8, 649);
-			this->addUserBtn->Name = L"addUserBtn";
-			this->addUserBtn->Size = System::Drawing::Size(101, 42);
-			this->addUserBtn->TabIndex = 13;
-			this->addUserBtn->Text = L"Dodaj";
-			this->addUserBtn->UseVisualStyleBackColor = true;
-			// 
-			// deleteUserBtn
-			// 
-			this->deleteUserBtn->Location = System::Drawing::Point(115, 649);
-			this->deleteUserBtn->Name = L"deleteUserBtn";
-			this->deleteUserBtn->Size = System::Drawing::Size(101, 42);
-			this->deleteUserBtn->TabIndex = 14;
-			this->deleteUserBtn->Text = L"Usuñ";
-			this->deleteUserBtn->UseVisualStyleBackColor = true;
-			// 
-			// editUserBtn
-			// 
-			this->editUserBtn->Location = System::Drawing::Point(222, 649);
-			this->editUserBtn->Name = L"editUserBtn";
-			this->editUserBtn->Size = System::Drawing::Size(101, 42);
-			this->editUserBtn->TabIndex = 15;
-			this->editUserBtn->Text = L"Edit";
-			this->editUserBtn->UseVisualStyleBackColor = true;
 			// 
 			// companyTab
 			// 
@@ -337,12 +500,33 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listOfCompanies
 			// 
+			this->listOfCompanies->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {
+				this->companyIdCol,
+					this->companyNameCol
+			});
 			this->listOfCompanies->HideSelection = false;
 			this->listOfCompanies->Location = System::Drawing::Point(8, 52);
 			this->listOfCompanies->Name = L"listOfCompanies";
 			this->listOfCompanies->Size = System::Drawing::Size(1176, 593);
 			this->listOfCompanies->TabIndex = 18;
 			this->listOfCompanies->UseCompatibleStateImageBehavior = false;
+			this->listOfCompanies->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfCompanies->CheckBoxes = true;
+			this->listOfCompanies->FullRowSelect = true;
+			this->listOfCompanies->ImeMode = System::Windows::Forms::ImeMode::NoControl;
+			this->listOfCompanies->View = System::Windows::Forms::View::Details;
+			// 
+			// companyIdCol
+			// 
+			this->companyIdCol->Tag = L"0";
+			this->companyIdCol->Text = L"Id";
+			this->companyIdCol->Width = 100;
+			// 
+			// companyNameCol
+			// 
+			this->companyNameCol->Tag = L"1";
+			this->companyNameCol->Text = L"Nazwa";
+			this->companyNameCol->Width = 200;
 			// 
 			// findCompanyBtn
 			// 
@@ -405,12 +589,33 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listOfCategories
 			// 
+			this->listOfCategories->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {
+				this->categoryIdCol,
+					this->categoryNameCol
+			});
 			this->listOfCategories->HideSelection = false;
 			this->listOfCategories->Location = System::Drawing::Point(8, 52);
 			this->listOfCategories->Name = L"listOfCategories";
 			this->listOfCategories->Size = System::Drawing::Size(1176, 593);
 			this->listOfCategories->TabIndex = 18;
 			this->listOfCategories->UseCompatibleStateImageBehavior = false;
+			this->listOfCategories->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfCategories->CheckBoxes = true;
+			this->listOfCategories->FullRowSelect = true;
+			this->listOfCategories->ImeMode = System::Windows::Forms::ImeMode::NoControl;
+			this->listOfCategories->View = System::Windows::Forms::View::Details;
+			// 
+			// categoryIdCol
+			// 
+			this->categoryIdCol->Tag = L"0";
+			this->categoryIdCol->Text = L"Id";
+			this->categoryIdCol->Width = 100;
+			// 
+			// categoryNameCol
+			// 
+			this->categoryNameCol->Tag = L"1";
+			this->categoryNameCol->Text = L"Nazwa";
+			this->categoryNameCol->Width = 200;
 			// 
 			// findCatregoryBtn
 			// 
@@ -473,12 +678,45 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listOfProducts
 			// 
+			this->listOfProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
+				this->productIdCol,
+					this->productNameCol, this->productCategoryCol, this->productCompanyCol
+			});
 			this->listOfProducts->HideSelection = false;
 			this->listOfProducts->Location = System::Drawing::Point(8, 52);
 			this->listOfProducts->Name = L"listOfProducts";
 			this->listOfProducts->Size = System::Drawing::Size(1176, 593);
 			this->listOfProducts->TabIndex = 18;
 			this->listOfProducts->UseCompatibleStateImageBehavior = false;
+			this->listOfProducts->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfProducts->CheckBoxes = true;
+			this->listOfProducts->FullRowSelect = true;
+			this->listOfProducts->ImeMode = System::Windows::Forms::ImeMode::NoControl;
+			this->listOfProducts->View = System::Windows::Forms::View::Details;
+			// 
+			// productIdCol
+			// 
+			this->productIdCol->Tag = L"0";
+			this->productIdCol->Text = L"Id";
+			this->productIdCol->Width = 100;
+			// 
+			// productNameCol
+			// 
+			this->productNameCol->Tag = L"1";
+			this->productNameCol->Text = L"Nazwa";
+			this->productNameCol->Width = 300;
+			// 
+			// productCategoryCol
+			// 
+			this->productCategoryCol->Tag = L"2";
+			this->productCategoryCol->Text = L"Id kategori";
+			this->productCategoryCol->Width = 100;
+			// 
+			// productCompanyCol
+			// 
+			this->productCompanyCol->Tag = L"3";
+			this->productCompanyCol->Text = L"Id firmy";
+			this->productCompanyCol->Width = 100;
 			// 
 			// findProductBtn
 			// 
@@ -541,12 +779,51 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listOfOffers
 			// 
+			this->listOfOffers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(5) {
+				this->offerIdCol, this->offerPriceCol,
+					this->offerProductCol, this->offerDateStart, this->offerDateEnd
+			});
 			this->listOfOffers->HideSelection = false;
 			this->listOfOffers->Location = System::Drawing::Point(8, 52);
 			this->listOfOffers->Name = L"listOfOffers";
 			this->listOfOffers->Size = System::Drawing::Size(1176, 593);
 			this->listOfOffers->TabIndex = 18;
 			this->listOfOffers->UseCompatibleStateImageBehavior = false;
+			this->listOfOffers->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfOffers->CheckBoxes = true;
+			this->listOfOffers->FullRowSelect = true;
+			this->listOfOffers->ImeMode = System::Windows::Forms::ImeMode::NoControl;
+			this->listOfOffers->View = System::Windows::Forms::View::Details;
+			// 
+			// offerIdCol
+			// 
+			this->offerIdCol->Tag = L"0";
+			this->offerIdCol->Text = L"Id";
+			this->offerIdCol->Width = 100;
+			// 
+			// offerPriceCol
+			// 
+			this->offerPriceCol->Tag = L"1";
+			this->offerPriceCol->Text = L"Cena";
+			this->offerPriceCol->Width = 100;
+			// 
+			// offerProductCol
+			// 
+			this->offerProductCol->Tag = L"2";
+			this->offerProductCol->Text = L"Id produktu";
+			this->offerProductCol->Width = 100;
+			// 
+			// offerDateStart
+			// 
+			this->offerDateStart->Tag = L"3";
+			this->offerDateStart->Text = L"Data rozpoczêcia";
+			this->offerDateStart->Width = 100;
+			// 
+			// offerDateEnd
+			// 
+			this->offerDateEnd->Tag = L"4";
+			this->offerDateEnd->Text = L"Data ukoñczenia";
+			this->offerDateEnd->Width = 100;
 			// 
 			// findOfferBtn
 			// 
@@ -609,12 +886,45 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// listOfTransactions
 			// 
+			this->listOfTransactions->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
+				this->transactionIdCol,
+					this->transactionDateCol, this->transactionUserCol, this->transactionOffersListCol
+			});
 			this->listOfTransactions->HideSelection = false;
 			this->listOfTransactions->Location = System::Drawing::Point(8, 52);
 			this->listOfTransactions->Name = L"listOfTransactions";
 			this->listOfTransactions->Size = System::Drawing::Size(1176, 593);
 			this->listOfTransactions->TabIndex = 18;
 			this->listOfTransactions->UseCompatibleStateImageBehavior = false;
+			this->listOfTransactions->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfTransactions->CheckBoxes = true;
+			this->listOfTransactions->FullRowSelect = true;
+			this->listOfTransactions->ImeMode = System::Windows::Forms::ImeMode::NoControl;
+			this->listOfTransactions->View = System::Windows::Forms::View::Details;
+			// 
+			// transactionIdCol
+			// 
+			this->transactionIdCol->Tag = L"0";
+			this->transactionIdCol->Text = L"Id";
+			this->transactionIdCol->Width = 100;
+			// 
+			// transactionDateCol
+			// 
+			this->transactionDateCol->Tag = L"1";
+			this->transactionDateCol->Text = L"Data";
+			this->transactionDateCol->Width = 100;
+			// 
+			// transactionUserCol
+			// 
+			this->transactionUserCol->Tag = L"2";
+			this->transactionUserCol->Text = L"Id u¿ytkownika";
+			this->transactionUserCol->Width = 100;
+			// 
+			// transactionOffersListCol
+			// 
+			this->transactionOffersListCol->Tag = L"3";
+			this->transactionOffersListCol->Text = L"Lista ofert";
+			this->transactionOffersListCol->Width = 400;
 			// 
 			// findTransactionBtn
 			// 
@@ -657,10 +967,11 @@ namespace ProjektCPPWindowsForms {
 			this->transactionTab->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
+			this->setItems(this->admin->getAllUser(), this->admin->getAllCompany(), this->admin->getAllCategory(),
+					this->admin->getAllProduct(), this->admin->getAllOffer(), this->admin->getAllTransaction());
 		}
 
-		protected: void setAdmin(User user);
+		public: void setAdmin(User user);
 
 #pragma endregion
 	};
