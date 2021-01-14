@@ -122,9 +122,9 @@ Company Query::mySQLRowToCompany(MYSQL_ROW row) {
 	return Query::mySQLRowToCompany(row[0], row[1]);
 }
 Product Query::mySQLRowToProduct(MYSQL_ROW row) {
-	return Query::mySQLRowToProduct(row[4], row[5],
-		Query::mySQLRowToCategory(row[0], row[1]),
-		Query::mySQLRowToCompany(row[2], row[3]));
+	return Query::mySQLRowToProduct(row[0], row[1],
+		Query::mySQLRowToCategory(row[2], row[3]),
+		Query::mySQLRowToCompany(row[4], row[5]));
 }
 Offer Query::mySQLRowToOffer(MYSQL_ROW row) {
 	return Query::mySQLRowToOffer(row[6], row[7], row[8], row[9],
