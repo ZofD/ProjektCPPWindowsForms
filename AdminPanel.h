@@ -1,4 +1,13 @@
+#ifndef PanelAdmin
+#define PanelAdmin
+
 #pragma once
+#include "AddUser.h"
+#include "AddCompany.h"
+#include "AddCategory.h"
+#include "AddProduct.h"
+#include "AddOffer.h"
+#include "AddTransaction.h"
 
 namespace ProjektCPPWindowsForms {
 
@@ -40,13 +49,14 @@ namespace ProjektCPPWindowsForms {
 
 	private: System::Windows::Forms::TabPage^ userTab;
 	private: System::Windows::Forms::Button^ editUserBtn;
-	private: System::Windows::Forms::Button^ deleteUserBtn;
+
 	private: System::Windows::Forms::Button^ addUserBtn;
 	private: System::Windows::Forms::ListView^ listOfUsers;
 	private: System::Windows::Forms::Button^ findUserBtn;
 	private: System::Windows::Forms::TextBox^ findUserTxt;
 	private: System::Windows::Forms::ColumnHeader^ userIdCol;
 	private: System::Windows::Forms::ColumnHeader^ userLoginCol;
+
 	private: System::Windows::Forms::ColumnHeader^ userPermisionCol;
 
 	private: System::Windows::Forms::TabPage^ companyTab;
@@ -108,6 +118,7 @@ namespace ProjektCPPWindowsForms {
 
 	private:
 		Admin* admin;
+	private: System::Windows::Forms::ColumnHeader^ userPasswordCol;
 
 	private:
 		/// <summary>
@@ -120,137 +131,6 @@ namespace ProjektCPPWindowsForms {
 		/// Metoda wymagana do obs³ugi projektanta — nie nale¿y modyfikowaæ
 		/// jej zawartoœci w edytorze kodu.
 		/// </summary>
-		
-		void setUsers(std::vector<User> users) {
-			this->listOfUsers->BeginUpdate();
-			for (User user : users) {
-				String^ userID = gcnew String(user.getId().ToString());
-				String^ userLogin = gcnew String(user.getLogin().c_str());
-				String^ role;
-				switch (user.getPermission())
-				{
-					case 0:
-						role = "Administrator";
-						break;
-					case 1:
-						role = "Pracownik";
-						break;
-					case 2:
-						role = "Klient";
-						break;
-				}
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > (3){
-					userID,
-						userLogin, role
-				}, -1));
-				this->listOfUsers->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
-					listviewitem
-				});
-			}
-			this->listOfUsers->EndUpdate();
-			//this->Controls->Add(this->listOfUsers);
-		}
-		void setCompanies(std::vector<Company> companies) {
-			this->listOfCompanies->BeginUpdate();
-			for (Company company : companies) {
-				String^ companyID = gcnew String(company.getId().ToString());
-				String^ companyName = gcnew String(company.getName().c_str());
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
-					companyID,
-						companyName
-				}, -1));
-				this->listOfCompanies->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
-					listviewitem
-				});
-			}
-			this->listOfCompanies->EndUpdate();
-			//this->Controls->Add(this->listOfCompanies);
-		}
-		void setCategories(std::vector<Category> categories) {
-			this->listOfCategories->BeginUpdate();
-			for (Category category : categories) {
-				String^ categoryID = gcnew String(category.getId().ToString());
-				String^ categoryName = gcnew String(category.getName().c_str());
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
-					categoryID,
-						categoryName
-				}, -1));
-				this->listOfCategories->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
-					listviewitem
-				});
-			}
-			this->listOfCategories->EndUpdate();
-			//this->Controls->Add(this->listOfCategories);
-		}
-		void setProducts(std::vector<Product> products) {
-			this->listOfProducts->BeginUpdate();
-			for (Product product : products) {
-				String^ productID = gcnew String(product.getId().ToString());
-				String^ productName = gcnew String(product.getName().c_str());
-				String^ productCategory = gcnew String(product.getCategory().getId().ToString());
-				String^ productCompany = gcnew String(product.getCompany().getId().ToString());
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
-					productID,
-						productName, productCategory, productCompany
-				}, -1));
-				this->listOfProducts->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
-					listviewitem
-				});
-			}
-			this->listOfProducts->EndUpdate();
-			//this->Controls->Add(this->listOfProducts);
-		}
-		void setOffers(std::vector<Offer> offers) {
-			this->listOfOffers->BeginUpdate();
-			for (Offer offer : offers) {
-				String^ offerID = gcnew String(offer.getId().ToString());
-				String^ offerPrice = gcnew String(offer.getPrice().ToString());
-				String^ offerProduct = gcnew String(offer.getProduct().getId().ToString());
-				String^ offerStartDate = gcnew String(Helper::time_tToString(offer.getStartDate()).c_str());
-				String^ offerEndDate = gcnew String(Helper::time_tToString(offer.getStopDate()).c_str());
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
-					offerID,
-						offerPrice, offerProduct, offerStartDate, offerEndDate
-				}, -1));
-				this->listOfOffers->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
-					listviewitem
-				});
-			}
-			this->listOfOffers->EndUpdate();
-			//this->Controls->Add(this->listOfOffers);
-		}
-		void setTransactions(std::vector<Transaction> transactions) {
-			this->listOfTransactions->BeginUpdate();
-			for (Transaction transaction : transactions) {
-				String^ transactionID = gcnew String(transaction.getId().ToString());
-				String^ transactionDate = gcnew String(Helper::time_tToString(transaction.getDate()).c_str());
-				String^ transactionUser = gcnew String(transaction.getUser().getId().ToString());
-				String^ transactionOffers;
-				std::string tmp;
-				for (Offer offer : transaction.getOfferList()) {
-					tmp += (std::to_string(offer.getId()) + ";");
-				}
-				transactionOffers = gcnew String(tmp.c_str());
-				System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
-					transactionID,
-						transactionDate, transactionUser, transactionOffers
-				}, -1));
-				this->listOfTransactions->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
-					listviewitem
-				});
-			}
-			this->listOfTransactions->EndUpdate();
-			//this->Controls->Add(this->listOfTransactions);
-		}
-		
-		void setItems(std::vector<User> users, std::vector<Company> companies, std::vector<Category> categories, std::vector<Product> products, std::vector<Offer> offers, std::vector<Transaction> transactions) {
-			setUsers(users);
-			setCompanies(companies);
-			setCategories(categories);
-			setProducts(products);
-			setOffers(offers);
-			setTransactions(transactions);
-		}
 
 		void InitializeComponent(void)
 		{
@@ -259,11 +139,11 @@ namespace ProjektCPPWindowsForms {
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->userTab = (gcnew System::Windows::Forms::TabPage());
 			this->editUserBtn = (gcnew System::Windows::Forms::Button());
-			this->deleteUserBtn = (gcnew System::Windows::Forms::Button());
 			this->addUserBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfUsers = (gcnew System::Windows::Forms::ListView());
 			this->userIdCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->userLoginCol = (gcnew System::Windows::Forms::ColumnHeader());
+			this->userPasswordCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->userPermisionCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->findUserBtn = (gcnew System::Windows::Forms::Button());
 			this->findUserTxt = (gcnew System::Windows::Forms::TextBox());
@@ -363,7 +243,6 @@ namespace ProjektCPPWindowsForms {
 			// userTab
 			// 
 			this->userTab->Controls->Add(this->editUserBtn);
-			this->userTab->Controls->Add(this->deleteUserBtn);
 			this->userTab->Controls->Add(this->addUserBtn);
 			this->userTab->Controls->Add(this->listOfUsers);
 			this->userTab->Controls->Add(this->findUserBtn);
@@ -378,21 +257,13 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// editUserBtn
 			// 
-			this->editUserBtn->Location = System::Drawing::Point(222, 649);
+			this->editUserBtn->Location = System::Drawing::Point(115, 649);
 			this->editUserBtn->Name = L"editUserBtn";
 			this->editUserBtn->Size = System::Drawing::Size(101, 42);
 			this->editUserBtn->TabIndex = 15;
 			this->editUserBtn->Text = L"Edit";
 			this->editUserBtn->UseVisualStyleBackColor = true;
-			// 
-			// deleteUserBtn
-			// 
-			this->deleteUserBtn->Location = System::Drawing::Point(115, 649);
-			this->deleteUserBtn->Name = L"deleteUserBtn";
-			this->deleteUserBtn->Size = System::Drawing::Size(101, 42);
-			this->deleteUserBtn->TabIndex = 14;
-			this->deleteUserBtn->Text = L"Usuñ";
-			this->deleteUserBtn->UseVisualStyleBackColor = true;
+			this->editUserBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editUserBtn_Click);
 			// 
 			// addUserBtn
 			// 
@@ -402,14 +273,15 @@ namespace ProjektCPPWindowsForms {
 			this->addUserBtn->TabIndex = 13;
 			this->addUserBtn->Text = L"Dodaj";
 			this->addUserBtn->UseVisualStyleBackColor = true;
+			this->addUserBtn->Click += gcnew System::EventHandler(this, &AdminPanel::addUserBtn_Click);
 			// 
 			// listOfUsers
 			// 
 			this->listOfUsers->BackColor = System::Drawing::SystemColors::InactiveBorder;
 			this->listOfUsers->CheckBoxes = true;
-			this->listOfUsers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(3) {
+			this->listOfUsers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
 				this->userIdCol, this->userLoginCol,
-					this->userPermisionCol
+					this->userPasswordCol, this->userPermisionCol
 			});
 			this->listOfUsers->FullRowSelect = true;
 			this->listOfUsers->HideSelection = false;
@@ -433,9 +305,15 @@ namespace ProjektCPPWindowsForms {
 			this->userLoginCol->Text = L"Login";
 			this->userLoginCol->Width = 300;
 			// 
+			// userPasswordCol
+			// 
+			this->userPasswordCol->Tag = L"2";
+			this->userPasswordCol->Text = L"Haslo";
+			this->userPasswordCol->Width = 0;
+			// 
 			// userPermisionCol
 			// 
-			this->userPermisionCol->Tag = L"2";
+			this->userPermisionCol->Tag = L"3";
 			this->userPermisionCol->Text = L"Rola";
 			this->userPermisionCol->Width = 200;
 			// 
@@ -479,6 +357,7 @@ namespace ProjektCPPWindowsForms {
 			this->editCompanyBtn->TabIndex = 21;
 			this->editCompanyBtn->Text = L"Edit";
 			this->editCompanyBtn->UseVisualStyleBackColor = true;
+			this->editCompanyBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editCompanyBtn_Click);
 			// 
 			// deleteCompanyBtn
 			// 
@@ -488,6 +367,7 @@ namespace ProjektCPPWindowsForms {
 			this->deleteCompanyBtn->TabIndex = 20;
 			this->deleteCompanyBtn->Text = L"Usuñ";
 			this->deleteCompanyBtn->UseVisualStyleBackColor = true;
+			this->deleteCompanyBtn->Click += gcnew System::EventHandler(this, &AdminPanel::deleteCompanyBtn_Click);
 			// 
 			// addCompanyBtn
 			// 
@@ -497,23 +377,24 @@ namespace ProjektCPPWindowsForms {
 			this->addCompanyBtn->TabIndex = 19;
 			this->addCompanyBtn->Text = L"Dodaj";
 			this->addCompanyBtn->UseVisualStyleBackColor = true;
+			this->addCompanyBtn->Click += gcnew System::EventHandler(this, &AdminPanel::addCompanyBtn_Click);
 			// 
 			// listOfCompanies
 			// 
+			this->listOfCompanies->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfCompanies->CheckBoxes = true;
 			this->listOfCompanies->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {
 				this->companyIdCol,
 					this->companyNameCol
 			});
+			this->listOfCompanies->FullRowSelect = true;
 			this->listOfCompanies->HideSelection = false;
+			this->listOfCompanies->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfCompanies->Location = System::Drawing::Point(8, 52);
 			this->listOfCompanies->Name = L"listOfCompanies";
 			this->listOfCompanies->Size = System::Drawing::Size(1176, 593);
 			this->listOfCompanies->TabIndex = 18;
 			this->listOfCompanies->UseCompatibleStateImageBehavior = false;
-			this->listOfCompanies->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listOfCompanies->CheckBoxes = true;
-			this->listOfCompanies->FullRowSelect = true;
-			this->listOfCompanies->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfCompanies->View = System::Windows::Forms::View::Details;
 			// 
 			// companyIdCol
@@ -568,6 +449,7 @@ namespace ProjektCPPWindowsForms {
 			this->editCategoryBtn->TabIndex = 21;
 			this->editCategoryBtn->Text = L"Edit";
 			this->editCategoryBtn->UseVisualStyleBackColor = true;
+			this->editCategoryBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editCategoryBtn_Click);
 			// 
 			// deleteCategoryBtn
 			// 
@@ -577,6 +459,7 @@ namespace ProjektCPPWindowsForms {
 			this->deleteCategoryBtn->TabIndex = 20;
 			this->deleteCategoryBtn->Text = L"Usuñ";
 			this->deleteCategoryBtn->UseVisualStyleBackColor = true;
+			this->deleteCategoryBtn->Click += gcnew System::EventHandler(this, &AdminPanel::deleteCategoryBtn_Click);
 			// 
 			// addCategoryBtn
 			// 
@@ -586,23 +469,24 @@ namespace ProjektCPPWindowsForms {
 			this->addCategoryBtn->TabIndex = 19;
 			this->addCategoryBtn->Text = L"Dodaj";
 			this->addCategoryBtn->UseVisualStyleBackColor = true;
+			this->addCategoryBtn->Click += gcnew System::EventHandler(this, &AdminPanel::addCategoryBtn_Click);
 			// 
 			// listOfCategories
 			// 
+			this->listOfCategories->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfCategories->CheckBoxes = true;
 			this->listOfCategories->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) {
 				this->categoryIdCol,
 					this->categoryNameCol
 			});
+			this->listOfCategories->FullRowSelect = true;
 			this->listOfCategories->HideSelection = false;
+			this->listOfCategories->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfCategories->Location = System::Drawing::Point(8, 52);
 			this->listOfCategories->Name = L"listOfCategories";
 			this->listOfCategories->Size = System::Drawing::Size(1176, 593);
 			this->listOfCategories->TabIndex = 18;
 			this->listOfCategories->UseCompatibleStateImageBehavior = false;
-			this->listOfCategories->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listOfCategories->CheckBoxes = true;
-			this->listOfCategories->FullRowSelect = true;
-			this->listOfCategories->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfCategories->View = System::Windows::Forms::View::Details;
 			// 
 			// categoryIdCol
@@ -657,6 +541,7 @@ namespace ProjektCPPWindowsForms {
 			this->editProductBtn->TabIndex = 21;
 			this->editProductBtn->Text = L"Edit";
 			this->editProductBtn->UseVisualStyleBackColor = true;
+			this->editProductBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editProductBtn_Click);
 			// 
 			// deleteProductBtn
 			// 
@@ -666,6 +551,7 @@ namespace ProjektCPPWindowsForms {
 			this->deleteProductBtn->TabIndex = 20;
 			this->deleteProductBtn->Text = L"Usuñ";
 			this->deleteProductBtn->UseVisualStyleBackColor = true;
+			this->deleteProductBtn->Click += gcnew System::EventHandler(this, &AdminPanel::deleteProductBtn_Click);
 			// 
 			// addProductBtn
 			// 
@@ -675,23 +561,24 @@ namespace ProjektCPPWindowsForms {
 			this->addProductBtn->TabIndex = 19;
 			this->addProductBtn->Text = L"Dodaj";
 			this->addProductBtn->UseVisualStyleBackColor = true;
+			this->addProductBtn->Click += gcnew System::EventHandler(this, &AdminPanel::addProductBtn_Click);
 			// 
 			// listOfProducts
 			// 
+			this->listOfProducts->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfProducts->CheckBoxes = true;
 			this->listOfProducts->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
 				this->productIdCol,
 					this->productNameCol, this->productCategoryCol, this->productCompanyCol
 			});
+			this->listOfProducts->FullRowSelect = true;
 			this->listOfProducts->HideSelection = false;
+			this->listOfProducts->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfProducts->Location = System::Drawing::Point(8, 52);
 			this->listOfProducts->Name = L"listOfProducts";
 			this->listOfProducts->Size = System::Drawing::Size(1176, 593);
 			this->listOfProducts->TabIndex = 18;
 			this->listOfProducts->UseCompatibleStateImageBehavior = false;
-			this->listOfProducts->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listOfProducts->CheckBoxes = true;
-			this->listOfProducts->FullRowSelect = true;
-			this->listOfProducts->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfProducts->View = System::Windows::Forms::View::Details;
 			// 
 			// productIdCol
@@ -758,6 +645,7 @@ namespace ProjektCPPWindowsForms {
 			this->editOfferBtn->TabIndex = 21;
 			this->editOfferBtn->Text = L"Edit";
 			this->editOfferBtn->UseVisualStyleBackColor = true;
+			this->editOfferBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editOfferBtn_Click);
 			// 
 			// deleteOfferBtn
 			// 
@@ -767,6 +655,7 @@ namespace ProjektCPPWindowsForms {
 			this->deleteOfferBtn->TabIndex = 20;
 			this->deleteOfferBtn->Text = L"Usuñ";
 			this->deleteOfferBtn->UseVisualStyleBackColor = true;
+			this->deleteOfferBtn->Click += gcnew System::EventHandler(this, &AdminPanel::deleteOfferBtn_Click);
 			// 
 			// addOfferBtn
 			// 
@@ -776,23 +665,24 @@ namespace ProjektCPPWindowsForms {
 			this->addOfferBtn->TabIndex = 19;
 			this->addOfferBtn->Text = L"Dodaj";
 			this->addOfferBtn->UseVisualStyleBackColor = true;
+			this->addOfferBtn->Click += gcnew System::EventHandler(this, &AdminPanel::addOfferBtn_Click);
 			// 
 			// listOfOffers
 			// 
+			this->listOfOffers->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfOffers->CheckBoxes = true;
 			this->listOfOffers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(5) {
 				this->offerIdCol, this->offerPriceCol,
 					this->offerProductCol, this->offerDateStart, this->offerDateEnd
 			});
+			this->listOfOffers->FullRowSelect = true;
 			this->listOfOffers->HideSelection = false;
+			this->listOfOffers->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfOffers->Location = System::Drawing::Point(8, 52);
 			this->listOfOffers->Name = L"listOfOffers";
 			this->listOfOffers->Size = System::Drawing::Size(1176, 593);
 			this->listOfOffers->TabIndex = 18;
 			this->listOfOffers->UseCompatibleStateImageBehavior = false;
-			this->listOfOffers->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listOfOffers->CheckBoxes = true;
-			this->listOfOffers->FullRowSelect = true;
-			this->listOfOffers->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfOffers->View = System::Windows::Forms::View::Details;
 			// 
 			// offerIdCol
@@ -865,6 +755,7 @@ namespace ProjektCPPWindowsForms {
 			this->editTransactionBtn->TabIndex = 21;
 			this->editTransactionBtn->Text = L"Edit";
 			this->editTransactionBtn->UseVisualStyleBackColor = true;
+			this->editTransactionBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editTransactionBtn_Click);
 			// 
 			// deleteTransactionBtn
 			// 
@@ -874,6 +765,7 @@ namespace ProjektCPPWindowsForms {
 			this->deleteTransactionBtn->TabIndex = 20;
 			this->deleteTransactionBtn->Text = L"Usuñ";
 			this->deleteTransactionBtn->UseVisualStyleBackColor = true;
+			this->deleteTransactionBtn->Click += gcnew System::EventHandler(this, &AdminPanel::deleteTransactionBtn_Click);
 			// 
 			// addTransactionBtn
 			// 
@@ -883,23 +775,24 @@ namespace ProjektCPPWindowsForms {
 			this->addTransactionBtn->TabIndex = 19;
 			this->addTransactionBtn->Text = L"Dodaj";
 			this->addTransactionBtn->UseVisualStyleBackColor = true;
+			this->addTransactionBtn->Click += gcnew System::EventHandler(this, &AdminPanel::addTransactionBtn_Click);
 			// 
 			// listOfTransactions
 			// 
+			this->listOfTransactions->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->listOfTransactions->CheckBoxes = true;
 			this->listOfTransactions->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
 				this->transactionIdCol,
 					this->transactionDateCol, this->transactionUserCol, this->transactionOffersListCol
 			});
+			this->listOfTransactions->FullRowSelect = true;
 			this->listOfTransactions->HideSelection = false;
+			this->listOfTransactions->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfTransactions->Location = System::Drawing::Point(8, 52);
 			this->listOfTransactions->Name = L"listOfTransactions";
 			this->listOfTransactions->Size = System::Drawing::Size(1176, 593);
 			this->listOfTransactions->TabIndex = 18;
 			this->listOfTransactions->UseCompatibleStateImageBehavior = false;
-			this->listOfTransactions->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listOfTransactions->CheckBoxes = true;
-			this->listOfTransactions->FullRowSelect = true;
-			this->listOfTransactions->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->listOfTransactions->View = System::Windows::Forms::View::Details;
 			// 
 			// transactionIdCol
@@ -968,11 +861,178 @@ namespace ProjektCPPWindowsForms {
 			this->ResumeLayout(false);
 			this->PerformLayout();
 			this->setItems(this->admin->getAllUser(), this->admin->getAllCompany(), this->admin->getAllCategory(),
-					this->admin->getAllProduct(), this->admin->getAllOffer(), this->admin->getAllTransaction());
+				this->admin->getAllProduct(), this->admin->getAllOffer(), this->admin->getAllTransaction());
 		}
 
-		public: void setAdmin(User user);
+		public: 
+			void setAdmin(User user);
+		private: 
+			void setItems(std::vector<User> users, std::vector<Company> companies, std::vector<Category> categories,
+					std::vector<Product> products, std::vector<Offer> offers, std::vector<Transaction> transactions);
+			void setUsers(std::vector<User> users);
+			void setCompanies(std::vector<Company> companies);
+			void setCategories(std::vector<Category> categories);
+			void setProducts(std::vector<Product> products);
+			void setOffers(std::vector<Offer> offers);
+			void setTransactions(std::vector<Transaction> transactions);
+
+			/*this->setItems(this->admin->getAllUser(), this->admin->getAllCompany(), this->admin->getAllCategory(),
+				this->admin->getAllProduct(), this->admin->getAllOffer(), this->admin->getAllTransaction());*/
 
 #pragma endregion
-	};
+	private: System::Void deleteCompanyBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfCompanies->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			Company company = Company(System::Int32::Parse(item->SubItems[0]->Text), "");
+			if (this->admin->deleteCompany(company))
+				this->listOfCompanies->Items->RemoveAt(item->Index);
+		}
+	}
+	private: System::Void deleteCategoryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfCategories->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			Category category = Category(System::Int32::Parse(item->SubItems[0]->Text), "");
+			if (this->admin->deleteCategory(category))
+				this->listOfCategories->Items->RemoveAt(item->Index);
+		}
+	}
+	private: System::Void deleteProductBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfProducts->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			Product product = Product(System::Int32::Parse(item->SubItems[0]->Text), "");
+			if (this->admin->deleteProduct(product))
+				this->listOfProducts->Items->RemoveAt(item->Index);
+		}
+	}
+	private: System::Void deleteOfferBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfOffers->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			this->listOfOffers->Items->RemoveAt(item->Index);
+			//this->admin->deleteOffer();
+		}
+	}
+	private: System::Void deleteTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfTransactions->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			this->listOfTransactions->Items->RemoveAt(item->Index);
+			//this->admin->deleteTransaction();
+		}
+	}
+	private: System::Void addUserBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::AddUser addUser;
+		addUser.setAdmin(this->admin);
+		addUser.setOption(true);
+		addUser.ShowDialog();
+		this->listOfUsers->Items->Clear();
+		this->setUsers(this->admin->getAllUser());
+	}
+	private: System::Void editUserBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfUsers->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			ProjektCPPWindowsForms::AddUser addUser;
+			addUser.setAdmin(this->admin);
+			addUser.setUser(item);
+			addUser.setOption(false);
+			addUser.ShowDialog();
+			this->listOfUsers->Items->Clear();
+			this->setUsers(this->admin->getAllUser());
+		}
+	}
+	private: System::Void addCompanyBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::AddCompany addCompany;
+		addCompany.setAdmin(this->admin);
+		addCompany.setOption(true);
+		addCompany.ShowDialog();
+		this->listOfCompanies->Items->Clear();
+		this->setCompanies(this->admin->getAllCompany());
+	}
+	private: System::Void editCompanyBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfCompanies->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			ProjektCPPWindowsForms::AddCompany addCompany;
+			addCompany.setAdmin(this->admin);
+			addCompany.setCompany(item);
+			addCompany.setOption(false);
+			addCompany.ShowDialog();
+			this->listOfCompanies->Items->Clear();
+			this->setCompanies(this->admin->getAllCompany());
+		}
+	}
+	private: System::Void addCategoryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::AddCategory addCategory;
+		addCategory.setAdmin(this->admin);
+		addCategory.setOption(true);
+		addCategory.ShowDialog();
+		this->listOfCategories->Items->Clear();
+		this->setCategories(this->admin->getAllCategory());
+	}
+	private: System::Void editCategoryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfCategories->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			ProjektCPPWindowsForms::AddCategory addCategory;
+			addCategory.setAdmin(this->admin);
+			addCategory.setCategory(item);
+			addCategory.setOption(false);
+			addCategory.ShowDialog();
+			this->listOfCategories->Items->Clear();
+			this->setCategories(this->admin->getAllCategory());
+		}
+	}
+	private: System::Void addProductBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::AddProduct addProduct;
+		addProduct.setAdmin(this->admin);
+		addProduct.setOption(true);
+		addProduct.ShowDialog();
+		this->listOfProducts->Items->Clear();
+		this->setProducts(this->admin->getAllProduct());
+	}
+	private: System::Void editProductBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfProducts->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			ProjektCPPWindowsForms::AddProduct addProduct;
+			addProduct.setAdmin(this->admin);
+			addProduct.setProduct(item);
+			addProduct.setOption(false);
+			addProduct.ShowDialog();
+			this->listOfProducts->Items->Clear();
+			this->setProducts(this->admin->getAllProduct());
+		}
+	}
+	private: System::Void addOfferBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void editOfferBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void addTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void editTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
+#endif PanelAdmin

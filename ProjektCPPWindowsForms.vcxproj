@@ -146,6 +146,24 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddCategory.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddCompany.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddOffer.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddProduct.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddTransaction.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddUser.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminPanel.h">
       <FileType>CppForm</FileType>
@@ -183,6 +201,12 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddCategory.cpp" />
+    <ClCompile Include="AddCompany.cpp" />
+    <ClCompile Include="AddOffer.cpp" />
+    <ClCompile Include="AddProduct.cpp" />
+    <ClCompile Include="AddTransaction.cpp" />
+    <ClCompile Include="AddUser.cpp" />
     <ClCompile Include="AdminPanel.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Category.cpp" />
@@ -226,6 +250,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddCategory.resx">
+      <DependentUpon>AddCategory.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddCompany.resx">
+      <DependentUpon>AddCompany.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddProduct.resx">
+      <DependentUpon>AddProduct.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUser.resx">
+      <DependentUpon>AddUser.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.h</DependentUpon>
     </EmbeddedResource>
