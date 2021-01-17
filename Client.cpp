@@ -30,7 +30,9 @@ std::vector<Offer> Client::getAllActiveOfferByCategoryAndCompany(Category catego
 }
 
 bool Client::addNewTransaction(Transaction newTransaction) {
-	return QueryTransaction::insertTransaction(newTransaction);
+	bool result = QueryTransaction::insertTransaction(newTransaction);
+	this->myTransaction = QueryTransaction::selectUserTransaction(User(this->id, this->login, this->password, this->permission));
+	return result;
 }
 
 void Client::setMyTransaction(std::vector<Transaction> trasaction) {
