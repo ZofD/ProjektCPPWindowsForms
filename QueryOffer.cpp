@@ -121,6 +121,9 @@ std::vector<Offer> QueryOffer::seletManyOffer(MYSQL* conn, std::string query) {
 	result.insert(result.end(), resultHelper.begin(), resultHelper.end());
 	return result;
 }
+Offer QueryOffer::selectByProductAnDDateStopNull(Offer offer) {
+	return QueryOffer::seletOnce( SELECT_OFFER + " AND o.id_product=" + QueryOffer::intToString(offer.getProduct().getId()) + " AND o.stop_date IS NULL" );
+}
 
 std::vector<Offer> QueryOffer::selectAll() {
 	return QueryOffer::seletManyOffer(SELECT_OFFER);
@@ -168,6 +171,9 @@ std::vector<Offer> QueryOffer::selectAllInTransaction(MYSQL* conn, Transaction t
 }
 
 bool QueryOffer::addOffer(Offer offer) {
+	Offer oldOffer = QueryOffer::selectByProductAnDDateStopNull(offer);
+	oldOffer.setStopDate(Helper::getDayAfter(offer.getStartDate()));
+	QueryOffer::updateOffer(oldOffer);
 	if (offer.getStopDate()==Helper::getNullTime()) {
 		return QueryOffer::addOfferStopDateNull(offer);
 	}
