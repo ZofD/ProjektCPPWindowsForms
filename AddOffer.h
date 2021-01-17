@@ -38,7 +38,7 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ quitBtn;
 	private: System::Windows::Forms::Button^ editOfferBtn;
 	private: System::Windows::Forms::Label^ priceLabel;
-	private: System::Windows::Forms::NumericUpDown^ priceTxt;
+	private: System::Windows::Forms::NumericUpDown^ zlTxt;
 	private: System::Windows::Forms::MonthCalendar^ dateStart;
 	private: System::Windows::Forms::MonthCalendar^ dateStop;
 	private: System::Windows::Forms::Label^ userIdLabel;
@@ -53,6 +53,11 @@ namespace ProjektCPPWindowsForms {
 		bool deleteOption = true;
 		String^ start = DateTime().Today.ToString("yyyy-MM-dd");
 		String^ stop = DateTime().Today.ToString("yyyy-MM-dd");
+	private: System::Windows::Forms::NumericUpDown^ grTxt;
+
+
+
+	private: System::Windows::Forms::Label^ label1;
 
 	private:
 		/// <summary>
@@ -71,14 +76,17 @@ namespace ProjektCPPWindowsForms {
 			this->quitBtn = (gcnew System::Windows::Forms::Button());
 			this->editOfferBtn = (gcnew System::Windows::Forms::Button());
 			this->priceLabel = (gcnew System::Windows::Forms::Label());
-			this->priceTxt = (gcnew System::Windows::Forms::NumericUpDown());
+			this->zlTxt = (gcnew System::Windows::Forms::NumericUpDown());
 			this->dateStart = (gcnew System::Windows::Forms::MonthCalendar());
 			this->dateStop = (gcnew System::Windows::Forms::MonthCalendar());
 			this->userIdLabel = (gcnew System::Windows::Forms::Label());
 			this->productBox = (gcnew System::Windows::Forms::ComboBox());
 			this->dateStartLabel = (gcnew System::Windows::Forms::Label());
 			this->dateStopLabel = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->priceTxt))->BeginInit();
+			this->grTxt = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zlTxt))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->grTxt))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// deleteOfferBtn
@@ -116,19 +124,18 @@ namespace ProjektCPPWindowsForms {
 			this->priceLabel->AutoSize = true;
 			this->priceLabel->Location = System::Drawing::Point(75, 76);
 			this->priceLabel->Name = L"priceLabel";
-			this->priceLabel->Size = System::Drawing::Size(47, 20);
+			this->priceLabel->Size = System::Drawing::Size(68, 20);
 			this->priceLabel->TabIndex = 22;
-			this->priceLabel->Text = L"Cena";
+			this->priceLabel->Text = L"Z³otówki";
 			// 
-			// priceTxt
+			// zlTxt
 			// 
-			this->priceTxt->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 131072 });
-			this->priceTxt->Location = System::Drawing::Point(201, 73);
-			this->priceTxt->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000000, 0, 0, 0 });
-			this->priceTxt->Name = L"priceTxt";
-			this->priceTxt->Size = System::Drawing::Size(235, 26);
-			this->priceTxt->TabIndex = 21;
-			this->priceTxt->ThousandsSeparator = true;
+			this->zlTxt->Location = System::Drawing::Point(149, 73);
+			this->zlTxt->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000000, 0, 0, 0 });
+			this->zlTxt->Name = L"zlTxt";
+			this->zlTxt->Size = System::Drawing::Size(139, 26);
+			this->zlTxt->TabIndex = 21;
+			this->zlTxt->ThousandsSeparator = true;
 			// 
 			// dateStart
 			// 
@@ -182,11 +189,31 @@ namespace ProjektCPPWindowsForms {
 			this->dateStopLabel->TabIndex = 31;
 			this->dateStopLabel->Text = L"Data zakoñczenia";
 			// 
+			// grTxt
+			// 
+			this->grTxt->Location = System::Drawing::Point(361, 73);
+			this->grTxt->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99, 0, 0, 0 });
+			this->grTxt->Name = L"grTxt";
+			this->grTxt->Size = System::Drawing::Size(75, 26);
+			this->grTxt->TabIndex = 32;
+			this->grTxt->ThousandsSeparator = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(294, 75);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(61, 20);
+			this->label1->TabIndex = 33;
+			this->label1->Text = L"Grosze";
+			// 
 			// AddOffer
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(893, 503);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->grTxt);
 			this->Controls->Add(this->dateStopLabel);
 			this->Controls->Add(this->dateStartLabel);
 			this->Controls->Add(this->userIdLabel);
@@ -196,11 +223,12 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->quitBtn);
 			this->Controls->Add(this->editOfferBtn);
 			this->Controls->Add(this->priceLabel);
-			this->Controls->Add(this->priceTxt);
+			this->Controls->Add(this->zlTxt);
 			this->Controls->Add(this->productBox);
 			this->Name = L"AddOffer";
-			this->Text = L"AddOffer";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->priceTxt))->EndInit();
+			this->Text = L"Oferta";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zlTxt))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->grTxt))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 			this->setProducts(this->admin->getAllProduct());
@@ -224,12 +252,13 @@ namespace ProjektCPPWindowsForms {
 		MessageBox::Show("Nie masz uprawnieñ lub nie mo¿na usun¹æ tego rekordu");
 	}
 	private: System::Void editOfferBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (this->priceTxt->Value > 0 && this->productBox->SelectedIndex >= 0)
+		if (this->zlTxt->Value > 0 && this->productBox->SelectedIndex >= 0) {
+			System::Double price = System::Decimal::ToDouble(this->zlTxt->Value) + (System::Decimal::ToDouble(this->grTxt->Value) / 100);
 			if (this->option) {
 				Product product = Product(System::Int32::Parse(this->productBox->Text->Split(' ')[0]), "");
 				time_t start = Helper::stringToTime_t(msclr::interop::marshal_as<std::string>(this->start->ToString()));
 				time_t stop = Helper::stringToTime_t(msclr::interop::marshal_as<std::string>(this->stop->ToString()));
-				Offer offer = Offer(1, System::Double::Parse(this->priceTxt->Text), start, stop, product);
+				Offer offer = Offer(1, price, start, stop, product);
 				this->admin->addOffer(offer);
 				this->Close();
 			}
@@ -238,10 +267,11 @@ namespace ProjektCPPWindowsForms {
 				time_t start = Helper::stringToTime_t(msclr::interop::marshal_as<std::string>(this->start->ToString()));
 				time_t stop = Helper::stringToTime_t(msclr::interop::marshal_as<std::string>(this->stop->ToString()));
 				Offer offer = Offer(System::Int32::Parse(this->offer->SubItems[0]->Text),
-					System::Double::Parse(this->priceTxt->Text), start, stop, product);
+					price, start, stop, product);
 				this->admin->updateOffer(offer);
 				this->Close();
 			}
+		}
 	}
 	private: System::Void quitBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();

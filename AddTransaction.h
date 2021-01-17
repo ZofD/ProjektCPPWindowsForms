@@ -169,7 +169,7 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->editOfferBtn);
 			this->Controls->Add(this->userBox);
 			this->Name = L"AddTransaction";
-			this->Text = L"AddTransaction";
+			this->Text = L"Transakcja";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 			this->setUsers(this->admin->getAllUser());

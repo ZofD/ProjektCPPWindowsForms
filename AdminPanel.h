@@ -713,7 +713,7 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->user);
 			this->Name = L"AdminPanel";
-			this->Text = L"AdminPanel";
+			this->Text = L"Panel Administratora";
 			this->tabControl1->ResumeLayout(false);
 			this->userTab->ResumeLayout(false);
 			this->companyTab->ResumeLayout(false);

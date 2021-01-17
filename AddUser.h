@@ -158,7 +158,7 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->loginLabel);
 			this->Controls->Add(this->lobinTxt);
 			this->Name = L"AddUser";
-			this->Text = L"AddUser";
+			this->Text = L"U¿ytkownik";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

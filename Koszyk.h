@@ -177,9 +177,7 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->KupBtn);
 			this->Controls->Add(this->UsuñBtn);
 			this->Controls->Add(this->listView1);
-			this->Controls->Add(this->szukajBtn);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->szukajTxt);
 			this->Name = L"Koszyk";
 			this->Text = L"Koszyk";
 			this->ResumeLayout(false);
@@ -207,7 +205,7 @@ namespace ProjektCPPWindowsForms {
 			System::Collections::IEnumerator^ offerEnum = offerItems->GetEnumerator();
 			while (offerEnum->MoveNext()) {
 				ListViewItem^ item = safe_cast<ListViewItem^>(offerEnum->Current);
-				offers.push_back(Offer(System::Int32::Parse(item->SubItems[0]->Text), 0.0));
+				offers.push_back(Offer(System::Int32::Parse(item->SubItems[0]->Text), 0));
 			}
 			Transaction transaction = Transaction(user);
 			transaction.setOfferList(offers);

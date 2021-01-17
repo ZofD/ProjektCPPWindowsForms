@@ -140,6 +140,9 @@
     <ClInclude Include="MyTransaction.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Registration.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -239,6 +242,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="MyTransaction.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Registration.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

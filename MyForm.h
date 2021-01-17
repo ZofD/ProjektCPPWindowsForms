@@ -249,9 +249,7 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->KoszykBtn);
 			this->Controls->Add(this->DodajDoBtn);
 			this->Controls->Add(this->wylogujBtn);
-			this->Controls->Add(this->szukajBtn);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->szukajTxt);
 			this->Controls->Add(this->user);
 			setItems(this->client->getAllActiveOffer());
 			this->Name = L"MyForm";

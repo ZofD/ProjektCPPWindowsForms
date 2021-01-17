@@ -99,7 +99,7 @@ namespace ProjektCPPWindowsForms {
 			this->ClientSize = System::Drawing::Size(693, 478);
 			this->Controls->Add(this->listView1);
 			this->Name = L"MyTransaction";
-			this->Text = L"MyTransaction";
+			this->Text = L"Moje transakcje";
 			this->ResumeLayout(false);
 		}
 

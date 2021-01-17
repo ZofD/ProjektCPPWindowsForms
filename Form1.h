@@ -5,6 +5,7 @@
 #include "MyForm.h"
 #include "AdminPanel.h"
 #include "PanelSprzedawcy.h"
+#include "Registration.h"
 
 namespace CppCLRWinformsProjekt {
 
@@ -98,6 +99,7 @@ namespace CppCLRWinformsProjekt {
 			this->haslo->Name = L"haslo";
 			this->haslo->Size = System::Drawing::Size(213, 26);
 			this->haslo->TabIndex = 2;
+			this->haslo->PasswordChar = '*';
 			// 
 			// label1
 			// 
@@ -150,7 +152,7 @@ namespace CppCLRWinformsProjekt {
 			this->Controls->Add(this->login);
 			this->Controls->Add(this->button1);
 			this->Name = L"Form1";
-			this->Text = L"Form1";
+			this->Text = L"Logowanie";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -210,11 +212,8 @@ namespace CppCLRWinformsProjekt {
 	}
 
 	private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
-		this->info->Text = "";
-		/*this->Hide();
-		ProjektCPPWindowsForms::MyForm uzytkownik();
-		uzytkownik.ShowDialog();
-		this->Show();*/
+		ProjektCPPWindowsForms::Registration panel;
+		panel.ShowDialog();
 	}
 };
 }
