@@ -8,6 +8,7 @@ public:
 	static time_t getNowTime();
 	static time_t getNullTime();
 	static time_t stringToTime_t(std::string date);
+	static time_t getDayAfter(time_t time);
 	static std::string getNowTimeString();
 	static std::string getNowTimeString(std::string format);
 	static std::string time_tToString(time_t time);

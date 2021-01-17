@@ -41,6 +41,9 @@ time_t Helper::stringToTime_t(std::string date) {
     } catch (std::exception){}
     return (time_t)(-1);
 }
+time_t Helper::getDayAfter(time_t time) {
+    return time - 24 * 60 * 60;
+}
 std::string Helper::getNowTimeString() {
     return Helper::time_tToString(Helper::getNowTime());
 }
