@@ -93,7 +93,6 @@ void ProjektCPPWindowsForms::AdminPanel::setProducts(std::vector<Product> produc
 		this->listOfProducts->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
 			listviewitem
 		});
-		MessageBox::Show(gcnew String(product.getName().c_str()));
 	}
 	this->listOfProducts->EndUpdate();
 	//this->Controls->Add(this->listOfProducts);
@@ -125,8 +124,13 @@ void ProjektCPPWindowsForms::AdminPanel::setTransactions(std::vector<Transaction
 		String^ transactionUser = gcnew String(transaction.getUser().getId().ToString());
 		String^ transactionOffers;
 		std::string tmp;
+		int licznik = 0;
 		for (Offer offer : transaction.getOfferList()) {
-			tmp += (std::to_string(offer.getId()) + ";");
+			if(licznik == transaction.getOfferList().size() - 1)
+				tmp += (std::to_string(offer.getId()));
+			else
+				tmp += (std::to_string(offer.getId()) + ";");
+			licznik++;
 		}
 		transactionOffers = gcnew String(tmp.c_str());
 		System::Windows::Forms::ListViewItem^ listviewitem = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {

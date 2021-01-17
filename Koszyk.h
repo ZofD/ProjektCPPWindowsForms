@@ -45,10 +45,12 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ColumnHeader^ Firma;
 	private: System::Windows::Forms::ColumnHeader^ Cena;
 	private: System::Windows::Forms::ColumnHeader^ Kategoria;
+	private: System::Windows::Forms::ColumnHeader^ ID;
 	private: System::Windows::Forms::Button^ UsuñBtn;
 	private: System::Windows::Forms::Button^ KupBtn;
 
 		   Client* client;
+		   bool opcja = false;
 
 
 	private:
@@ -73,6 +75,7 @@ namespace ProjektCPPWindowsForms {
 			this->Cena = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Firma = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Kategoria = (gcnew System::Windows::Forms::ColumnHeader());
+			this->ID = (gcnew System::Windows::Forms::ColumnHeader());
 			this->UsuñBtn = (gcnew System::Windows::Forms::Button());
 			this->KupBtn = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
@@ -104,9 +107,9 @@ namespace ProjektCPPWindowsForms {
 			// listView1
 			// 
 			this->listView1->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
-				this->Nazwa, this->Cena,
-					this->Firma, this->Kategoria
+			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(5) {
+				this->ID, 
+					this->Nazwa, this->Cena, this->Firma, this->Kategoria
 			});
 			this->listView1->FullRowSelect = true;
 			this->listView1->HideSelection = false;
@@ -117,7 +120,12 @@ namespace ProjektCPPWindowsForms {
 			this->listView1->Size = System::Drawing::Size(1176, 675);
 			this->listView1->TabIndex = 4;
 			this->listView1->UseCompatibleStateImageBehavior = false;
-			this->listView1->View = System::Windows::Forms::View::Details;
+			this->listView1->View = System::Windows::Forms::View::Details;// 
+			// ID
+			// 
+			this->ID->Tag = L"0";
+			this->ID->Text = L"Id";
+			this->ID->Width = 0;
 			// 
 			// Nazwa
 			// 
@@ -180,6 +188,7 @@ namespace ProjektCPPWindowsForms {
 
 	public: void setKoszykArr(ListView^ koszykArr);
 	public: void setClient(Client* client);
+	public: bool checkOption();
 #pragma endregion
 	private: System::Void UsuñBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		ListView::SelectedListViewItemCollection^ items = this->listView1->SelectedItems;
@@ -191,6 +200,26 @@ namespace ProjektCPPWindowsForms {
 		}
 	}
 	private: System::Void KupBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::ListViewItemCollection^ offerItems = this->listView1->Items;
+		if (offerItems->Count > 0) {
+			User user = User(this->client->getId(), "", "");
+			std::vector<Offer> offers;
+			System::Collections::IEnumerator^ offerEnum = offerItems->GetEnumerator();
+			while (offerEnum->MoveNext()) {
+				ListViewItem^ item = safe_cast<ListViewItem^>(offerEnum->Current);
+				offers.push_back(Offer(System::Int32::Parse(item->SubItems[0]->Text), 0.0));
+			}
+			Transaction transaction = Transaction(user);
+			transaction.setOfferList(offers);
+			if (this->client->addNewTransaction(transaction)) {
+				this->listView1->Items->Clear();
+				this->opcja = true;
+				this->Close();
+			}
+			else
+				MessageBox::Show("B³¹d: `\0/`");
+		} else
+			MessageBox::Show("Nie mo¿esz zrobiæ pustej tranzakcji");
 	}
 };
 }

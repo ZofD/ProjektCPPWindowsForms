@@ -143,7 +143,6 @@ namespace ProjektCPPWindowsForms {
 			this->roleBox->Size = System::Drawing::Size(324, 28);
 			this->roleBox->TabIndex = 9;
 			this->roleBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->roleBox->SelectedIndexChanged += gcnew System::EventHandler(this, &AddUser::roleBox_SelectedIndexChanged);
 			// 
 			// AddUser
 			// 
@@ -187,8 +186,5 @@ namespace ProjektCPPWindowsForms {
 	private: System::Void quitBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-private: System::Void roleBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	//MessageBox::Show("dfsdfsdfsfsdfsdf");
-}
 };
 }

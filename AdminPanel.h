@@ -52,8 +52,8 @@ namespace ProjektCPPWindowsForms {
 
 	private: System::Windows::Forms::Button^ addUserBtn;
 	private: System::Windows::Forms::ListView^ listOfUsers;
-	private: System::Windows::Forms::Button^ findUserBtn;
-	private: System::Windows::Forms::TextBox^ findUserTxt;
+
+
 	private: System::Windows::Forms::ColumnHeader^ userIdCol;
 	private: System::Windows::Forms::ColumnHeader^ userLoginCol;
 
@@ -64,8 +64,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ deleteCompanyBtn;
 	private: System::Windows::Forms::Button^ addCompanyBtn;
 	private: System::Windows::Forms::ListView^ listOfCompanies;
-	private: System::Windows::Forms::Button^ findCompanyBtn;
-	private: System::Windows::Forms::TextBox^ findCompanyTxt;
+
+
 	private: System::Windows::Forms::ColumnHeader^ companyIdCol;
 	private: System::Windows::Forms::ColumnHeader^ companyNameCol;
 
@@ -74,8 +74,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ deleteCategoryBtn;
 	private: System::Windows::Forms::Button^ addCategoryBtn;
 	private: System::Windows::Forms::ListView^ listOfCategories;
-	private: System::Windows::Forms::Button^ findCatregoryBtn;
-	private: System::Windows::Forms::TextBox^ findCategoryTxt;
+
+
 	private: System::Windows::Forms::ColumnHeader^ categoryIdCol;
 	private: System::Windows::Forms::ColumnHeader^ categoryNameCol;
 
@@ -84,8 +84,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ deleteProductBtn;
 	private: System::Windows::Forms::Button^ addProductBtn;
 	private: System::Windows::Forms::ListView^ listOfProducts;
-	private: System::Windows::Forms::Button^ findProductBtn;
-	private: System::Windows::Forms::TextBox^ findProductTxt;
+
+
 	private: System::Windows::Forms::ColumnHeader^ productIdCol;
 	private: System::Windows::Forms::ColumnHeader^ productNameCol;
 	private: System::Windows::Forms::ColumnHeader^ productCategoryCol;
@@ -96,8 +96,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ deleteOfferBtn;
 	private: System::Windows::Forms::Button^ addOfferBtn;
 	private: System::Windows::Forms::ListView^ listOfOffers;
-	private: System::Windows::Forms::Button^ findOfferBtn;
-	private: System::Windows::Forms::TextBox^ findOfferTxt;
+
+
 	private: System::Windows::Forms::ColumnHeader^ offerIdCol;
 	private: System::Windows::Forms::ColumnHeader^ offerPriceCol;
 	private: System::Windows::Forms::ColumnHeader^ offerProductCol;
@@ -106,11 +106,11 @@ namespace ProjektCPPWindowsForms {
 
 	private: System::Windows::Forms::TabPage^ transactionTab;
 	private: System::Windows::Forms::Button^ editTransactionBtn;
-	private: System::Windows::Forms::Button^ deleteTransactionBtn;
+
 	private: System::Windows::Forms::Button^ addTransactionBtn;
 	private: System::Windows::Forms::ListView^ listOfTransactions;
-	private: System::Windows::Forms::Button^ findTransactionBtn;
-	private: System::Windows::Forms::TextBox^ findTransactionTxt;
+
+
 	private: System::Windows::Forms::ColumnHeader^ transactionIdCol;
 	private: System::Windows::Forms::ColumnHeader^ transactionDateCol;
 	private: System::Windows::Forms::ColumnHeader^ transactionUserCol;
@@ -145,8 +145,6 @@ namespace ProjektCPPWindowsForms {
 			this->userLoginCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->userPasswordCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->userPermisionCol = (gcnew System::Windows::Forms::ColumnHeader());
-			this->findUserBtn = (gcnew System::Windows::Forms::Button());
-			this->findUserTxt = (gcnew System::Windows::Forms::TextBox());
 			this->companyTab = (gcnew System::Windows::Forms::TabPage());
 			this->editCompanyBtn = (gcnew System::Windows::Forms::Button());
 			this->deleteCompanyBtn = (gcnew System::Windows::Forms::Button());
@@ -154,8 +152,6 @@ namespace ProjektCPPWindowsForms {
 			this->listOfCompanies = (gcnew System::Windows::Forms::ListView());
 			this->companyIdCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->companyNameCol = (gcnew System::Windows::Forms::ColumnHeader());
-			this->findCompanyBtn = (gcnew System::Windows::Forms::Button());
-			this->findCompanyTxt = (gcnew System::Windows::Forms::TextBox());
 			this->categoryTab = (gcnew System::Windows::Forms::TabPage());
 			this->editCategoryBtn = (gcnew System::Windows::Forms::Button());
 			this->deleteCategoryBtn = (gcnew System::Windows::Forms::Button());
@@ -163,8 +159,6 @@ namespace ProjektCPPWindowsForms {
 			this->listOfCategories = (gcnew System::Windows::Forms::ListView());
 			this->categoryIdCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->categoryNameCol = (gcnew System::Windows::Forms::ColumnHeader());
-			this->findCatregoryBtn = (gcnew System::Windows::Forms::Button());
-			this->findCategoryTxt = (gcnew System::Windows::Forms::TextBox());
 			this->productTab = (gcnew System::Windows::Forms::TabPage());
 			this->editProductBtn = (gcnew System::Windows::Forms::Button());
 			this->deleteProductBtn = (gcnew System::Windows::Forms::Button());
@@ -174,8 +168,6 @@ namespace ProjektCPPWindowsForms {
 			this->productNameCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->productCategoryCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->productCompanyCol = (gcnew System::Windows::Forms::ColumnHeader());
-			this->findProductBtn = (gcnew System::Windows::Forms::Button());
-			this->findProductTxt = (gcnew System::Windows::Forms::TextBox());
 			this->offerTab = (gcnew System::Windows::Forms::TabPage());
 			this->editOfferBtn = (gcnew System::Windows::Forms::Button());
 			this->deleteOfferBtn = (gcnew System::Windows::Forms::Button());
@@ -186,19 +178,14 @@ namespace ProjektCPPWindowsForms {
 			this->offerProductCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->offerDateStart = (gcnew System::Windows::Forms::ColumnHeader());
 			this->offerDateEnd = (gcnew System::Windows::Forms::ColumnHeader());
-			this->findOfferBtn = (gcnew System::Windows::Forms::Button());
-			this->findOfferTxt = (gcnew System::Windows::Forms::TextBox());
 			this->transactionTab = (gcnew System::Windows::Forms::TabPage());
 			this->editTransactionBtn = (gcnew System::Windows::Forms::Button());
-			this->deleteTransactionBtn = (gcnew System::Windows::Forms::Button());
 			this->addTransactionBtn = (gcnew System::Windows::Forms::Button());
 			this->listOfTransactions = (gcnew System::Windows::Forms::ListView());
 			this->transactionIdCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->transactionDateCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->transactionUserCol = (gcnew System::Windows::Forms::ColumnHeader());
 			this->transactionOffersListCol = (gcnew System::Windows::Forms::ColumnHeader());
-			this->findTransactionBtn = (gcnew System::Windows::Forms::Button());
-			this->findTransactionTxt = (gcnew System::Windows::Forms::TextBox());
 			this->tabControl1->SuspendLayout();
 			this->userTab->SuspendLayout();
 			this->companyTab->SuspendLayout();
@@ -216,6 +203,7 @@ namespace ProjektCPPWindowsForms {
 			this->button2->TabIndex = 10;
 			this->button2->Text = L"Wyloguj";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &AdminPanel::button2_Click);
 			// 
 			// user
 			// 
@@ -245,8 +233,6 @@ namespace ProjektCPPWindowsForms {
 			this->userTab->Controls->Add(this->editUserBtn);
 			this->userTab->Controls->Add(this->addUserBtn);
 			this->userTab->Controls->Add(this->listOfUsers);
-			this->userTab->Controls->Add(this->findUserBtn);
-			this->userTab->Controls->Add(this->findUserTxt);
 			this->userTab->Location = System::Drawing::Point(4, 29);
 			this->userTab->Name = L"userTab";
 			this->userTab->Padding = System::Windows::Forms::Padding(3);
@@ -317,30 +303,12 @@ namespace ProjektCPPWindowsForms {
 			this->userPermisionCol->Text = L"Rola";
 			this->userPermisionCol->Width = 200;
 			// 
-			// findUserBtn
-			// 
-			this->findUserBtn->Location = System::Drawing::Point(649, 6);
-			this->findUserBtn->Name = L"findUserBtn";
-			this->findUserBtn->Size = System::Drawing::Size(77, 38);
-			this->findUserBtn->TabIndex = 11;
-			this->findUserBtn->Text = L"Szukaj";
-			this->findUserBtn->UseVisualStyleBackColor = true;
-			// 
-			// findUserTxt
-			// 
-			this->findUserTxt->Location = System::Drawing::Point(732, 12);
-			this->findUserTxt->Name = L"findUserTxt";
-			this->findUserTxt->Size = System::Drawing::Size(452, 26);
-			this->findUserTxt->TabIndex = 10;
-			// 
 			// companyTab
 			// 
 			this->companyTab->Controls->Add(this->editCompanyBtn);
 			this->companyTab->Controls->Add(this->deleteCompanyBtn);
 			this->companyTab->Controls->Add(this->addCompanyBtn);
 			this->companyTab->Controls->Add(this->listOfCompanies);
-			this->companyTab->Controls->Add(this->findCompanyBtn);
-			this->companyTab->Controls->Add(this->findCompanyTxt);
 			this->companyTab->Location = System::Drawing::Point(4, 29);
 			this->companyTab->Name = L"companyTab";
 			this->companyTab->Padding = System::Windows::Forms::Padding(3);
@@ -409,30 +377,12 @@ namespace ProjektCPPWindowsForms {
 			this->companyNameCol->Text = L"Nazwa";
 			this->companyNameCol->Width = 200;
 			// 
-			// findCompanyBtn
-			// 
-			this->findCompanyBtn->Location = System::Drawing::Point(649, 8);
-			this->findCompanyBtn->Name = L"findCompanyBtn";
-			this->findCompanyBtn->Size = System::Drawing::Size(77, 38);
-			this->findCompanyBtn->TabIndex = 17;
-			this->findCompanyBtn->Text = L"Szukaj";
-			this->findCompanyBtn->UseVisualStyleBackColor = true;
-			// 
-			// findCompanyTxt
-			// 
-			this->findCompanyTxt->Location = System::Drawing::Point(732, 14);
-			this->findCompanyTxt->Name = L"findCompanyTxt";
-			this->findCompanyTxt->Size = System::Drawing::Size(452, 26);
-			this->findCompanyTxt->TabIndex = 16;
-			// 
 			// categoryTab
 			// 
 			this->categoryTab->Controls->Add(this->editCategoryBtn);
 			this->categoryTab->Controls->Add(this->deleteCategoryBtn);
 			this->categoryTab->Controls->Add(this->addCategoryBtn);
 			this->categoryTab->Controls->Add(this->listOfCategories);
-			this->categoryTab->Controls->Add(this->findCatregoryBtn);
-			this->categoryTab->Controls->Add(this->findCategoryTxt);
 			this->categoryTab->Location = System::Drawing::Point(4, 29);
 			this->categoryTab->Name = L"categoryTab";
 			this->categoryTab->Padding = System::Windows::Forms::Padding(3);
@@ -501,30 +451,12 @@ namespace ProjektCPPWindowsForms {
 			this->categoryNameCol->Text = L"Nazwa";
 			this->categoryNameCol->Width = 200;
 			// 
-			// findCatregoryBtn
-			// 
-			this->findCatregoryBtn->Location = System::Drawing::Point(649, 8);
-			this->findCatregoryBtn->Name = L"findCatregoryBtn";
-			this->findCatregoryBtn->Size = System::Drawing::Size(77, 38);
-			this->findCatregoryBtn->TabIndex = 17;
-			this->findCatregoryBtn->Text = L"Szukaj";
-			this->findCatregoryBtn->UseVisualStyleBackColor = true;
-			// 
-			// findCategoryTxt
-			// 
-			this->findCategoryTxt->Location = System::Drawing::Point(732, 14);
-			this->findCategoryTxt->Name = L"findCategoryTxt";
-			this->findCategoryTxt->Size = System::Drawing::Size(452, 26);
-			this->findCategoryTxt->TabIndex = 16;
-			// 
 			// productTab
 			// 
 			this->productTab->Controls->Add(this->editProductBtn);
 			this->productTab->Controls->Add(this->deleteProductBtn);
 			this->productTab->Controls->Add(this->addProductBtn);
 			this->productTab->Controls->Add(this->listOfProducts);
-			this->productTab->Controls->Add(this->findProductBtn);
-			this->productTab->Controls->Add(this->findProductTxt);
 			this->productTab->Location = System::Drawing::Point(4, 29);
 			this->productTab->Name = L"productTab";
 			this->productTab->Padding = System::Windows::Forms::Padding(3);
@@ -605,30 +537,12 @@ namespace ProjektCPPWindowsForms {
 			this->productCompanyCol->Text = L"Id firmy";
 			this->productCompanyCol->Width = 100;
 			// 
-			// findProductBtn
-			// 
-			this->findProductBtn->Location = System::Drawing::Point(649, 8);
-			this->findProductBtn->Name = L"findProductBtn";
-			this->findProductBtn->Size = System::Drawing::Size(77, 38);
-			this->findProductBtn->TabIndex = 17;
-			this->findProductBtn->Text = L"Szukaj";
-			this->findProductBtn->UseVisualStyleBackColor = true;
-			// 
-			// findProductTxt
-			// 
-			this->findProductTxt->Location = System::Drawing::Point(732, 14);
-			this->findProductTxt->Name = L"findProductTxt";
-			this->findProductTxt->Size = System::Drawing::Size(452, 26);
-			this->findProductTxt->TabIndex = 16;
-			// 
 			// offerTab
 			// 
 			this->offerTab->Controls->Add(this->editOfferBtn);
 			this->offerTab->Controls->Add(this->deleteOfferBtn);
 			this->offerTab->Controls->Add(this->addOfferBtn);
 			this->offerTab->Controls->Add(this->listOfOffers);
-			this->offerTab->Controls->Add(this->findOfferBtn);
-			this->offerTab->Controls->Add(this->findOfferTxt);
 			this->offerTab->Location = System::Drawing::Point(4, 29);
 			this->offerTab->Name = L"offerTab";
 			this->offerTab->Padding = System::Windows::Forms::Padding(3);
@@ -715,30 +629,11 @@ namespace ProjektCPPWindowsForms {
 			this->offerDateEnd->Text = L"Data ukoñczenia";
 			this->offerDateEnd->Width = 100;
 			// 
-			// findOfferBtn
-			// 
-			this->findOfferBtn->Location = System::Drawing::Point(649, 8);
-			this->findOfferBtn->Name = L"findOfferBtn";
-			this->findOfferBtn->Size = System::Drawing::Size(77, 38);
-			this->findOfferBtn->TabIndex = 17;
-			this->findOfferBtn->Text = L"Szukaj";
-			this->findOfferBtn->UseVisualStyleBackColor = true;
-			// 
-			// findOfferTxt
-			// 
-			this->findOfferTxt->Location = System::Drawing::Point(732, 14);
-			this->findOfferTxt->Name = L"findOfferTxt";
-			this->findOfferTxt->Size = System::Drawing::Size(452, 26);
-			this->findOfferTxt->TabIndex = 16;
-			// 
 			// transactionTab
 			// 
 			this->transactionTab->Controls->Add(this->editTransactionBtn);
-			this->transactionTab->Controls->Add(this->deleteTransactionBtn);
 			this->transactionTab->Controls->Add(this->addTransactionBtn);
 			this->transactionTab->Controls->Add(this->listOfTransactions);
-			this->transactionTab->Controls->Add(this->findTransactionBtn);
-			this->transactionTab->Controls->Add(this->findTransactionTxt);
 			this->transactionTab->Location = System::Drawing::Point(4, 29);
 			this->transactionTab->Name = L"transactionTab";
 			this->transactionTab->Padding = System::Windows::Forms::Padding(3);
@@ -749,23 +644,13 @@ namespace ProjektCPPWindowsForms {
 			// 
 			// editTransactionBtn
 			// 
-			this->editTransactionBtn->Location = System::Drawing::Point(222, 651);
+			this->editTransactionBtn->Location = System::Drawing::Point(115, 651);
 			this->editTransactionBtn->Name = L"editTransactionBtn";
 			this->editTransactionBtn->Size = System::Drawing::Size(101, 42);
 			this->editTransactionBtn->TabIndex = 21;
 			this->editTransactionBtn->Text = L"Edit";
 			this->editTransactionBtn->UseVisualStyleBackColor = true;
 			this->editTransactionBtn->Click += gcnew System::EventHandler(this, &AdminPanel::editTransactionBtn_Click);
-			// 
-			// deleteTransactionBtn
-			// 
-			this->deleteTransactionBtn->Location = System::Drawing::Point(115, 651);
-			this->deleteTransactionBtn->Name = L"deleteTransactionBtn";
-			this->deleteTransactionBtn->Size = System::Drawing::Size(101, 42);
-			this->deleteTransactionBtn->TabIndex = 20;
-			this->deleteTransactionBtn->Text = L"Usuñ";
-			this->deleteTransactionBtn->UseVisualStyleBackColor = true;
-			this->deleteTransactionBtn->Click += gcnew System::EventHandler(this, &AdminPanel::deleteTransactionBtn_Click);
 			// 
 			// addTransactionBtn
 			// 
@@ -819,22 +704,6 @@ namespace ProjektCPPWindowsForms {
 			this->transactionOffersListCol->Text = L"Lista ofert";
 			this->transactionOffersListCol->Width = 400;
 			// 
-			// findTransactionBtn
-			// 
-			this->findTransactionBtn->Location = System::Drawing::Point(649, 8);
-			this->findTransactionBtn->Name = L"findTransactionBtn";
-			this->findTransactionBtn->Size = System::Drawing::Size(77, 38);
-			this->findTransactionBtn->TabIndex = 17;
-			this->findTransactionBtn->Text = L"Szukaj";
-			this->findTransactionBtn->UseVisualStyleBackColor = true;
-			// 
-			// findTransactionTxt
-			// 
-			this->findTransactionTxt->Location = System::Drawing::Point(732, 14);
-			this->findTransactionTxt->Name = L"findTransactionTxt";
-			this->findTransactionTxt->Size = System::Drawing::Size(452, 26);
-			this->findTransactionTxt->TabIndex = 16;
-			// 
 			// AdminPanel
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
@@ -847,17 +716,11 @@ namespace ProjektCPPWindowsForms {
 			this->Text = L"AdminPanel";
 			this->tabControl1->ResumeLayout(false);
 			this->userTab->ResumeLayout(false);
-			this->userTab->PerformLayout();
 			this->companyTab->ResumeLayout(false);
-			this->companyTab->PerformLayout();
 			this->categoryTab->ResumeLayout(false);
-			this->categoryTab->PerformLayout();
 			this->productTab->ResumeLayout(false);
-			this->productTab->PerformLayout();
 			this->offerTab->ResumeLayout(false);
-			this->offerTab->PerformLayout();
 			this->transactionTab->ResumeLayout(false);
-			this->transactionTab->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 			this->setItems(this->admin->getAllUser(), this->admin->getAllCompany(), this->admin->getAllCategory(),
@@ -919,18 +782,9 @@ namespace ProjektCPPWindowsForms {
 		while (myEnum->MoveNext())
 		{
 			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
-			this->listOfOffers->Items->RemoveAt(item->Index);
-			//this->admin->deleteOffer();
-		}
-	}
-	private: System::Void deleteTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		ListView::SelectedListViewItemCollection^ items = this->listOfTransactions->SelectedItems;
-		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
-		while (myEnum->MoveNext())
-		{
-			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
-			this->listOfTransactions->Items->RemoveAt(item->Index);
-			//this->admin->deleteTransaction();
+			Offer offer = Offer(System::Int32::Parse(item->SubItems[0]->Text), 0);
+			if (this->admin->deleteOffer(offer))
+				this->listOfOffers->Items->RemoveAt(item->Index);
 		}
 	}
 	private: System::Void addUserBtn_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1026,12 +880,53 @@ namespace ProjektCPPWindowsForms {
 		}
 	}
 	private: System::Void addOfferBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::AddOffer addOffer;
+		addOffer.setAdmin(this->admin);
+		addOffer.setOption(true);
+		addOffer.ShowDialog();
+		this->listOfOffers->Items->Clear();
+		this->setOffers(this->admin->getAllOffer());
 	}
 	private: System::Void editOfferBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfOffers->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			ProjektCPPWindowsForms::AddOffer addOffer;
+			addOffer.setAdmin(this->admin);
+			addOffer.setOffer(item);
+			addOffer.setOption(false);
+			addOffer.ShowDialog();
+			this->listOfOffers->Items->Clear();
+			this->setOffers(this->admin->getAllOffer());
+		}
 	}
 	private: System::Void addTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::AddTransaction addTransaction;
+		addTransaction.setAdmin(this->admin);
+		addTransaction.setOption(true);
+		addTransaction.ShowDialog();
+		this->listOfTransactions->Items->Clear();
+		this->setTransactions(this->admin->getAllTransaction());
 	}
 	private: System::Void editTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ListView::SelectedListViewItemCollection^ items = this->listOfTransactions->SelectedItems;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			ProjektCPPWindowsForms::AddTransaction addTransaction;
+			addTransaction.setAdmin(this->admin);
+			addTransaction.setTransaction(item);
+			addTransaction.setOption(false);
+			addTransaction.ShowDialog();
+			this->listOfTransactions->Items->Clear();
+			this->setTransactions(this->admin->getAllTransaction());
+		}
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
 	}
 };
 }

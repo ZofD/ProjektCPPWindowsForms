@@ -12,3 +12,7 @@ void ProjektCPPWindowsForms::Koszyk::setKoszykArr(ListView^ koszykArr) {
 void ProjektCPPWindowsForms::Koszyk::setClient(Client* client) {
 	this->client = client;
 }
+
+bool ProjektCPPWindowsForms::Koszyk::checkOption() {
+	return this->opcja;
+}

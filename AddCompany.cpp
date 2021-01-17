@@ -13,3 +13,7 @@ void ProjektCPPWindowsForms::AddCompany::setCompany(ListViewItem^ company) {
 void ProjektCPPWindowsForms::AddCompany::setOption(bool option) {
 	this->option = option;
 }
+
+void ProjektCPPWindowsForms::AddCompany::setDeleteOption(bool option) {
+	this->deleteOption = option;
+}

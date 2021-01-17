@@ -35,12 +35,8 @@ namespace ProjektCPPWindowsForms {
 			}
 		}
 	private: System::Windows::Forms::Button^ deleteCategoryBtn;
-	protected:
-
-	protected:
 	private: System::Windows::Forms::Button^ quitBtn;
 	private: System::Windows::Forms::Button^ editCategoryBtn;
-
 	private: System::Windows::Forms::Label^ nameLabel;
 	private: System::Windows::Forms::TextBox^ nameTxt;
 
@@ -48,6 +44,7 @@ namespace ProjektCPPWindowsForms {
 		Admin* admin;
 		ListViewItem^ category;
 		bool option;
+		bool deleteOption = true;
 
 	private:
 		/// <summary>
@@ -136,13 +133,15 @@ namespace ProjektCPPWindowsForms {
 			void setAdmin(Admin* admin);
 			void setCategory(ListViewItem^ category);
 			void setOption(bool option);
+			void setDeleteOption(bool option);
 #pragma endregion
 	private: System::Void deleteCategoryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (!this->option) {
+		if (!this->option && this->deleteOption) {
 			Category category = Category(System::Int32::Parse(this->category->SubItems[0]->Text), "");
-			this->admin->deleteCategory(category);
+			if (this->admin->deleteCategory(category))
+				this->Close();
 		}
-		this->Close();
+		MessageBox::Show("Nie masz uprawnieñ lub nie mo¿na usun¹æ tego rekordu");
 	}
 	private: System::Void editCategoryBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (this->nameTxt->Text != "")

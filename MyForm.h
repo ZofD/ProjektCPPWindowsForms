@@ -3,6 +3,7 @@
 
 #pragma once
 #include "Koszyk.h"
+#include "MyTransaction.h"
 
 namespace ProjektCPPWindowsForms {
 
@@ -45,15 +46,16 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ListView^ listView1;
 	private: System::Windows::Forms::Button^ wylogujBtn;
 	private: System::Windows::Forms::ColumnHeader^ Nazwa;
-
 	private: System::Windows::Forms::ColumnHeader^ Firma;
 	private: System::Windows::Forms::ColumnHeader^ Cena;
 	private: System::Windows::Forms::ColumnHeader^ Kategoria;
+	private: System::Windows::Forms::ColumnHeader^ ID;
 	private: System::Windows::Forms::Button^ DodajDoBtn;
 	private: System::Windows::Forms::Button^ KoszykBtn;
 
-		   Client* client;
-		   System::Windows::Forms::ListView^ koszykArr;
+			Client* client;
+			ListView^ koszykArr;
+	private: System::Windows::Forms::Button^ myTransactionBtn;
 
 	protected:
 
@@ -75,13 +77,14 @@ namespace ProjektCPPWindowsForms {
 			this->listView1->BeginUpdate();
 			for (Offer item : lista) {
 				//MessageBox::Show(gcnew String(std::to_string(item.getPrice()).c_str()));
+				String^ id = gcnew String(item.getProduct().getId().ToString());
 				String^ productName = gcnew String(item.getProduct().getName().c_str());
 				String^ productCompany = gcnew String(item.getProduct().getCompany().getName().c_str());
 				String^ productCategory = gcnew String(item.getProduct().getCategory().getName().c_str());
 				String^ price = gcnew String(std::to_string(item.getPrice()).c_str());
 				System::Windows::Forms::ListViewItem^ listviewitem1 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
-					productName,
-						price, productCompany, productCategory
+					id,
+						productName, price, productCompany, productCategory
 				}, -1));
 				this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
 					listviewitem1
@@ -98,6 +101,7 @@ namespace ProjektCPPWindowsForms {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->szukajBtn = (gcnew System::Windows::Forms::Button());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->ID = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Nazwa = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Cena = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Firma = (gcnew System::Windows::Forms::ColumnHeader());
@@ -106,6 +110,7 @@ namespace ProjektCPPWindowsForms {
 			this->DodajDoBtn = (gcnew System::Windows::Forms::Button());
 			this->KoszykBtn = (gcnew System::Windows::Forms::Button());
 			this->koszykArr = (gcnew System::Windows::Forms::ListView());
+			this->myTransactionBtn = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// user
@@ -113,9 +118,9 @@ namespace ProjektCPPWindowsForms {
 			this->user->AutoSize = true;
 			this->user->Location = System::Drawing::Point(49, 27);
 			this->user->Name = L"user";
-			this->user->Size = System::Drawing::Size(145, 20);
+			this->user->Size = System::Drawing::Size(86, 20);
 			this->user->TabIndex = 0;
-			this->user->Text = "u¿ytkownik";
+			this->user->Text = L"u¿ytkownik";
 			// 
 			// szukajTxt
 			// 
@@ -140,15 +145,13 @@ namespace ProjektCPPWindowsForms {
 			this->szukajBtn->TabIndex = 3;
 			this->szukajBtn->Text = L"Szukaj";
 			this->szukajBtn->UseVisualStyleBackColor = true;
-			this->szukajBtn->Click += gcnew System::EventHandler(this, &MyForm::szukajBtn_Click);
 			// 
 			// listView1
 			// 
 			this->listView1->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->listView1->CheckBoxes = true;
-			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
-				this->Nazwa, this->Cena,
-					this->Firma, this->Kategoria
+			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(5) {
+				this->ID, this->Nazwa,
+					this->Cena, this->Firma, this->Kategoria
 			});
 			this->listView1->FullRowSelect = true;
 			this->listView1->HideSelection = false;
@@ -159,6 +162,12 @@ namespace ProjektCPPWindowsForms {
 			this->listView1->TabIndex = 4;
 			this->listView1->UseCompatibleStateImageBehavior = false;
 			this->listView1->View = System::Windows::Forms::View::Details;
+			// 
+			// ID
+			// 
+			this->ID->Tag = L"0";
+			this->ID->Text = L"Id";
+			this->ID->Width = 0;
 			// 
 			// Nazwa
 			// 
@@ -221,11 +230,22 @@ namespace ProjektCPPWindowsForms {
 			this->koszykArr->TabIndex = 0;
 			this->koszykArr->UseCompatibleStateImageBehavior = false;
 			// 
+			// myTransactionBtn
+			// 
+			this->myTransactionBtn->Location = System::Drawing::Point(318, 750);
+			this->myTransactionBtn->Name = L"myTransactionBtn";
+			this->myTransactionBtn->Size = System::Drawing::Size(147, 38);
+			this->myTransactionBtn->TabIndex = 13;
+			this->myTransactionBtn->Text = L"Moje transakcje";
+			this->myTransactionBtn->UseVisualStyleBackColor = true;
+			this->myTransactionBtn->Click += gcnew System::EventHandler(this, &MyForm::myTransactionBtn_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1200, 800);
+			this->Controls->Add(this->myTransactionBtn);
 			this->Controls->Add(this->KoszykBtn);
 			this->Controls->Add(this->DodajDoBtn);
 			this->Controls->Add(this->wylogujBtn);
@@ -233,7 +253,7 @@ namespace ProjektCPPWindowsForms {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->szukajTxt);
 			this->Controls->Add(this->user);
-			setItems(client->getAllActiveOffer());
+			setItems(this->client->getAllActiveOffer());
 			this->Name = L"MyForm";
 			this->Text = L"Panel klienta";
 			this->ResumeLayout(false);
@@ -242,15 +262,18 @@ namespace ProjektCPPWindowsForms {
 		}
 
 	public: void setClient(User user);
-
+	//setItems(this->client->getAllActiveOffer());
 #pragma endregion
 	private: System::Void wylogujBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Hide();
+		this->Close();
 	}
 	private: System::Void KoszykBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		ProjektCPPWindowsForms::Koszyk koszyk;
 		koszyk.setKoszykArr(this->koszykArr);
+		koszyk.setClient(this->client);
 		koszyk.ShowDialog();
+		if (koszyk.checkOption())
+			this->koszykArr->Clear();
 	}
 	private: System::Void DodajDoBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		ListView::SelectedListViewItemCollection^ items = this->listView1->SelectedItems;
@@ -263,11 +286,10 @@ namespace ProjektCPPWindowsForms {
 			});
 		}
 	}
-	private: System::Void szukajBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		/*client->getAllActiveOfferByCategory(msclr::interop::marshal_as<std::string>(this->szukajTxt->Text));
-		cli::array< System::Windows::Forms::ListViewItem^ >^ tab = this->koszykArr->Items->Find(this->szukajTxt->Text, true);
-		this->listView1->Items->Clear();
-		this->listView1->Items->AddRange(tab);*/
+	private: System::Void myTransactionBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		ProjektCPPWindowsForms::MyTransaction myTransaction;
+		myTransaction.setTransactions(this->client->getMyTransaction());
+		myTransaction.ShowDialog();
 	}
 };
 }

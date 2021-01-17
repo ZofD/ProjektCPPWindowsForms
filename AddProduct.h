@@ -48,6 +48,7 @@ namespace ProjektCPPWindowsForms {
 		Admin* admin;
 		ListViewItem^ product;
 		bool option;
+		bool deleteOption = true;
 
 
 
@@ -125,7 +126,7 @@ namespace ProjektCPPWindowsForms {
 			// 
 			this->categoryBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->categoryBox->FormattingEnabled = true;
-			this->categoryBox->Location = System::Drawing::Point(307, 163);
+			this->categoryBox->Location = System::Drawing::Point(79, 163);
 			this->categoryBox->Name = L"categoryBox";
 			this->categoryBox->Size = System::Drawing::Size(218, 28);
 			this->categoryBox->TabIndex = 26;
@@ -134,7 +135,7 @@ namespace ProjektCPPWindowsForms {
 			// 
 			this->companyBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->companyBox->FormattingEnabled = true;
-			this->companyBox->Location = System::Drawing::Point(79, 163);
+			this->companyBox->Location = System::Drawing::Point(307, 163);
 			this->companyBox->Name = L"companyBox";
 			this->companyBox->Size = System::Drawing::Size(218, 28);
 			this->companyBox->TabIndex = 27;
@@ -142,7 +143,7 @@ namespace ProjektCPPWindowsForms {
 			// companyLabel
 			// 
 			this->companyLabel->AutoSize = true;
-			this->companyLabel->Location = System::Drawing::Point(75, 131);
+			this->companyLabel->Location = System::Drawing::Point(303, 131);
 			this->companyLabel->Name = L"companyLabel";
 			this->companyLabel->Size = System::Drawing::Size(49, 20);
 			this->companyLabel->TabIndex = 28;
@@ -151,7 +152,7 @@ namespace ProjektCPPWindowsForms {
 			// categoryLabel
 			// 
 			this->categoryLabel->AutoSize = true;
-			this->categoryLabel->Location = System::Drawing::Point(303, 131);
+			this->categoryLabel->Location = System::Drawing::Point(75, 131);
 			this->categoryLabel->Name = L"categoryLabel";
 			this->categoryLabel->Size = System::Drawing::Size(77, 20);
 			this->categoryLabel->TabIndex = 29;
@@ -183,16 +184,18 @@ namespace ProjektCPPWindowsForms {
 			void setAdmin(Admin* admin);
 			void setProduct(ListViewItem^ product);
 			void setOption(bool option);
+			void setDeleteOption(bool option);
 		private:
 			void setCompanies(std::vector<Company> companies);
 			void setCategories(std::vector<Category> categories);
 #pragma endregion
 	private: System::Void deleteProductBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (!this->option) {
+		if (!this->option && this->deleteOption) {
 			Product product = Product(System::Int32::Parse(this->product->SubItems[0]->Text), "");
-			this->admin->deleteProduct(product);
+			if (this->admin->deleteProduct(product))
+				this->Close();
 		}
-		this->Close();
+		MessageBox::Show("Nie masz uprawnieñ lub nie mo¿na usun¹æ tego rekordu");
 	}
 	private: System::Void editProductBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (this->nameTxt->Text != "" && this->categoryBox->SelectedIndex >= 0 && this->companyBox->SelectedIndex >= 0)

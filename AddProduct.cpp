@@ -21,7 +21,7 @@ void ProjektCPPWindowsForms::AddProduct::setProduct(ListViewItem^ product) {
 	System::Collections::IEnumerator^ categoryEnum = categoryItems->GetEnumerator();
 	while (categoryEnum->MoveNext()) {
 		Object^ item = safe_cast<Object^>(categoryEnum->Current);
-		if (System::Int32::Parse(item->ToString()->Split(' ')[0]) == System::Int32::Parse(product->SubItems[3]->Text)) {
+		if (System::Int32::Parse(item->ToString()->Split(' ')[0]) == System::Int32::Parse(product->SubItems[2]->Text)) {
 			this->categoryBox->Text = item->ToString();
 			break;
 		}
@@ -30,6 +30,10 @@ void ProjektCPPWindowsForms::AddProduct::setProduct(ListViewItem^ product) {
 
 void ProjektCPPWindowsForms::AddProduct::setOption(bool option) {
 	this->option = option;
+}
+
+void ProjektCPPWindowsForms::AddProduct::setDeleteOption(bool option) {
+	this->deleteOption = option;
 }
 
 void ProjektCPPWindowsForms::AddProduct::setCategories(std::vector<Category> categories) {

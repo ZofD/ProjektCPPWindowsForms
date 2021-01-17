@@ -75,10 +75,8 @@ bool QueryUser::addUser(User user) {
 }
 bool QueryUser::updateUser(User user) {
 	bool result = false;
-	if (QueryUser::selectUserByLogin(user.getLogin()).isNull()) {
-		result = QueryUser::update(("UPDATE user SET login='" + user.getLogin() + "', password='" + user.getPassword() + "', permission="
-			+ QueryUser::intToString(user.getPermission()) + " WHERE ID=" + QueryUser::intToString(user.getId())));
-	}
+	result = QueryUser::update(("UPDATE user SET login='" + user.getLogin() + "', password='" + user.getPassword() + "', permission="
+		+ QueryUser::intToString(user.getPermission()) + " WHERE ID=" + QueryUser::intToString(user.getId())));
 	return result;
 }
 bool QueryUser::deleteUser(User user) {

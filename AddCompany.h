@@ -50,6 +50,7 @@ namespace ProjektCPPWindowsForms {
 		Admin* admin;
 		ListViewItem^ company;
 		bool option;
+		bool deleteOption = true;
 
 	private:
 		/// <summary>
@@ -138,13 +139,15 @@ namespace ProjektCPPWindowsForms {
 			void setAdmin(Admin* admin);
 			void setCompany(ListViewItem^ company);
 			void setOption(bool option);
+			void setDeleteOption(bool option);
 #pragma endregion
 	private: System::Void deleteCompanyBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (!this->option) {
+		if (!this->option && this->deleteOption) {
 			Company company = Company(System::Int32::Parse(this->company->SubItems[0]->Text), "");
-			this->admin->deleteCompany(company);
+			if (this->admin->deleteCompany(company))
+				this->Close();
 		}
-		this->Close();
+		MessageBox::Show("Nie masz uprawnieñ lub nie mo¿na usun¹æ tego rekordu");
 	}
 	private: System::Void editCompanyBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (this->nameTxt->Text != "")

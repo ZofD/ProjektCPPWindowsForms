@@ -182,6 +182,9 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MyTransaction.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Offer.h" />
     <ClInclude Include="PanelSprzedawcy.h">
       <FileType>CppForm</FileType>
@@ -219,6 +222,7 @@
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Koszyk.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="MyTransaction.cpp" />
     <ClCompile Include="Offer.cpp" />
     <ClCompile Include="PanelSprzedawcy.cpp" />
     <ClCompile Include="pch.cpp">
@@ -256,8 +260,14 @@
     <EmbeddedResource Include="AddCompany.resx">
       <DependentUpon>AddCompany.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOffer.resx">
+      <DependentUpon>AddOffer.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTransaction.resx">
+      <DependentUpon>AddTransaction.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddUser.resx">
       <DependentUpon>AddUser.h</DependentUpon>
@@ -273,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyTransaction.resx">
+      <DependentUpon>MyTransaction.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelSprzedawcy.resx">
       <DependentUpon>PanelSprzedawcy.h</DependentUpon>
