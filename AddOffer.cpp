@@ -7,15 +7,9 @@ void ProjektCPPWindowsForms::AddOffer::setAdmin(Admin* admin) {
 
 void ProjektCPPWindowsForms::AddOffer::setOffer(ListViewItem^ offer) {
 	this->offer = offer;
-	this->zlTxt->Text = offer->SubItems[1]->Text->Split(',')[0];
-	try
-	{
-		this->grTxt->Text = offer->SubItems[1]->Text->Split(',')[1];
-	}
-	catch (const std::exception&)
-	{
-		this->grTxt->Text = "0";
-	}
+	int liczba = System::Double::Parse(offer->SubItems[1]->Text) * 100;
+	this->zlTxt->Text = (liczba / 100).ToString();
+	this->grTxt->Text = (liczba % 100).ToString();
 	ComboBox::ObjectCollection^ CompanyItems = this->productBox->Items;
 	System::Collections::IEnumerator^ comapanyEnum = CompanyItems->GetEnumerator();
 	while (comapanyEnum->MoveNext()) {
