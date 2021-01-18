@@ -171,9 +171,9 @@ std::vector<Offer> QueryOffer::selectAllInTransaction(MYSQL* conn, Transaction t
 }
 
 bool QueryOffer::addOffer(Offer offer) {
-	Offer oldOffer = QueryOffer::selectByProductAnDDateStopNull(offer);
-	oldOffer.setStopDate(Helper::getDayAfter(offer.getStartDate()));
-	QueryOffer::updateOffer(oldOffer);
+	//Offer oldOffer = QueryOffer::selectByProductAnDDateStopNull(offer);
+	//oldOffer.setStopDate(Helper::getDayAfter(offer.getStartDate()));
+	//QueryOffer::updateOffer(oldOffer);
 	if (offer.getStopDate()==Helper::getNullTime()) {
 		return QueryOffer::addOfferStopDateNull(offer);
 	}
