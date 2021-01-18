@@ -45,6 +45,8 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::ComboBox^ productBox;
 	private: System::Windows::Forms::Label^ dateStartLabel;
 	private: System::Windows::Forms::Label^ dateStopLabel;
+	private: System::Windows::Forms::NumericUpDown^ grTxt;
+	private: System::Windows::Forms::Label^ label1;
 
 	private:
 		Admin* admin;
@@ -53,11 +55,6 @@ namespace ProjektCPPWindowsForms {
 		bool deleteOption = true;
 		String^ start = DateTime().Today.ToString("yyyy-MM-dd");
 		String^ stop = DateTime().Today.ToString("yyyy-MM-dd");
-	private: System::Windows::Forms::NumericUpDown^ grTxt;
-
-
-
-	private: System::Windows::Forms::Label^ label1;
 
 	private:
 		/// <summary>
@@ -232,6 +229,7 @@ namespace ProjektCPPWindowsForms {
 			this->ResumeLayout(false);
 			this->PerformLayout();
 			this->setProducts(this->admin->getAllProduct());
+
 		}
 
 		public:

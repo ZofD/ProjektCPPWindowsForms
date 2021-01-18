@@ -77,7 +77,7 @@ namespace ProjektCPPWindowsForms {
 			this->listView1->BeginUpdate();
 			for (Offer item : lista) {
 				//MessageBox::Show(gcnew String(std::to_string(item.getPrice()).c_str()));
-				String^ id = gcnew String(item.getProduct().getId().ToString());
+				String^ id = gcnew String(item.getId().ToString());
 				String^ productName = gcnew String(item.getProduct().getName().c_str());
 				String^ productCompany = gcnew String(item.getProduct().getCompany().getName().c_str());
 				String^ productCategory = gcnew String(item.getProduct().getCategory().getName().c_str());
@@ -184,6 +184,7 @@ namespace ProjektCPPWindowsForms {
 			// Firma
 			// 
 			this->Firma->Tag = L"1";
+			this->Firma->Width = 200;
 			this->Firma->Text = L"Firma";
 			// 
 			// Kategoria

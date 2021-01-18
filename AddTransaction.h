@@ -53,6 +53,8 @@ namespace ProjektCPPWindowsForms {
 		ListViewItem^ transaction;
 		bool option;
 		String^ dateStr = DateTime().Today.ToString("yyyy-MM-dd");
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
 
 	private:
 		/// <summary>
@@ -75,6 +77,8 @@ namespace ProjektCPPWindowsForms {
 			this->dataLabel = (gcnew System::Windows::Forms::Label());
 			this->listOfUserOffer = (gcnew System::Windows::Forms::ListBox());
 			this->listOfOffer = (gcnew System::Windows::Forms::ListBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// userIdLabel
@@ -155,11 +159,31 @@ namespace ProjektCPPWindowsForms {
 			this->listOfOffer->TabIndex = 44;
 			this->listOfOffer->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &AddTransaction::listOfOffer_MouseDown);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(477, 127);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(123, 20);
+			this->label1->TabIndex = 45;
+			this->label1->Text = L"Dostêpne oferty";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(663, 127);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(142, 20);
+			this->label2->TabIndex = 46;
+			this->label2->Text = L"Oferty u¿ytkownika";
+			// 
 			// AddTransaction
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(893, 503);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->listOfOffer);
 			this->Controls->Add(this->listOfUserOffer);
 			this->Controls->Add(this->dataLabel);
@@ -174,7 +198,6 @@ namespace ProjektCPPWindowsForms {
 			this->PerformLayout();
 			this->setUsers(this->admin->getAllUser());
 			this->setOffers(this->admin->getAllOffer());
-
 		}
 
 		public:
