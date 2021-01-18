@@ -6,6 +6,9 @@ void ProjektCPPWindowsForms::Koszyk::setKoszykArr(ListView^ koszykArr) {
 		this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
 			(ListViewItem^)koszykArr->Items[i]->Clone()
 		});
+		this->koszykArr->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  > {
+			(ListViewItem^)koszykArr->Items[i]->Clone()
+		});
 	}
 }
 

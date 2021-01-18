@@ -81,7 +81,7 @@ namespace ProjektCPPWindowsForms {
 				String^ productName = gcnew String(item.getProduct().getName().c_str());
 				String^ productCompany = gcnew String(item.getProduct().getCompany().getName().c_str());
 				String^ productCategory = gcnew String(item.getProduct().getCategory().getName().c_str());
-				String^ price = gcnew String(std::to_string(item.getPrice()).c_str());
+				String^ price = gcnew String(item.getPrice().ToString());
 				System::Windows::Forms::ListViewItem^ listviewitem1 = (gcnew System::Windows::Forms::ListViewItem(gcnew cli::array< System::String^  > {
 					id,
 						productName, price, productCompany, productCategory
@@ -271,6 +271,16 @@ namespace ProjektCPPWindowsForms {
 		koszyk.setKoszykArr(this->koszykArr);
 		koszyk.setClient(this->client);
 		koszyk.ShowDialog();
+		this->koszykArr->Clear();
+		ListView::ListViewItemCollection^ items = koszyk.getKoszykArr()->Items;
+		System::Collections::IEnumerator^ myEnum = items->GetEnumerator();
+		while (myEnum->MoveNext())
+		{
+			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
+			this->koszykArr->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^ > {
+				(ListViewItem^)item->Clone()
+			});
+		}
 		if (koszyk.checkOption())
 			this->koszykArr->Clear();
 	}

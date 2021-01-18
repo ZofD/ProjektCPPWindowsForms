@@ -50,6 +50,7 @@ namespace ProjektCPPWindowsForms {
 	private: System::Windows::Forms::Button^ KupBtn;
 
 		   Client* client;
+		   ListView^ koszykArr;
 		   bool opcja = false;
 
 
@@ -71,6 +72,7 @@ namespace ProjektCPPWindowsForms {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->szukajBtn = (gcnew System::Windows::Forms::Button());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->koszykArr = (gcnew System::Windows::Forms::ListView());
 			this->Nazwa = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Cena = (gcnew System::Windows::Forms::ColumnHeader());
 			this->Firma = (gcnew System::Windows::Forms::ColumnHeader());
@@ -187,6 +189,10 @@ namespace ProjektCPPWindowsForms {
 	public: void setKoszykArr(ListView^ koszykArr);
 	public: void setClient(Client* client);
 	public: bool checkOption();
+
+	public: ListView^ getKoszykArr() {
+		return this->koszykArr;
+	}
 #pragma endregion
 	private: System::Void UsuñBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		ListView::SelectedListViewItemCollection^ items = this->listView1->SelectedItems;
@@ -194,7 +200,9 @@ namespace ProjektCPPWindowsForms {
 		while (myEnum->MoveNext())
 		{
 			ListViewItem^ item = safe_cast<ListViewItem^>(myEnum->Current);
-			this->listView1->Items->RemoveAt(item->Index);
+			int index = item->Index;
+			this->listView1->Items->RemoveAt(index);
+			this->koszykArr->Items->RemoveAt(index);
 		}
 	}
 	private: System::Void KupBtn_Click(System::Object^ sender, System::EventArgs^ e) {
